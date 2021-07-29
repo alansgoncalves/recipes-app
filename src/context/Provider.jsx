@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Context from './Context';
+import Header from '../components/Header';
 
 export default function Provider({ children }) {
   const [results, setResults] = useState('');
@@ -19,6 +20,7 @@ export default function Provider({ children }) {
   return (
     <Context.Provider value={ { results, handleChange } }>
       { children }
+      <Header />
     </Context.Provider>
   );
 }
