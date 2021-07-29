@@ -7,12 +7,9 @@ import SearchBar from './components/SearchBar';
 
 function App() {
   return (
-    <div className="meals">
+    <Provider>
       <Routes />
-      <Provider>
-        <SearchBar />
-      </Provider>
-    </div>
+    </Provider>
   );
 }
 
