@@ -18,6 +18,7 @@ export default function Provider({ children }) {
   };
 
   return (
+
     <Context.Provider value={ { results, handleChange } }>
       { children }
     </Context.Provider>
