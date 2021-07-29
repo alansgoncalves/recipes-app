@@ -3,15 +3,14 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Routes from './routes/Routes';
 import Provider from './context/Provider';
+import Login from './pages/Login';
 
 function App() {
   return (
-    <div className="meals">
-      <Routes />
       <Provider>
-        <div>Oi</div>
+        <Routes />
+        <Login />
       </Provider>
-    </div>
   );
 }
 
