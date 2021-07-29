@@ -6,6 +6,7 @@ export default function Routes() {
   return (
     <Switch>
       <Route path="/comidas" component={ Comidas } />
+      <Route path="/perfil" />
     </Switch>
   );
 }
