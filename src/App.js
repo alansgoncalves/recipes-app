@@ -6,12 +6,9 @@ import Provider from './context/Provider';
 
 function App() {
   return (
-    <div className="meals">
+    <Provider>
       <Routes />
-      <Provider>
-        <div>Oi</div>
-      </Provider>
-    </div>
+    </Provider>
   );
 }
 
