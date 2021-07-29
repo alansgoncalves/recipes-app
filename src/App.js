@@ -3,6 +3,7 @@ import './App.css';
 import rockGlass from './images/rockGlass.svg';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Provider from './context/Provider';
+import SearchBar from './components/SearchBar';
 
 function App() {
   return (
@@ -16,7 +17,7 @@ function App() {
         Glass
       </object>
       <Provider>
-        <div>Oi</div>
+        <SearchBar />
       </Provider>
     </div>
   );
