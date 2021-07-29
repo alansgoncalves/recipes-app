@@ -7,10 +7,10 @@ import Login from './pages/Login';
 
 function App() {
   return (
-      <Provider>
-        <Routes />
-        <Login />
-      </Provider>
+    <Provider>
+      <Routes />
+      <Login />
+    </Provider>
   );
 }
 
