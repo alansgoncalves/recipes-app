@@ -5,7 +5,7 @@ import mealIcon from '../images/mealIcon.svg';
 
 export default function Footer() {
   return (
-    <footer data-testid="footer">
+    <footer className="footer" data-testid="footer">
       <img data-testid="drinks-bottom-btn" src={ drinkIcon } alt="drink icon" />
       <img data-testid="explore-bottom-btn" src={ exploreIcon } alt="explore icon" />
       <img data-testid="food-bottom-btn" src={ mealIcon } alt="meal icon" />
