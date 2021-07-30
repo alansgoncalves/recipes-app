@@ -1,7 +1,8 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import Comidas from '../pages/Comidas';
+import Login from '../pages/Login';
 import Bebidas from '../pages/Bebidas';
+import Comidas from '../pages/Comidas';
 import Explorar from '../pages/Explorar';
 import DetalhesComidas from '../pages/DetalhesComidas';
 import DetalhesBebidas from '../pages/DetalhesBebidas';
@@ -12,6 +13,7 @@ import ExplorarIngredientesBebidas from '../pages/ExplorarIngredientesBebidas';
 import ExplorarComidasPorArea from '../pages/ExplorarComidasPorArea';
 import ReceitasFeitas from '../pages/ReceitasFeitas';
 import ReceitasFavoritas from '../pages/ReceitasFavoritas';
+import Profile from '../pages/Profile';
 
 export default function Routes() {
   return (
@@ -36,6 +38,11 @@ export default function Routes() {
         path="/explorar/bebidas/ingredientes"
         component={ ExplorarIngredientesBebidas }
       />
+      <Route exact path="/" componet={ Login } />
+      <Route exact path="/comidas" component={ Comidas } />
+      <Route exact path="/perfil" component={ Profile } />
+      <Route exact path="/bebidas" component={ Bebidas } />
+      <Route exact path="/explorar" component={ Explorar } />
     </Switch>
   );
 }
