@@ -3,6 +3,7 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Routes from './routes/Routes';
 import Provider from './context/Provider';
+import SearchBar from './components/SearchBar';
 import Login from './pages/Login';
 
 function App() {
@@ -10,6 +11,7 @@ function App() {
     <Provider>
       <Routes />
       <Login />
+      <SearchBar />
     </Provider>
   );
 }
