@@ -1,18 +1,37 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import profileIcon from '../images/profileIcon.svg';
-import searchIcon from '../images/searchIcon.svg';
+import ProfileIcon from '../images/profileIcon.svg';
+import SearchIcon from '../images/searchIcon.svg';
 
-export default function Header() {
+export default function Header({ title, showSearchIcon }) {
   return (
-    <header>
-      <Link to="/perfil">
-        <img src={ profileIcon } alt="profile" data-testid="profile-top-btn" />
-      </Link>
-      <h1 data-testid="page-title">Título</h1>
-      <button type="button">
-        <img src={ searchIcon } alt="search" data-testid="search-top-btn" />
-      </button>
+    <header className="container">
+      <div className="row align-items-center" style={ { height: '80px' } }>
+        <div className="col-2">
+          <Link to="/perfil">
+            <img
+              data-testid="profile-top-btn"
+              src={ ProfileIcon }
+              alt="link para perfil"
+            />
+          </Link>
+        </div>
+        <h1 data-testid="page-title" className="m-0 h4 col-8 text-center">{title}</h1>
+        <div className="col-2">
+          { showSearchIcon
+        && <img data-testid="search-top-btn" src={ SearchIcon } alt="buscar receita" />}
+        </div>
+      </div>
     </header>
   );
 }
+
+Header.propTypes = {
+  title: PropTypes.string.isRequired,
+  showSearchIcon: PropTypes.bool,
+};
+
+Header.defaultProps = {
+  showSearchIcon: false,
+};
