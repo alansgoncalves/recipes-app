@@ -1,5 +1,6 @@
 import React from 'react';
 import Footer from '../components/Footer';
+import SearchBar from '../components/SearchBar';
 import '../styles/Comidas.css';
 
 export default function Comidas() {
@@ -7,6 +8,7 @@ export default function Comidas() {
     <div className="comidas">
       Comidas
       <Footer />
+      <SearchBar />
     </div>
   );
 }

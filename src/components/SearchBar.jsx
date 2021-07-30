@@ -1,9 +1,26 @@
-import React, { useContext } from 'react';
-import Context from '../context/Context';
+import React, { useState } from 'react';
 
 function SearchBar() {
-  const { results } = useContext(Context);
-  const { value } = results;
+  const [input, setInput] = useState('');
+  const [search, setSearch] = useState('');
+
+  function conditionEndpoint(value) {
+    let endpoint;
+    if (input === 'ingredient') {
+      endpoint = `https://www.themealdb.com/api/json/v1/1/filter.php?i=${value}`;
+    } else if (input === 'name') {
+      endpoint = `https://www.themealdb.com/api/json/v1/1/search.php?s=${value}`;
+    } else if (input === 'firstletter' && search.length > 1) {
+      alert('Sua busca deve conter somente 1 (um) caracter');
+      return;
+    } else if (input === 'firstletter') {
+      endpoint = `https://www.themealdb.com/api/json/v1/1/search.php?f=${value}`;
+    }
+    if (!input) return null;
+    return fetch(endpoint)
+      .then((response) => response.json())
+      .then((results) => console.log(results));
+  }
 
   return (
     <div>
@@ -11,20 +28,46 @@ function SearchBar() {
         <input
           data-testid="search-input"
           type="text"
-          value={ value }
-          onChange={ ({ target }) => (target.value) }
+          name="value"
+          onChange={ ({ target: { value } }) => setSearch(value) }
         />
       </label>
       <label htmlFor="radio-search">
         Ingrediente
-        <input id="radio-search" type="radio" data-testid="ingredient-search-radio" />
+        <input
+          id="radio-search"
+          name="radio-search"
+          value="ingredient"
+          type="radio"
+          data-testid="ingredient-search-radio"
+          onChange={ ({ target: { value } }) => setInput(value) }
+        />
         Nome
-        <input id="radio-search" type="radio" data-testid="name-search-radio" />
+        <input
+          id="radio-search"
+          name="radio-search"
+          type="radio"
+          data-testid="name-search-radio"
+          value="name"
+          onChange={ ({ target: { value } }) => setInput(value) }
+        />
         Primeira Letra
-        <input id="radio-search" type="radio" data-testid="first-letter-search-radio" />
+        <input
+          id="radio-search"
+          value="firstletter"
+          name="radio-search"
+          type="radio"
+          data-testid="first-letter-search-radio"
+          onChange={ ({ target: { value } }) => setInput(value) }
+        />
       </label>
-      <button type="button" data-testid="exec-search-btn">Buscar</button>
-      <button type="button" data-testid="search-top-btn">Mock</button>
+      <button
+        type="button"
+        data-testid="exec-search-btn"
+        onClick={ () => conditionEndpoint(search) }
+      >
+        Buscar
+      </button>
     </div>
   );
 }
