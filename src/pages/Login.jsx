@@ -29,13 +29,8 @@ export default function Login() {
   }
 
   return (
-<<<<<<< HEAD
-    <div className="meals">
-      <form>
-=======
     <section>
       <form className="form-login">
->>>>>>> main-group-16
         <input
           type="email"
           name="email"
