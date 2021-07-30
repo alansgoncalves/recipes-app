@@ -3,15 +3,17 @@ import { Link } from 'react-router-dom';
 import ProfileIcon from '../images/profileIcon.svg';
 import SearchIcon from '../images/searchIcon.svg';
 import Context from '../context/Context';
+import SearchBar from './SearchBar';
 
 export default function Header() {
   const { showSearchBar, setShowSearchBar } = useContext(Context);
   const displaySearchBar = () => {
+    console.log(showSearchBar);
     if (!showSearchBar) {
       setShowSearchBar(true);
-      return <SearchBar />;
+    } else {
+      setShowSearchBar(false);
     }
-    setShowSearchBar(true);
   };
 
   return (
@@ -32,6 +34,7 @@ export default function Header() {
           </button>
         </div>
       </div>
+      { showSearchBar ? <SearchBar /> : null }
     </header>
   );
 }

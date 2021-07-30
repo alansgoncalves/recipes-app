@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
 import Footer from '../components/Footer';
-import SearchBarFood from '../components/SearchBarFood';
 import '../styles/Comidas.css';
 import Header from '../components/Header';
 import Context from '../context/Context';
@@ -14,7 +13,6 @@ export default function Comidas() {
     <div className="comidas">
       <h1 data-testid="page-title">Comidas</h1>
       <Header />
-      <SearchBarFood />
       <Footer />
       <div>
         { food.map((item) => (

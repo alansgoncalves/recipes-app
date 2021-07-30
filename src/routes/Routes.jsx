@@ -18,8 +18,6 @@ import Profile from '../pages/Profile';
 export default function Routes() {
   return (
     <Switch>
-      <Route path="/comidas" component={ Comidas } />
-      <Route path="/bebidas" component={ Bebidas } />
       <Route exact path="/explorar" component={ Explorar } />
       <Route exact path="/explorar/comidas" component={ ExplorarComidas } />
       <Route exact path="/explorar/bebidas" component={ ExplorarBebidas } />
@@ -38,11 +36,10 @@ export default function Routes() {
         path="/explorar/bebidas/ingredientes"
         component={ ExplorarIngredientesBebidas }
       />
-      <Route exact path="/" componet={ Login } />
+      <Route exact path="/" component={ Login } />
       <Route exact path="/comidas" component={ Comidas } />
       <Route exact path="/perfil" component={ Profile } />
       <Route exact path="/bebidas" component={ Bebidas } />
-      <Route exact path="/explorar" component={ Explorar } />
     </Switch>
   );
 }
