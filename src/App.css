@@ -18,11 +18,11 @@
   padding-left: 10px;
   padding-right: 10px;
   padding-top: 10px;
-  border: 1px black
 }
 
 .card-img-meals {
   width: 100%;
+  border-radius: 15px;
   box-shadow: 3px 4px 4px rgb(99, 98, 98);
 }
 

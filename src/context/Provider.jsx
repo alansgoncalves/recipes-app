@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Context from './Context';
-import Header from '../components/Header';
 
 export default function Provider({ children }) {
   const [food, setFood] = useState([]);
@@ -10,7 +9,6 @@ export default function Provider({ children }) {
   return (
     <Context.Provider value={ { drink, food, setFood, setDrink } }>
       { children }
-      <Header />
     </Context.Provider>
   );
 }
