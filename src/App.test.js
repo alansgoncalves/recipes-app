@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 import renderWithRouter from './renderWithRouter';
 import Login from './pages/Login';
 import userEvent from '@testing-library/user-event';
