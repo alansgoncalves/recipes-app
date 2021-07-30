@@ -8,7 +8,6 @@ import SearchBar from './SearchBar';
 export default function Header() {
   const { showSearchBar, setShowSearchBar } = useContext(Context);
   const displaySearchBar = () => {
-    console.log(showSearchBar);
     if (!showSearchBar) {
       setShowSearchBar(true);
     } else {

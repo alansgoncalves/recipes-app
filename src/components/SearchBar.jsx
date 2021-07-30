@@ -9,7 +9,7 @@ function SearchBar() {
   const history = useHistory();
   const { location: { pathname } } = history;
 
-  function conditionEndpointDrink(value) {
+  async function conditionEndpointDrink(value) {
     let endpoint;
     if (input === 'ingredient') {
       endpoint = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${value}`;
@@ -22,12 +22,17 @@ function SearchBar() {
       endpoint = `https://www.thecocktaildb.com/api/json/v1/1/search.php?f=${value}`;
     }
     if (!input) return null;
-    return fetch(endpoint)
-      .then((response) => response.json())
-      .then(({ drinks }) => setDrink(drinks));
+    const response = await fetch(endpoint);
+    const { drinks } = await response.json();
+    if (!drinks) {
+      alert('Sinto muito, não encontramos nenhuma receita para esses filtros.');
+    }
+    if (drinks.length === 1) history.push(`/bebidas/${drinks[0].idDrink}`);
+    setDrink(drinks);
+    console.log(drinks);
   }
 
-  function conditionEndpointFood(value) {
+  async function conditionEndpointFood(value) {
     let endpoint;
     if (input === 'ingredient') {
       endpoint = `https://www.themealdb.com/api/json/v1/1/filter.php?i=${value}`;
@@ -40,9 +45,13 @@ function SearchBar() {
       endpoint = `https://www.themealdb.com/api/json/v1/1/search.php?f=${value}`;
     }
     if (!input) return null;
-    return fetch(endpoint)
-      .then((response) => response.json())
-      .then(({ meals }) => setFood(meals));
+    const response = await fetch(endpoint);
+    const { meals } = await response.json();
+    if (!meals) {
+      alert('Sinto muito, não encontramos nenhuma receita para esses filtros.');
+    }
+    if (meals.length === 1) history.push(`/comidas/${meals[0].idMeal}`);
+    setFood(meals);
   }
 
   function conditionEndpoint() {
