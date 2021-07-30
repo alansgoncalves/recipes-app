@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import Context from '../context/Context';
 
 function SearchBarDrink() {
   const [input, setInput] = useState('');
   const [search, setSearch] = useState('');
+  const { setDrink } = useContext(Context);
 
   function conditionEndpoint(value) {
     let endpoint;
@@ -19,7 +21,7 @@ function SearchBarDrink() {
     if (!input) return null;
     return fetch(endpoint)
       .then((response) => response.json())
-      .then((results) => console.log(results));
+      .then(({ drinks }) => setDrink(drinks));
   }
 
   return (
@@ -65,6 +67,7 @@ function SearchBarDrink() {
         type="button"
         data-testid="exec-search-btn"
         onClick={ () => conditionEndpoint(search) }
+        className="btn btn-warning"
       >
         Buscar
       </button>

@@ -1,13 +1,52 @@
 .meals {
+  display: flex;
   align-items: center;
   background: #0fa36b;
   color: #464646;
-  display: flex;
   flex-direction: column;
   font-family: sans-serif;
   height: 100vh;
   justify-content: center;
+  width: 100vh;
+}
+
+
+.card-meals {
+  width: 200px;
+  height: 200px;
+  margin-top: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 10px;
+  border: 1px black
+}
+
+.card-img-meals {
   width: 100%;
+  box-shadow: 3px 4px 4px rgb(99, 98, 98);
+}
+
+.card-title-meals {
+  font-size: 100%;
+}
+
+.card-drinks {
+  width: 200px;
+  height: 200px;
+  margin-top: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 10px;
+  border: 1px black
+}
+
+.card-img-drinks {
+  width: 100%;
+  box-shadow: 3px 4px 4px rgb(99, 98, 98);
+}
+
+.card-title-drinks {
+  font-size: 100%;
 }
 
 .rocksGlass {
@@ -29,15 +68,15 @@
 }
 */
 
-.meals > .logo {
+/* .meals > .logo {
   animation: shake 1.5s infinite ease;
   color: aliceblue;
   font-family: Montserrat , sans-serif;
   font-size: 3em;
   font-weight: 900;
-}
+} */
 
-@keyframes shake {
+/* @keyframes shake {
 
   0% {
     transform: rotate(5deg);
@@ -65,4 +104,4 @@
   100% {
     transform: rotate(-10deg);
   }
-}
+} */
