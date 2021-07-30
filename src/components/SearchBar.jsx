@@ -99,7 +99,6 @@ function SearchBar() {
       >
         Buscar
       </button>
-      <button type="button" data-testid="search-top-btn">Mock</button>
     </div>
   );
 }

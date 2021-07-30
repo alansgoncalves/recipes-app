@@ -1,11 +1,17 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Footer from '../components/Footer';
+import Header from '../components/Header';
 
-export default function Explorar() {
-  return (
-    <div>
-      Explorar
-      <Footer />
-    </div>
-  );
+class Explorar extends Component {
+  render() {
+    return (
+      <div>
+        <Header title="Explorar" />
+        Explorar
+        <Footer />
+      </div>
+    );
+  }
 }
+
+export default Explorar;
