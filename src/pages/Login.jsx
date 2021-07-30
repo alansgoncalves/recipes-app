@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import '../styles/Login.css';
 
 export default function Login() {
   const [user, setUser] = useState({
@@ -29,36 +30,31 @@ export default function Login() {
 
   return (
     <section>
-      <form>
-        <div>
-          <input
-            type="email"
-            name="email"
-            data-testid="email-input"
-            onChange={ (e) => handleChangeInputs(e) }
-          />
-        </div>
-        <div>
-          <input
-            type="password"
-            name="password"
-            data-testid="password-input"
-            onChange={ (e) => handleChangeInputs(e) }
-          />
-        </div>
-        <div>
-          <Link to="/comidas">
-            <button
-              type="button"
-              data-testid="login-submit-btn"
-              disabled={ !validateLogin() }
-              onClick={ () => setLocalStorage() }
-            >
-              Entrar
-            </button>
-          </Link>
-
-        </div>
+      <form className="form-login">
+        <input
+          type="email"
+          name="email"
+          placeholder="Email"
+          data-testid="email-input"
+          onChange={ (e) => handleChangeInputs(e) }
+        />
+        <input
+          type="password"
+          name="password"
+          placeholder="Senha"
+          data-testid="password-input"
+          onChange={ (e) => handleChangeInputs(e) }
+        />
+        <Link to="/comidas">
+          <button
+            type="button"
+            data-testid="login-submit-btn"
+            disabled={ !validateLogin() }
+            onClick={ () => setLocalStorage() }
+          >
+            Entrar
+          </button>
+        </Link>
       </form>
     </section>
   );
