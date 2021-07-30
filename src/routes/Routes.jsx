@@ -8,7 +8,7 @@ import Explorar from '../pages/Explorar';
 export default function Routes() {
   return (
     <Switch>
-      <Route exact path="/" componet={ Login } />
+      <Route exact path="/" component={ Login } />
       <Route exact path="/comidas" component={ Comidas } />
       <Route exact path="/perfil" />
       <Route exact path="/bebidas" component={ Bebidas } />

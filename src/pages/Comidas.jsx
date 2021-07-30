@@ -17,10 +17,20 @@ export default function Comidas() {
       <SearchBarFood />
       <Footer />
       <div>
-        { food.map((item) => (
-          <div key={ item.idMeal } className="card-meals">
-            <h1 className="card-title-meals">{ item.strMeal }</h1>
+        { food.map((item, index) => (
+          <div
+            key={ item.idMeal }
+            className="card-meals"
+            data-testid={ `${index}-recipe-card` }
+          >
+            <h1
+              data-testid={ `${index}-card-name` }
+              className="card-title-meals"
+            >
+              { item.strMeal }
+            </h1>
             <img
+              data-testid={ `${index}-card-img` }
               className="card-img-meals"
               src={ item.strMealThumb }
               alt={ item.strMeal }
