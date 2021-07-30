@@ -5,6 +5,7 @@ import Context from './Context';
 export default function Provider({ children }) {
   const [food, setFood] = useState([]);
   const [drink, setDrink] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [showSearchBar, setShowSearchBar] = useState(false);
 
   return (
@@ -15,6 +16,8 @@ export default function Provider({ children }) {
         setFood,
         setDrink,
         showSearchBar,
+        loading,
+        setLoading,
         setShowSearchBar } }
     >
       { children }
