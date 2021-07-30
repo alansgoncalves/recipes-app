@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function SearchBar() {
+function SearchBarFood() {
   const [input, setInput] = useState('');
   const [search, setSearch] = useState('');
 
@@ -68,8 +68,9 @@ function SearchBar() {
       >
         Buscar
       </button>
+      <button type="button" data-testid="search-top-btn">Mock</button>
     </div>
   );
 }
 
-export default SearchBar;
+export default SearchBarFood;
