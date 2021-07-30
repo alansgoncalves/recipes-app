@@ -7,13 +7,52 @@
   font-family: sans-serif;
   height: 100vh;
   justify-content: center;
+  width: 100vh;
+}
+
+
+.card-meals {
+  height: 200px;
+  margin-top: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 10px;
+  width: 200px;
+}
+
+.card-img-meals {
+  border-radius: 15px;
+  box-shadow: 3px 4px 4px rgb(99, 98, 98);
   width: 100%;
 }
 
-.rocksGlass {
+.card-title-meals {
+  font-size: 100%;
+}
+
+.card-drinks {
+  border: 1px black;
+  height: 200px;
+  margin-top: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 10px;
+  width: 200px;
+}
+
+.card-img-drinks {
+  box-shadow: 3px 4px 4px rgb(99, 98, 98);
+  width: 100%;
+}
+
+.card-title-drinks {
+  font-size: 100%;
+}
+
+/* .rocksGlass {
   animation: shake 1s infinite ease;
   max-height: 80vh;
-}
+} */
 
 /*
 #iceLeft {
@@ -29,15 +68,15 @@
 }
 */
 
-.meals > .logo {
+/* .meals > .logo {
   animation: shake 1.5s infinite ease;
   color: aliceblue;
   font-family: Montserrat , sans-serif;
   font-size: 3em;
   font-weight: 900;
-}
+} */
 
-@keyframes shake {
+/* @keyframes shake {
 
   0% {
     transform: rotate(5deg);
@@ -65,4 +104,4 @@
   100% {
     transform: rotate(-10deg);
   }
-}
+} */

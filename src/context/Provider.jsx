@@ -1,26 +1,14 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Context from './Context';
-import Header from '../components/Header';
 
 export default function Provider({ children }) {
-  const [results, setResults] = useState('');
-  const { value } = results;
-
-  const handleChange = ({ target }) => {
-    switch (value) {
-    case 'name':
-      setResults({ name: target.name });
-      break;
-    default:
-      setResults({ name: target.name });
-    }
-  };
+  const [food, setFood] = useState([]);
+  const [drink, setDrink] = useState([]);
 
   return (
-    <Context.Provider value={ { results, handleChange } }>
+    <Context.Provider value={ { drink, food, setFood, setDrink } }>
       { children }
-      <Header />
     </Context.Provider>
   );
 }
