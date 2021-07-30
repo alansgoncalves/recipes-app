@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
 import Footer from '../components/Footer';
 import '../styles/Comidas.css';
-import Header from '../components/Header';
 import Context from '../context/Context';
+import Header from '../components/Header';
 
 export default function Comidas() {
   const { food } = useContext(Context);

@@ -1,14 +1,9 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-<<<<<<< HEAD
-import profileIcon from '../images/profileIcon.svg';
-// import searchIcon from '../images/searchIcon.svg';
-=======
 import ProfileIcon from '../images/profileIcon.svg';
 import SearchIcon from '../images/searchIcon.svg';
 import Context from '../context/Context';
 import SearchBar from './SearchBar';
->>>>>>> main-group-16
 
 export default function Header() {
   const { showSearchBar, setShowSearchBar } = useContext(Context);
@@ -22,16 +17,6 @@ export default function Header() {
   };
 
   return (
-<<<<<<< HEAD
-    <header>
-      <Link to="/perfil">
-        <img src={ profileIcon } alt="profile" data-testid="profile-top-btn" />
-      </Link>
-      <h1 data-testid="page-title">Título</h1>
-      {/* <button type="button">
-        <img src={ searchIcon } alt="search" data-testid="search-top-btn" />
-      </button> */}
-=======
     <header className="container">
       <div className="row align-items-center" style={ { height: '80px' } }>
         <div className="col-2">
@@ -50,7 +35,6 @@ export default function Header() {
         </div>
       </div>
       { showSearchBar ? <SearchBar /> : null }
->>>>>>> main-group-16
     </header>
   );
 }
