@@ -35,16 +35,6 @@ describe('Testando o footer', () => {
     expect(foodPathname).toBe('/comidas');
   })
 })
-/* test('Farewell, front-end', () => {
-  const { getByText } = render(<App />);
-  const linkElement = getByText(/TRYBE/i);
-  expect(linkElement).toBeInTheDocument();
-}); */
-
-/* Sobre o getByPlaceholderText: https://testing-library.com/docs/queries/byplaceholdertext/ 
-e toHaveValue: https://github.com/testing-library/jest-dom#tohavevalue
-e toBeDisabled: https://github.com/testing-library/jest-dom#tobedisabled
-*/
 
 describe('Teste para verificar a tela de Login', () => {
   it('Verifica se existe um input de email', () => {
@@ -95,7 +85,7 @@ describe('Teste para verificar a tela de Login', () => {
 });
 
 describe('Testando o SearchBar', () => {
-  it('Verifica se o SearchBar está na página de comidas', () => {
+  it('Verifica se o SearchBar está na página de comidas após ser acionado pelo Header', () => {
     const { history, getByTestId } = renderWithRouter(<App />);
     history.push('/comidas');
     const btnHeader = getByTestId('search-top-btn');
