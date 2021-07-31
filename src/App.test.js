@@ -1,10 +1,10 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { fireEvent, render } from '@testing-library/react';
 import renderWithRouter from './renderWithRouter';
 import Login from './pages/Login';
 import userEvent from '@testing-library/user-event';
 import App from './App';
-import renderWithRouter from './renderWithRouter';
+import Comidas from './pages/Comidas';
 
 describe('Testando o footer', () => {
   it('Verifica se o footer está na página de comidas', () => {
@@ -93,3 +93,32 @@ describe('Teste para verificar a tela de Login', () => {
     expect(buttonLogin).not.toBeDisabled();
   });
 });
+
+describe('Testando o SearchBar', () => {
+  it('Verifica se o SearchBar está na página de comidas', () => {
+    const { history, getByTestId } = renderWithRouter(<App />);
+    history.push('/comidas');
+    const btnHeader = getByTestId('search-top-btn');
+    expect(btnHeader).toBeInTheDocument();
+    userEvent.click(btnHeader);
+
+    const inputFood = getByTestId('search-input');
+    expect(inputFood).toBeInTheDocument();
+
+    const ingredientRadio = getByTestId('ingredient-search-radio');
+    expect(ingredientRadio).toBeInTheDocument();
+
+    const firstletterRadio = getByTestId('first-letter-search-radio');
+    expect(firstletterRadio).toBeInTheDocument();
+  })
+  it('Verifica se o botão de busca do SearchBar funciona', () => {
+    const { history, getByTestId } = renderWithRouter(<App />);
+    history.push('/comidas');
+    const btnHeader = getByTestId('search-top-btn');
+    expect(btnHeader).toBeInTheDocument();
+    userEvent.click(btnHeader);
+    const buttonSearch = getByTestId('exec-search-btn');
+    expect(buttonSearch).toBeInTheDocument();
+    userEvent.click(buttonSearch);
+  })
+})
