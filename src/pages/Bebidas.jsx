@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import React, { useContext, useEffect } from 'react';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
@@ -31,24 +32,25 @@ export default function Bebidas() {
         { drink.length > 0 && drink.map((item, index) => (
           index < magicNumber
           && (
-            <div
-              key={ item.idDrink }
-              className="card-drinks"
-              data-testid={ `${index}-recipe-card` }
-            >
-              <h1
-                className="card-title-drinks"
-                data-testid={ `${index}-card-name` }
+            <Link to={ `/bebidas/${item.idDrink}` } key={ item.idDrink }>
+              <div
+                className="card-drinks"
+                data-testid={ `${index}-recipe-card` }
               >
-                { item.strDrink }
-              </h1>
-              <img
-                data-testid={ `${index}-card-img` }
-                className="card-img-drinks"
-                src={ item.strDrinkThumb }
-                alt={ item.strDrink }
-              />
-            </div>
+                <h1
+                  className="card-title-drinks"
+                  data-testid={ `${index}-card-name` }
+                >
+                  { item.strDrink }
+                </h1>
+                <img
+                  data-testid={ `${index}-card-img` }
+                  className="card-img-drinks"
+                  src={ item.strDrinkThumb }
+                  alt={ item.strDrink }
+                />
+              </div>
+            </Link>
           )
         ))}
       </div>

@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import React, { useContext, useEffect } from 'react';
 import Footer from '../components/Footer';
 import '../styles/Comidas.css';
@@ -31,24 +32,25 @@ export default function Comidas() {
         {food.length > 0 && food.map((item, index) => (
           index < magicNumber
           && (
-            <div
-              key={ item.idMeal }
-              className="card-meals"
-              data-testid={ `${index}-recipe-card` }
-            >
-              <h1
-                data-testid={ `${index}-card-name` }
-                className="card-title-meals"
+            <Link to={ `/comidas/${item.idMeal}` } key={ item.idMeal }>
+              <div
+                className="card-meals"
+                data-testid={ `${index}-recipe-card` }
               >
-                { item.strMeal }
-              </h1>
-              <img
-                data-testid={ `${index}-card-img` }
-                className="card-img-meals"
-                src={ item.strMealThumb }
-                alt={ item.strMeal }
-              />
-            </div>
+                <h1
+                  data-testid={ `${index}-card-name` }
+                  className="card-title-meals"
+                >
+                  { item.strMeal }
+                </h1>
+                <img
+                  data-testid={ `${index}-card-img` }
+                  className="card-img-meals"
+                  src={ item.strMealThumb }
+                  alt={ item.strMeal }
+                />
+              </div>
+            </Link>
           )
         ))}
       </div>
