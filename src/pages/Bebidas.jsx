@@ -1,12 +1,24 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import '../styles/Comidas.css';
 import Context from '../context/Context';
 
 export default function Bebidas() {
-  const { drink } = useContext(Context);
+  const { drink, setDrink } = useContext(Context);
   const magicNumber = 12;
+
+  useEffect(() => {
+    function fetchAPI() {
+      fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=')
+        .then((response) => response.json())
+        .then((result) => {
+          console.log(result);
+          setDrink(result.drinks);
+        });
+    }
+    fetchAPI();
+  }, []);
 
   return (
     <div className="comidas">

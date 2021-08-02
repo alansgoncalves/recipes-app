@@ -95,12 +95,39 @@ describe('Teste para verificar a tela de Login', () => {
   });
 });
 
+describe('Testando o SearchBar', () => {
+  it('Verifica se o SearchBar está na página de comidas após ser acionado pelo Header', () => {
+    const { history, getByTestId } = renderWithRouter(<App />);
+    history.push('/comidas');
+    const btnHeader = getByTestId('search-top-btn');
+    expect(btnHeader).toBeInTheDocument();
+    userEvent.click(btnHeader);
+    const inputFood = getByTestId('search-input');
+    expect(inputFood).toBeInTheDocument();
+    const ingredientRadio = getByTestId('ingredient-search-radio');
+    expect(ingredientRadio).toBeInTheDocument();
+    const firstletterRadio = getByTestId('first-letter-search-radio');
+    expect(firstletterRadio).toBeInTheDocument();
+  })
+  it('Verifica se o botão de busca do SearchBar funciona', () => {
+    const { history, getByTestId } = renderWithRouter(<App />);
+    history.push('/comidas');
+    const btnHeader = getByTestId('search-top-btn');
+    expect(btnHeader).toBeInTheDocument();
+    userEvent.click(btnHeader);
+    const buttonSearch = getByTestId('exec-search-btn');
+    expect(buttonSearch).toBeInTheDocument();
+    userEvent.click(buttonSearch);
+  })
+})
+
 describe('Testando o Header', () => {
-  // it('Verifica se existe um botão no componente Header', () => {
-  //   const { getByTestId } = renderWithRouter(<Header />);
-  //   const button = getByTestId('search-top-btn');
-  //   expect(button).toBeInTheDocument();
-  // });
+  it('Verifica se existe um botão no componente Header', () => {
+    const { history, getByTestId } = renderWithRouter(<App />);
+    history.push('/comidas');
+    const button = getByTestId('search-top-btn');
+    expect(button).toBeInTheDocument();
+  });
 
   it('Verifica se o Header aparece na página de comidas', () => {
     const { history, getByTestId } = renderWithRouter(<App />);
@@ -130,3 +157,19 @@ describe('Testando o Header', () => {
     fireEvent.click(btnProfile);
   })
 });
+
+// describe('Testando tela principal de receitas', () => {
+//   it('Verifica se aparecem 12 cards na página de comidas', () => {
+//     const { history, getByTestId } = renderWithRouter(<App />);
+//     history.push('/comidas');
+//     const cardRecipe = getByTestId('1-recipe-card');
+//     expect(cardRecipe).toBeInTheDocument();
+//   });
+
+//   it('Verifica se aparecem 12 cards na página de bebidas', () => {
+//     const { history, getByTestId } = renderWithRouter(<App />);
+//     history.push('/bebidas');
+//     const cardRecipe = getByTestId('1-recipe-card');
+//     expect(cardRecipe).toBeInTheDocument();
+//   });
+// });
