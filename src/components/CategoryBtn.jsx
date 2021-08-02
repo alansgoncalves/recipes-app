@@ -47,6 +47,20 @@ export default function CategoryBtn() {
     }
   };
 
+  const categoryAll = async () => {
+    if (pathname === '/bebidas') {
+      const url = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=';
+      const response = await fetch(url);
+      const categories = await response.json();
+      setDrink(categories.drinks);
+    } else {
+      const url = 'https://www.themealdb.com/api/json/v1/1/search.php?s=';
+      const response = await fetch(url);
+      const categories = await response.json();
+      setFood(categories.meals);
+    }
+  };
+
   useEffect(() => {
     listOfCategoriesFood();
     listOfCategoriesDrink();
@@ -59,7 +73,8 @@ export default function CategoryBtn() {
       <button
         id="btn-all"
         type="button"
-        data-testid="All"
+        data-testid="All-category-filter"
+        onClick={ () => categoryAll() }
       >
         All
       </button>
