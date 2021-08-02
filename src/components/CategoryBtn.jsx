@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import Context from '../context/Context';
 
 export default function CategoryBtn() {
+  const { setFood, setDrink } = useContext(Context);
   const [category, setCategory] = useState([]);
   const history = useHistory();
   const { location: { pathname } } = history;
@@ -11,7 +13,6 @@ export default function CategoryBtn() {
     const response = await fetch(endpoint);
     const { meals } = await response.json();
     if (meals.length) history.push(/comidas/);
-    console.log(meals);
     setCategory(meals);
   };
 
@@ -20,7 +21,6 @@ export default function CategoryBtn() {
     const response = await fetch(endpoint);
     const { drinks } = await response.json();
     if (drinks.length) history.push(/bebidas/);
-    console.log(drinks);
     setCategory(drinks);
   };
 
@@ -31,6 +31,22 @@ export default function CategoryBtn() {
     return listOfCategoriesFood();
   }
 
+  const categoryFilterered = async ({ strCategory }) => {
+    if (pathname === '/bebidas') {
+      const url = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${strCategory}`;
+      const response = await fetch(url);
+      const categories = await response.json();
+      setDrink(categories.drinks);
+      console.log(categories);
+    } else {
+      const url = `https://www.themealdb.com/api/json/v1/1/filter.php?c=${strCategory}`;
+      const response = await fetch(url);
+      const categories = await response.json();
+      setFood(categories.meals);
+      console.log(categories);
+    }
+  };
+
   useEffect(() => {
     listOfCategoriesFood();
     listOfCategoriesDrink();
@@ -40,13 +56,20 @@ export default function CategoryBtn() {
   const magicNumber = 5;
   return (
     <div>
-      <button id="btn-all" type="button" data-testid="All">All</button>
+      <button
+        id="btn-all"
+        type="button"
+        data-testid="All"
+      >
+        All
+      </button>
       {category.length > 0 && category.map(({ strCategory }, index) => (
         index < magicNumber && (
           <label htmlFor={ `${strCategory}${index}` } key={ index }>
             <button
               type="button"
               data-testid={ `${strCategory}-category-filter` }
+              onClick={ () => categoryFilterered({ strCategory }) }
             >
               { strCategory }
             </button>
