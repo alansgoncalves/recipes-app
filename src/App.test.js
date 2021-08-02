@@ -1,9 +1,10 @@
 import React from 'react';
-import { fireEvent, render } from '@testing-library/react';
+import { fireEvent,render } from '@testing-library/react';
 import renderWithRouter from './renderWithRouter';
 import Login from './pages/Login';
 import userEvent from '@testing-library/user-event';
 import App from './App';
+import Header from './components/Header'
 import Comidas from './pages/Comidas';
 
 describe('Testando o footer', () => {
@@ -35,6 +36,16 @@ describe('Testando o footer', () => {
     expect(foodPathname).toBe('/comidas');
   })
 })
+/* test('Farewell, front-end', () => {
+  const { getByText } = render(<App />);
+  const linkElement = getByText(/TRYBE/i);
+  expect(linkElement).toBeInTheDocument();
+}); */
+
+/* Sobre o getByPlaceholderText: https://testing-library.com/docs/queries/byplaceholdertext/ 
+e toHaveValue: https://github.com/testing-library/jest-dom#tohavevalue
+e toBeDisabled: https://github.com/testing-library/jest-dom#tobedisabled
+*/
 
 describe('Teste para verificar a tela de Login', () => {
   it('Verifica se existe um input de email', () => {
@@ -84,31 +95,38 @@ describe('Teste para verificar a tela de Login', () => {
   });
 });
 
-describe('Testando o SearchBar', () => {
-  it('Verifica se o SearchBar está na página de comidas após ser acionado pelo Header', () => {
+describe('Testando o Header', () => {
+  // it('Verifica se existe um botão no componente Header', () => {
+  //   const { getByTestId } = renderWithRouter(<Header />);
+  //   const button = getByTestId('search-top-btn');
+  //   expect(button).toBeInTheDocument();
+  // });
+
+  it('Verifica se o Header aparece na página de comidas', () => {
     const { history, getByTestId } = renderWithRouter(<App />);
     history.push('/comidas');
-    const btnHeader = getByTestId('search-top-btn');
-    expect(btnHeader).toBeInTheDocument();
-    userEvent.click(btnHeader);
+    const profileImg = getByTestId('profile-top-btn');
+    expect(profileImg).toBeInTheDocument();
 
-    const inputFood = getByTestId('search-input');
-    expect(inputFood).toBeInTheDocument();
-
-    const ingredientRadio = getByTestId('ingredient-search-radio');
-    expect(ingredientRadio).toBeInTheDocument();
-
-    const firstletterRadio = getByTestId('first-letter-search-radio');
-    expect(firstletterRadio).toBeInTheDocument();
+    const searchBtn = getByTestId('search-top-btn');
+    expect(searchBtn).toBeInTheDocument();
   })
-  it('Verifica se o botão de busca do SearchBar funciona', () => {
+
+  it('Verifica se o Header aparece na página de bebidas', () => {
     const { history, getByTestId } = renderWithRouter(<App />);
-    history.push('/comidas');
-    const btnHeader = getByTestId('search-top-btn');
-    expect(btnHeader).toBeInTheDocument();
-    userEvent.click(btnHeader);
-    const buttonSearch = getByTestId('exec-search-btn');
-    expect(buttonSearch).toBeInTheDocument();
-    userEvent.click(buttonSearch);
+    history.push('/bebidas');
+    const profileImg = getByTestId('profile-top-btn');
+    expect(profileImg).toBeInTheDocument();
+
+    const searchBtn = getByTestId('search-top-btn');
+    expect(searchBtn).toBeInTheDocument();
   })
-})
+
+  it('Redireciona o usuário para a tela de perfil ao clicar no botão de perfil', () => {
+    const { history, getByTestId } = renderWithRouter(<App />);
+    history.push('/perfil');
+    const btnProfile = getByTestId('page-title')
+    expect(btnProfile).toBeInTheDocument()
+    fireEvent.click(btnProfile);
+  })
+});
