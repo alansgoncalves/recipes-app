@@ -29,7 +29,6 @@ function SearchBar() {
     }
     if (drinks.length === 1) history.push(`/bebidas/${drinks[0].idDrink}`);
     setDrink(drinks);
-    console.log(drinks);
   }
 
   async function conditionEndpointFood(value) {
