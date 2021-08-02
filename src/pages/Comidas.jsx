@@ -3,16 +3,17 @@ import Footer from '../components/Footer';
 import '../styles/Comidas.css';
 import Context from '../context/Context';
 import Header from '../components/Header';
+import CategoryBtn from '../components/CategoryBtn';
 
 export default function Comidas() {
   const { food } = useContext(Context);
-  console.log(food);
 
   const magicNumber = 12;
   return (
     <div className="comidas">
       <h1 data-testid="page-title">Comidas</h1>
       <Header />
+      <CategoryBtn />
       <Footer />
       <div>
         {food.length > 0 && food.map((item, index) => (

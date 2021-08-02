@@ -3,6 +3,7 @@ import Footer from '../components/Footer';
 import Header from '../components/Header';
 import '../styles/Comidas.css';
 import Context from '../context/Context';
+import CategoryBtn from '../components/CategoryBtn';
 
 export default function Bebidas() {
   const { drink } = useContext(Context);
@@ -12,6 +13,7 @@ export default function Bebidas() {
     <div className="comidas">
       Bebidas
       <Header />
+      <CategoryBtn />
       <Footer />
       <div>
         { drink.length > 0 && drink.map((item, index) => (

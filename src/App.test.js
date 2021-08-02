@@ -130,3 +130,48 @@ describe('Testando o Header', () => {
     fireEvent.click(btnProfile);
   })
 });
+
+describe('Testando o CategoryBtn', () => {
+  it('Verifica se o CategoryBtn está na página de comidas', () => {
+    const { history, getByText } = renderWithRouter(<App />);
+    history.push('/comidas');
+    const btnAllFood = getByText(/All/i);
+    expect(btnAllFood).toBeInTheDocument();
+
+    // const btnBeef = getByText(/Beef/i);
+    // expect(btnBeef).toBeInTheDocument();
+
+    // const btnBreak = getByText(/Breakfast/i);
+    // expect(btnBreak).toBeInTheDocument();
+
+    // const btnChicken = getByText(/Chicken/i);
+    // expect(btnChicken).toBeInTheDocument();
+
+    // const btnDessert = getByText(/Dessert/i);
+    // expect(btnDessert).toBeInTheDocument();
+
+    // const btnGoat = getByText(/Goat/i);
+    // expect(btnGoat).toBeInTheDocument();
+  })
+  it('Verifica se o CategoryBtn está na página de bebidas', () => {
+    const { history, getByText } = renderWithRouter(<App />);
+    history.push('/bebidas');
+    const btnAll = getByText(/All/i);
+    expect(btnAll).toBeInTheDocument();
+
+    // const btnOrdDrink = getByText(/Ordinary Drink/i);
+    // expect(btnOrdDrink).toBeInTheDocument();
+
+    // const btnCocktail = getByText(/Cocktail/i);
+    // expect(btnCocktail).toBeInTheDocument();
+
+    // const btnMilk = getByText(/Milk/i / /Float/i / /Shake/i);
+    // expect(btnMilk).toBeInTheDocument();
+
+    // const btnOther = getByText(/Other/i / /Unknown/i);
+    // expect(btnOther).toBeInTheDocument();
+
+    // const btnCocoa = getByText(/Cocoa/i);
+    // expect(btnCocoa).toBeInTheDocument();
+  })
+})
