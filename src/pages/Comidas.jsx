@@ -1,18 +1,32 @@
-import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import React, { useContext, useEffect } from 'react';
 import Footer from '../components/Footer';
 import '../styles/Comidas.css';
 import Context from '../context/Context';
 import Header from '../components/Header';
+import CategoryBtn from '../components/CategoryBtn';
 
 export default function Comidas() {
-  const { food } = useContext(Context);
-
+  const { food, setFood } = useContext(Context);
   const magicNumber = 12;
+
+  useEffect(() => {
+    function fetchAPI() {
+      fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=')
+        .then((response) => response.json())
+        .then((result) => {
+          console.log(result);
+          setFood(result.meals);
+        });
+    }
+    fetchAPI();
+  }, []);
+
   return (
     <div className="comidas">
       <h1 data-testid="page-title">Comidas</h1>
       <Header />
+      <CategoryBtn />
       <Footer />
       <div>
         {food.length > 0 && food.map((item, index) => (
