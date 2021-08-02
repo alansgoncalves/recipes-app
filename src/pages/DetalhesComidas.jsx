@@ -4,6 +4,7 @@ import Loading from '../components/Loading';
 import Context from '../context/Context';
 import shareIcon from '../images/shareIcon.svg';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
+import '../styles/Global.css';
 
 export default function DetalhesComidas(props) {
   const [foodDetails, setFoodDetails] = useState([]);
@@ -75,11 +76,17 @@ export default function DetalhesComidas(props) {
         index < recommendedDrinks
         && (
           <div key={ index } data-testid={ `${index}-recomendation-card` }>
-            <h4>{rec.strDrink}</h4>
+            <h4 data-testid={ `${index}-recomendation-title` }>{rec.strDrink}</h4>
             <img src={ rec.strDrinkThumb } alt="drink" />
           </div>
         ))) }
-      <button type="button" data-testid="start-recipe-btn">Iniciar receita</button>
+      <button
+        type="button"
+        data-testid="start-recipe-btn"
+        className="start-recipe-btn"
+      >
+        Iniciar receita
+      </button>
     </div>
   );
 }

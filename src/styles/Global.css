@@ -5,3 +5,8 @@
   text-align: center;
   width: 100vw;
 }
+
+.start-recipe-btn {
+  bottom: 0;
+  position: fixed;
+}

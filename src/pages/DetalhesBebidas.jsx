@@ -4,6 +4,7 @@ import Context from '../context/Context';
 import Loading from '../components/Loading';
 import shareIcon from '../images/shareIcon.svg';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
+import '../styles/Global.css';
 
 export default function DetalhesBebidas(props) {
   const [drinkDetails, setDrinkDetails] = useState([]);
@@ -55,7 +56,7 @@ export default function DetalhesBebidas(props) {
       <button data-testid="favorite-btn" type="button">
         <img src={ whiteHeartIcon } alt="favorite icon" />
       </button>
-      <p data-testid="recipe-category">{drinkDetails.strCategory}</p>
+      <p data-testid="recipe-category">{drinkDetails.strAlcoholic}</p>
       <h3>Ingredients</h3>
       <ul>
         { ingredients.map((ing, index) => (
@@ -72,11 +73,17 @@ export default function DetalhesBebidas(props) {
         index < recommendedMeals
         && (
           <div key={ index } data-testid={ `${index}-recomendation-card` }>
-            <h4>{rec.strMeal}</h4>
+            <h4 data-testid={ `${index}-recomendation-title` }>{rec.strMeal}</h4>
             <img src={ rec.strMealThumb } alt="meal" />
           </div>
         ))) }
-      <button type="button" data-testid="start-recipe-btn">Iniciar receita</button>
+      <button
+        type="button"
+        data-testid="start-recipe-btn"
+        className="start-recipe-btn"
+      >
+        Iniciar receita
+      </button>
     </div>
   );
 }
