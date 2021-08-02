@@ -12,7 +12,7 @@ class Explorar extends Component {
         <section>
           <Link to="/explorar/comidas">
             <button
-              id="explorar"
+              id="explorer"
               type="button"
               data-testid="explore-food"
             >
@@ -21,7 +21,7 @@ class Explorar extends Component {
           </Link>
           <Link to="/explorar/bebidas">
             <button
-              id="explorar"
+              id="explorer"
               type="button"
               data-testid="explore-drinks"
             >
