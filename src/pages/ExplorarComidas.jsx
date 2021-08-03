@@ -35,11 +35,7 @@ export default function ExplorarComidas() {
           Por Local de Origem
         </button>
       </Link>
-      <Link
-        to={ {
-          pathname: `/comidas/${meal}`,
-        } }
-      >
+      <Link to={ { pathname: `/comidas/${meal}` } }>
         <button
           type="button"
           data-testid="explore-surprise"
