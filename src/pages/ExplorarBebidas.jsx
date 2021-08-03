@@ -27,11 +27,7 @@ export default function ExplorarBebidas() {
           Por Ingredientes
         </button>
       </Link>
-      <Link
-        to={ {
-          pathname: `/bebidas/${cocktail}`,
-        } }
-      >
+      <Link to={ { pathname: `/bebidas/${cocktail}` } }>
         <button
           type="button"
           data-testid="explore-surprise"
