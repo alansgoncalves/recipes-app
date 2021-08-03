@@ -1,11 +1,11 @@
 import React, { useState, useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import Loading from '../components/Loading';
 import Context from '../context/Context';
 import shareIcon from '../images/shareIcon.svg';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import '../styles/Global.css';
-import { Link } from 'react-router-dom';
 
 export default function ProcessoComida(props) {
   const [foodDetails, setFoodDetails] = useState([]);
@@ -53,15 +53,15 @@ export default function ProcessoComida(props) {
       <p data-testid="recipe-category">{foodDetails.strCategory}</p>
       <h3>Ingredients</h3>
       <label htmlFor="checkbox">
-        { ingredients.length < eigth && ingredients.map((ing, index) => (
-          <div key={ index }>
-            <input
-              type="checkbox"
-              data-testid={ `${index}-ingredient-step` }
-            />
-            <span>{ `${ing[1]} - ${measures[index][1]}` }</span>
-          </div>
-        )) }
+        { ingredients.length > 0 && ingredients.map((ing, index) => (
+          index < eigth && (
+            <div key={ index } data-testid={ `${index}-ingredient-step` } >
+              <input
+                type="checkbox"
+              />
+              <span>{ `${ing[1]} - ${measures[index][1]}` }</span>
+            </div>
+          ))) }
       </label>
       <p data-testid="instructions">{foodDetails.strInstructions}</p>
       <Link to="/receitas-feitas">
