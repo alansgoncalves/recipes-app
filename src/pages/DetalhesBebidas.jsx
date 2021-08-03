@@ -16,6 +16,7 @@ export default function DetalhesBebidas(props) {
   const { match: { params: { id } } } = props;
 
   useEffect(() => {
+    setLoading(true);
     const getDrinkDetails = async () => {
       const endpoint = `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`;
       const data = await fetch(endpoint);
@@ -121,13 +122,15 @@ export default function DetalhesBebidas(props) {
           &#10095;
         </button>
       </div>
-      <button
-        type="button"
-        data-testid="start-recipe-btn"
-        className="start-recipe-btn"
-      >
-        Iniciar receita
-      </button>
+      <Link to={ `/bebidas/${id}/in-progress` }>
+        <button
+          type="button"
+          data-testid="start-recipe-btn"
+          className="start-recipe-btn"
+        >
+          Iniciar receita
+        </button>
+      </Link>
     </div>
   );
 }
