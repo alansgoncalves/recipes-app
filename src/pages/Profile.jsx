@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import Footer from '../components/Footer';
 
 export default function Profile() {
   const [email, setEmail] = useState('');
+  const history = useHistory();
 
   useEffect(() => {
     const handleEmailLocalStorage = () => {
@@ -12,6 +13,11 @@ export default function Profile() {
     };
     handleEmailLocalStorage();
   }, []);
+
+  const handleClickRouteLogin = () => {
+    localStorage.clear();
+    history.push('/');
+  };
 
   return (
     <div>
@@ -33,14 +39,13 @@ export default function Profile() {
           Receitas Favoritas
         </button>
       </Link>
-      <Link to="/">
-        <button
-          type="button"
-          data-testid="profile-logout-btn"
-        >
-          Sair
-        </button>
-      </Link>
+      <button
+        type="button"
+        data-testid="profile-logout-btn"
+        onClick={ handleClickRouteLogin }
+      >
+        Sair
+      </button>
       <Footer />
     </div>
   );
