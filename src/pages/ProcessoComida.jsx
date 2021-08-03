@@ -23,7 +23,6 @@ export default function ProcessoComida(props) {
       setFoodDetails(results.meals[0]);
       const ingAndMe = Object.entries(results.meals[0]);
       const ing = ingAndMe.filter((el) => el[0].includes('Ingredient') && el[1] !== '');
-      console.log(ing);
       setIngredients(ing);
       const me = ingAndMe.filter((el) => el[0].includes('Measure') && el[1] !== ' ');
       setMeasures(me);
@@ -55,7 +54,7 @@ export default function ProcessoComida(props) {
       <label htmlFor="checkbox">
         { ingredients.length > 0 && ingredients.map((ing, index) => (
           index < eigth && (
-            <div key={ index } data-testid={ `${index}-ingredient-step` } >
+            <div key={ index } data-testid={ `${index}-ingredient-step` }>
               <input
                 type="checkbox"
               />

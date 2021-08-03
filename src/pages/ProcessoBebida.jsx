@@ -22,12 +22,9 @@ export default function ProcessoBebida(props) {
       const results = await data.json();
       setDrinkDetails(results.drinks[0]);
       const ingAndMe = Object.entries(results.drinks[0]);
-      console.log(ingAndMe);
       const ing = ingAndMe.filter((el) => el[0].includes('Ingredient') && el[1] !== null);
-      console.log(ing);
       setIngredients(ing);
       const me = ingAndMe.filter((el) => el[0].includes('Measure'));
-      console.log(me);
       setMeasures(me);
       setLoading(false);
     };
@@ -40,6 +37,14 @@ export default function ProcessoBebida(props) {
   }
 
   const three = 3;
+
+  function inputCheckbox() {
+    const checkbox = document.getElementsByTagName('input').checked;
+    if (checkbox) {
+      return localStorage
+        .setItem('inProgressRecipes', JSON.stringify(ingredients));
+    }
+  }
 
   return (
     <div>
@@ -58,12 +63,11 @@ export default function ProcessoBebida(props) {
         { ingredients.length > 0 && ingredients.map((ing, index) => (
           index < three && (
             <div key={ index } data-testid={ `${index}-ingredient-step` }>
-              (
               <input
                 type="checkbox"
+                onClick={ inputCheckbox }
               />
               { `${ing[1]} - ${measures[index][1]}` }
-              )
             </div>
           ))) }
       </label>
