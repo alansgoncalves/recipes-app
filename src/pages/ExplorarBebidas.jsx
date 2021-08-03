@@ -1,17 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
+import Context from '../context/Context';
 
 export default function ExplorarBebidas() {
-  const [cocktail, setCocktail] = useState([]);
+/* const [cocktail, setCocktail] = useState([]); */
+  const { setDrink } = useContext(Context);
 
   useEffect(() => {
     const getExploreCocktails = async () => {
       const endpoint = 'https://www.thecocktaildb.com/api/json/v1/1/random.php';
       const data = await fetch(endpoint);
-      const { results } = await data.json();
-      setCocktail(results);
+      const results = await data.json();
+      setDrink(results.drinks);
     };
     getExploreCocktails();
   }, []);
@@ -27,7 +29,7 @@ export default function ExplorarBebidas() {
           Por Ingredientes
         </button>
       </Link>
-      <Link to={ { pathname: `/bebidas/${cocktail}` } }>
+      <Link to="/bebidas/:id">
         <button
           type="button"
           data-testid="explore-surprise"

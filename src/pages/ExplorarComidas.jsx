@@ -1,17 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import Context from '../context/Context';
 
 export default function ExplorarComidas() {
-  const [meal, setMeal] = useState([]);
+/* const [meal, setMeal] = useState([]); */
+  const { setFood } = useContext(Context);
 
   useEffect(() => {
     const getExploreMeal = async () => {
       const endpoint = 'https://www.themealdb.com/api/json/v1/1/random.php';
       const data = await fetch(endpoint);
-      const { results } = await data.json();
-      setMeal(results);
+      const results = await data.json();
+      setFood(results.meals);
     };
     getExploreMeal();
   }, []);
@@ -35,7 +37,7 @@ export default function ExplorarComidas() {
           Por Local de Origem
         </button>
       </Link>
-      <Link to={ { pathname: `/comidas/${meal}` } }>
+      <Link to="/comidas/:id">
         <button
           type="button"
           data-testid="explore-surprise"
