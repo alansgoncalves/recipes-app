@@ -16,6 +16,7 @@ import ProcessoBebida from '../pages/ProcessoBebida';
 import ReceitasFeitas from '../pages/ReceitasFeitas';
 import ReceitasFavoritas from '../pages/ReceitasFavoritas';
 import Profile from '../pages/Profile';
+import NotFound from '../components/NotFound';
 
 export default function Routes() {
   return (
@@ -44,6 +45,11 @@ export default function Routes() {
       <Route exact path="/perfil" component={ Profile } />
       <Route exact path="/comidas/:id/in-progress" component={ ProcessoComida } />
       <Route exact path="/bebidas/:id/in-progress" component={ ProcessoBebida } />
+      <Route
+        exact
+        path="/explorar/bebidas/area"
+        component={ NotFound }
+      />
     </Switch>
   );
 }
