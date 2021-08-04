@@ -37,14 +37,42 @@ export default function ProcessoBebida(props) {
   }
 
   const three = 3;
-
   function inputCheckbox() {
-    const checkbox = document.getElementsByTagName('input').checked;
-    if (checkbox) {
-      return localStorage
-        .setItem('inProgressRecipes', JSON.stringify(ingredients));
+    const checa = document.getElementById('checkedInput');
+    const numElementos = checa.length;
+    const bt = document.getElementById('btnChecked');
+    for (let x = 0; x < numElementos; x += 1) {
+      checa[x].onclick = () => {
+      // "input[name='toggle']:checked" conta os checkbox checados
+        const cont = document
+          .querySelectorAll('input[name=\'checkedInput\']:checked').length;
+        // ternário que verifica se há algum checado.
+        // se não há, retorna 0 (false), logo desabilita o botão
+        bt.disabled = !cont;
+        if (!cont) {
+          return localStorage
+            .setItem('inProgressRecipes', JSON.stringify({ id: [ingredients] }));
+        }
+      };
     }
   }
+
+  // function inputCheckbox() {
+  //   const checkbox = document.getElementById('checkedInput');
+  //   if (checkbox.checked) {
+  //     return localStorage
+  //       .setItem('inProgressRecipes', JSON.stringify({ id: [ingredients[2]] }));
+  //   }
+  // }
+
+  const handleCkick = (index) => {
+    if (index < three) {
+      document.getElementById('checked').removeAttribute('disabled');
+    } else {
+      document.getElementById('checked').setAttribute('disabled');
+    }
+    inputCheckbox();
+  };
 
   return (
     <div>
@@ -59,23 +87,31 @@ export default function ProcessoBebida(props) {
       </button>
       <p data-testid="recipe-category">{drinkDetails.strAlcoholic}</p>
       <h3>Ingredients</h3>
-      <label htmlFor="checkbox">
+      <div>
         { ingredients.length > 0 && ingredients.map((ing, index) => (
           index < three && (
-            <div key={ index } data-testid={ `${index}-ingredient-step` }>
+            <label
+              htmlFor="checkbox"
+              key={ index }
+              data-testid={ `${index}-ingredient-step` }
+            >
               <input
+                id="checkedInput"
                 type="checkbox"
                 onClick={ inputCheckbox }
               />
               { `${ing[1]} - ${measures[index][1]}` }
-            </div>
+            </label>
           ))) }
-      </label>
+      </div>
       <p data-testid="instructions">{drinkDetails.strInstructions}</p>
       <Link to="/receitas-feitas">
         <button
+          id="btnChecked"
           type="button"
           data-testid="finish-recipe-btn"
+          disabled
+          onClick={ () => handleCkick({ three }) }
         >
           Finalizar Receita
         </button>
