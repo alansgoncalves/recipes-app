@@ -7,24 +7,26 @@ import Context from '../context/Context';
 import CategoryBtn from '../components/CategoryBtn';
 
 export default function Bebidas() {
-  const { drink, setDrink } = useContext(Context);
+  const { drink, setDrink, toggleOn } = useContext(Context);
   const magicNumber = 12;
 
   useEffect(() => {
     function fetchAPI() {
-      fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=')
-        .then((response) => response.json())
-        .then((result) => {
-          console.log(result);
-          setDrink(result.drinks);
-        });
+      if (!toggleOn) {
+        fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=')
+          .then((response) => response.json())
+          .then((result) => {
+            console.log(result);
+            setDrink(result.drinks);
+          });
+      }
     }
     fetchAPI();
-  }, []);
+  }, [toggleOn]);
 
   return (
     <div className="comidas">
-      Bebidas
+      <h1 data-testid="page-title">Bebidas</h1>
       <Header />
       <CategoryBtn />
       <Footer />

@@ -7,7 +7,12 @@ export default class ExplorarComidasPorArea extends Component {
     const showSearchButton = true;
     return (
       <div>
-        <Header title="Explorar Origem" showSearchButton={ showSearchButton } />
+        <h1 data-testid="page-title">Explorar Origem</h1>
+        <Header
+          title="Explorar Origem"
+          showSearchButton={ showSearchButton }
+          isButtonVisible
+        />
         <Footer />
       </div>
     );

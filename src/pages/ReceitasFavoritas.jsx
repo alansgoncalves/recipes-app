@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import Header from '../components/Header';
+import HeaderWithoutSearch from '../components/HeaderWithoutSearch';
 
 export default class ReceitasFavoritas extends Component {
   render() {
     return (
       <div>
-        <Header title="Receitas Favoritas" />
+        <HeaderWithoutSearch title="Receitas Favoritas" />
       </div>
     );
   }

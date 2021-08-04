@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Footer from '../components/Footer';
-import Header from '../components/Header';
+import HeaderWithoutSearch from '../components/HeaderWithoutSearch';
 
 export default function ExplorarBebidas() {
   const [cocktail, setCocktail] = useState([]);
@@ -18,7 +18,7 @@ export default function ExplorarBebidas() {
 
   return (
     <div>
-      <Header title="Explorar Bebidas" />
+      <HeaderWithoutSearch title="Explorar Bebidas" />
       <Link to="/explorar/bebidas/ingredientes">
         <button
           type="button"

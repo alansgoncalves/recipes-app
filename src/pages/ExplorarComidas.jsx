@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import Header from '../components/Header';
 import Footer from '../components/Footer';
+import HeaderWithoutSearch from '../components/HeaderWithoutSearch';
 
 export default function ExplorarComidas() {
   const [meal, setMeal] = useState([]);
@@ -18,7 +18,7 @@ export default function ExplorarComidas() {
 
   return (
     <div>
-      <Header title="Explorar Comidas" />
+      <HeaderWithoutSearch title="Explorar Comidas" />
       <Link to="/explorar/comidas/ingredientes">
         <button
           type="button"

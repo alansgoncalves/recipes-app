@@ -1,20 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Footer from '../components/Footer';
+import HeaderWithoutSearch from '../components/HeaderWithoutSearch';
 
 export default function Profile() {
   const [email, setEmail] = useState('');
 
   useEffect(() => {
     const handleEmailLocalStorage = () => {
-      const getEmail = JSON.parse(localStorage.getItem('user'));
-      setEmail(getEmail.email);
+      if (JSON.parse(localStorage.getItem('user'))) {
+        const getEmail = JSON.parse(localStorage.getItem('user'));
+        setEmail(getEmail.email);
+      } else {
+        setEmail('');
+      }
     };
     handleEmailLocalStorage();
   }, []);
 
   return (
     <div>
+      <HeaderWithoutSearch title="Perfil" />
       <h1 data-testid="page-title">Perfil</h1>
       <h3 data-testid="profile-email">{email}</h3>
       <Link to="/receitas-feitas">

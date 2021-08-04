@@ -7,19 +7,21 @@ import Header from '../components/Header';
 import CategoryBtn from '../components/CategoryBtn';
 
 export default function Comidas() {
-  const { food, setFood } = useContext(Context);
+  const { food, setFood, toggleOn } = useContext(Context);
   const magicNumber = 12;
 
   useEffect(() => {
     function fetchAPI() {
-      fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=')
-        .then((response) => response.json())
-        .then((result) => {
-          setFood(result.meals);
-        });
+      if (!toggleOn) {
+        fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=')
+          .then((response) => response.json())
+          .then((result) => {
+            setFood(result.meals);
+          });
+      }
     }
     fetchAPI();
-  }, []);
+  }, [toggleOn]);
 
   return (
     <div className="comidas">
