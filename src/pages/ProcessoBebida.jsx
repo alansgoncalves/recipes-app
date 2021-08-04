@@ -65,14 +65,14 @@ export default function ProcessoBebida(props) {
   //   }
   // }
 
-  const handleCkick = (index) => {
-    if (index < three) {
-      document.getElementById('checked').removeAttribute('disabled');
-    } else {
-      document.getElementById('checked').setAttribute('disabled');
-    }
-    inputCheckbox();
-  };
+  // const handleCkick = (index) => {
+  //   if (index < three) {
+  //     document.getElementById('checked').removeAttribute('disabled');
+  //   } else {
+  //     document.getElementById('checked').setAttribute('disabled');
+  //   }
+  //   inputCheckbox();
+  // };
 
   return (
     <div>
