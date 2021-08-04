@@ -1,18 +1,31 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import copytoclipboard from 'clipboard-copy';
 import shareIcon from '../images/shareIcon.svg';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
 import '../styles/ReceitasFavoritas.css';
 
 export default function FavRecipeCard(props) {
   const [isTypeFood, setIsTypeFood] = useState(false);
+  const [clipboard, setClipboard] = useState(false);
 
   useEffect(() => {
     if (props.recipe.alcoholicOrNot === '') {
       setIsTypeFood(true);
     }
   }, []);
+
+  function copyToClipboard() {
+    let url = '';
+    if (isTypeFood) {
+      url = 'comidas';
+    } else {
+      url = 'bebidas';
+    }
+    copytoclipboard(`http://localhost:3000/${url}/${props.recipe.id}`);
+    setClipboard(true);
+  }
 
   const { recipe, index } = props;
   return (
@@ -22,6 +35,7 @@ export default function FavRecipeCard(props) {
           data-testid={ `${index}-horizontal-image` }
           src={ recipe.image }
           alt="recipe"
+          className="recipe-img"
         />
       </Link>
       <div>
@@ -43,7 +57,9 @@ export default function FavRecipeCard(props) {
           data-testid={ `${index}-horizontal-share-btn` }
           src={ shareIcon }
           alt="share icon"
+          onClick={ copyToClipboard }
         />
+        { clipboard && <p>Link copiado!</p> }
         <button
           type="button"
         >
