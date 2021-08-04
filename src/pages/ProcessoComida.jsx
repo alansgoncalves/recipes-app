@@ -11,6 +11,7 @@ export default function ProcessoComida(props) {
   const [foodDetails, setFoodDetails] = useState([]);
   const [ingredients, setIngredients] = useState([]);
   const [measures, setMeasures] = useState([]);
+  const [finished, setFinished] = useState(false);
   const { loading, setLoading } = useContext(Context);
   const { match: { params: { id } } } = props;
 
@@ -31,6 +32,12 @@ export default function ProcessoComida(props) {
 
     getFoodDetails();
   }, []);
+
+  function finishRecipe() {
+    const checkbox = Array.from(document.getElementsByTagName('input'));
+    const allChecked = checkbox.map((el) => el.checked).reduce((a, b) => a && b);
+    setFinished(allChecked);
+  }
 
   if (loading) {
     return <Loading />;
@@ -57,6 +64,7 @@ export default function ProcessoComida(props) {
             <div key={ index } data-testid={ `${index}-ingredient-step` }>
               <input
                 type="checkbox"
+                onChange={ finishRecipe }
               />
               <span>{ `${ing[1]} - ${measures[index][1]}` }</span>
             </div>
@@ -67,6 +75,7 @@ export default function ProcessoComida(props) {
         <button
           type="button"
           data-testid="finish-recipe-btn"
+          disabled={ !finished }
         >
           Finalizar Receita
         </button>

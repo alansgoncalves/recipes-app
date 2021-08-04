@@ -11,6 +11,7 @@ export default function ProcessoBebida(props) {
   const [drinkDetails, setDrinkDetails] = useState([]);
   const [ingredients, setIngredients] = useState([]);
   const [measures, setMeasures] = useState([]);
+  const [finished, setFinished] = useState(false);
   const { loading, setLoading } = useContext(Context);
   const { match: { params: { id } } } = props;
 
@@ -32,47 +33,17 @@ export default function ProcessoBebida(props) {
     getDrinkDetails();
   }, []);
 
+  function finishRecipe() {
+    const checkbox = Array.from(document.getElementsByTagName('input'));
+    const allChecked = checkbox.map((el) => el.checked).reduce((a, b) => a && b);
+    setFinished(allChecked);
+  }
+
   if (loading) {
     return <Loading />;
   }
 
   const three = 3;
-  function inputCheckbox() {
-    const checa = document.getElementById('checkedInput');
-    const numElementos = checa.length;
-    const bt = document.getElementById('btnChecked');
-    for (let x = 0; x < numElementos; x += 1) {
-      checa[x].onclick = () => {
-      // "input[name='toggle']:checked" conta os checkbox checados
-        const cont = document
-          .querySelectorAll('input[name=\'checkedInput\']:checked').length;
-        // ternário que verifica se há algum checado.
-        // se não há, retorna 0 (false), logo desabilita o botão
-        bt.disabled = !cont;
-        if (!cont) {
-          return localStorage
-            .setItem('inProgressRecipes', JSON.stringify({ id: [ingredients] }));
-        }
-      };
-    }
-  }
-
-  // function inputCheckbox() {
-  //   const checkbox = document.getElementById('checkedInput');
-  //   if (checkbox.checked) {
-  //     return localStorage
-  //       .setItem('inProgressRecipes', JSON.stringify({ id: [ingredients[2]] }));
-  //   }
-  // }
-
-  // const handleCkick = (index) => {
-  //   if (index < three) {
-  //     document.getElementById('checked').removeAttribute('disabled');
-  //   } else {
-  //     document.getElementById('checked').setAttribute('disabled');
-  //   }
-  //   inputCheckbox();
-  // };
 
   return (
     <div>
@@ -98,7 +69,7 @@ export default function ProcessoBebida(props) {
               <input
                 id="checkedInput"
                 type="checkbox"
-                onClick={ inputCheckbox }
+                onChange={ finishRecipe }
               />
               { `${ing[1]} - ${measures[index][1]}` }
             </label>
@@ -109,6 +80,7 @@ export default function ProcessoBebida(props) {
         <button
           type="button"
           data-testid="finish-recipe-btn"
+          disabled={ !finished }
         >
           Finalizar Receita
         </button>
