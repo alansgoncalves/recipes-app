@@ -11,6 +11,8 @@ import ExplorarBebidas from '../pages/ExplorarBebidas';
 import ExplorarIngredientesComidas from '../pages/ExplorarIngredientesComidas';
 import ExplorarIngredientesBebidas from '../pages/ExplorarIngredientesBebidas';
 import ExplorarComidasPorArea from '../pages/ExplorarComidasPorArea';
+import ProcessoComida from '../pages/ProcessoComida';
+import ProcessoBebida from '../pages/ProcessoBebida';
 import ReceitasFeitas from '../pages/ReceitasFeitas';
 import ReceitasFavoritas from '../pages/ReceitasFavoritas';
 import Profile from '../pages/Profile';
@@ -38,8 +40,10 @@ export default function Routes() {
       />
       <Route exact path="/" component={ Login } />
       <Route exact path="/comidas" component={ Comidas } />
-      <Route exact path="/perfil" component={ Profile } />
       <Route exact path="/bebidas" component={ Bebidas } />
+      <Route exact path="/perfil" component={ Profile } />
+      <Route exact path="/comidas/:id/in-progress" component={ ProcessoComida } />
+      <Route exact path="/bebidas/:id/in-progress" component={ ProcessoBebida } />
     </Switch>
   );
 }
