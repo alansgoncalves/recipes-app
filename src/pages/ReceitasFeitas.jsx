@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Header from '../components/Header';
-import FavRecipeCard from '../components/FavRecipeCard';
+import DoneRecipeCard from '../components/DoneRecipeCard';
 
 export default function ReceitasFeitas() {
   const [doneRecipes, setDoneRecipes] = useState([]);
@@ -51,7 +51,7 @@ export default function ReceitasFeitas() {
         Drink
       </button>
       { doneRecipes.map((recipe, index) => (
-        <FavRecipeCard
+        <DoneRecipeCard
           key={ index }
           index={ index }
           recipe={ recipe }
