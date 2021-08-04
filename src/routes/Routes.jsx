@@ -45,11 +45,15 @@ export default function Routes() {
       <Route exact path="/perfil" component={ Profile } />
       <Route exact path="/comidas/:id/in-progress" component={ ProcessoComida } />
       <Route exact path="/bebidas/:id/in-progress" component={ ProcessoBebida } />
+<<<<<<< HEAD
       <Route
         exact
         path="/explorar/bebidas/area"
         component={ NotFound }
       />
+=======
+      <Route exact path="/receitas-feitas" component={ ProcessoBebida } />
+>>>>>>> main-group-16
     </Switch>
   );
 }

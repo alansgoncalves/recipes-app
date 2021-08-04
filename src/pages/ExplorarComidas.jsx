@@ -1,20 +1,27 @@
+<<<<<<< HEAD
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+=======
+import React from 'react';
+import { Link, useHistory } from 'react-router-dom';
+import Header from '../components/Header';
+>>>>>>> main-group-16
 import Footer from '../components/Footer';
 import HeaderWithoutSearch from '../components/HeaderWithoutSearch';
 
 export default function ExplorarComidas() {
-  const [meal, setMeal] = useState([]);
+  const history = useHistory();
 
-  useEffect(() => {
-    const getExploreMeal = async () => {
-      const endpoint = 'https://www.themealdb.com/api/json/v1/1/random.php';
-      const data = await fetch(endpoint);
-      const { results } = await data.json();
-      setMeal(results);
-    };
-    getExploreMeal();
-  }, []);
+  const getExploreMeal = async () => {
+    const endpoint = 'https://www.themealdb.com/api/json/v1/1/random.php';
+    const data = await fetch(endpoint);
+    const { meals } = await data.json();
+
+    if (meals.length === 1) {
+      const btnSurprise = meals[0].idMeal;
+      history.push(`/comidas/${btnSurprise}`);
+    }
+  };
 
   return (
     <div>
@@ -35,14 +42,13 @@ export default function ExplorarComidas() {
           Por Local de Origem
         </button>
       </Link>
-      <Link to={ { pathname: `/comidas/${meal}` } }>
-        <button
-          type="button"
-          data-testid="explore-surprise"
-        >
-          Me Surpreenda!
-        </button>
-      </Link>
+      <button
+        type="button"
+        data-testid="explore-surprise"
+        onClick={ getExploreMeal }
+      >
+        Me Surpreenda!
+      </button>
       <Footer />
     </div>
   );

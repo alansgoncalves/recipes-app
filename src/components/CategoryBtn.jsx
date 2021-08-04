@@ -35,6 +35,7 @@ export default function CategoryBtn() {
   const categoryFilterered = async (strCategory) => {
     if (pathname === '/comidas') {
       const url = `https://www.themealdb.com/api/json/v1/1/filter.php?c=${strCategory}`;
+<<<<<<< HEAD
       if (!toggleOn) {
         const response = await fetch(url);
         const categories = await response.json();
@@ -55,6 +56,11 @@ export default function CategoryBtn() {
       } if (toggleOn && strCategory === btnName) {
         setToggleOn(false);
       }
+=======
+      const response = await fetch(url);
+      const categories = await response.json();
+      setFood(categories.meals);
+>>>>>>> main-group-16
     }
   };
 
