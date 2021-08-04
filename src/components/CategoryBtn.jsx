@@ -43,7 +43,6 @@ export default function CategoryBtn() {
       const response = await fetch(url);
       const categories = await response.json();
       setFood(categories.meals);
-      console.log(categories);
     }
   };
 
