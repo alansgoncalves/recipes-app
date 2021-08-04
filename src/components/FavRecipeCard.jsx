@@ -27,7 +27,7 @@ export default function FavRecipeCard(props) {
     setClipboard(true);
   }
 
-  const { recipe, index } = props;
+  const { recipe, index, removeFavorite } = props;
   return (
     <div className="fav-recipe-card">
       <Link to={ isTypeFood ? `/comidas/${recipe.id}` : `/bebidas/${recipe.id}` }>
@@ -62,6 +62,7 @@ export default function FavRecipeCard(props) {
         { clipboard && <p>Link copiado!</p> }
         <button
           type="button"
+          onClick={ () => removeFavorite(recipe.id) }
         >
           <img
             src={ blackHeartIcon }
@@ -84,4 +85,5 @@ FavRecipeCard.propTypes = {
     id: PropTypes.string,
   }).isRequired,
   index: PropTypes.number.isRequired,
+  removeFavorite: PropTypes.func.isRequired,
 };

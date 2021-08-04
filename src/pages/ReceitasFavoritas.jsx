@@ -22,6 +22,13 @@ export default function ReceitasFavoritas() {
     setFavRecipes(favDrink);
   }
 
+  function removeFavorite(id) {
+    const recipes = JSON.parse(localStorage.getItem('favoriteRecipes'));
+    const newFavRecipes = recipes.filter((recipe) => recipe.id !== id);
+    localStorage.setItem('favoriteRecipes', JSON.stringify(newFavRecipes));
+    setFavRecipes(newFavRecipes);
+  }
+
   useEffect(() => {
     getFavRecipes();
   }, []);
@@ -50,8 +57,14 @@ export default function ReceitasFavoritas() {
       >
         Drink
       </button>
-      { favRecipes.map((recipe,
-        index) => <FavRecipeCard key={ index } index={ index } recipe={ recipe } />) }
+      { favRecipes.map((recipe, index) => (
+        <FavRecipeCard
+          key={ index }
+          index={ index }
+          recipe={ recipe }
+          removeFavorite={ removeFavorite }
+        />
+      )) }
     </div>
   );
 }
