@@ -10,6 +10,18 @@ export default function ReceitasFavoritas() {
     setFavRecipes(recipes);
   }
 
+  function filterByFood() {
+    const recipes = JSON.parse(localStorage.getItem('favoriteRecipes'));
+    const favFood = recipes.filter((recipe) => recipe.type === 'comida');
+    setFavRecipes(favFood);
+  }
+
+  function filterByDrink() {
+    const recipes = JSON.parse(localStorage.getItem('favoriteRecipes'));
+    const favDrink = recipes.filter((recipe) => recipe.type === 'bebida');
+    setFavRecipes(favDrink);
+  }
+
   useEffect(() => {
     getFavRecipes();
   }, []);
@@ -17,9 +29,27 @@ export default function ReceitasFavoritas() {
   return (
     <div>
       <Header title="Receitas Favoritas" />
-      <button type="button" data-testid="filter-by-all-btn">All</button>
-      <button type="button" data-testid="filter-by-food-btn">Food</button>
-      <button type="button" data-testid="filter-by-drink-btn">Drink</button>
+      <button
+        type="button"
+        data-testid="filter-by-all-btn"
+        onClick={ getFavRecipes }
+      >
+        All
+      </button>
+      <button
+        type="button"
+        data-testid="filter-by-food-btn"
+        onClick={ filterByFood }
+      >
+        Food
+      </button>
+      <button
+        type="button"
+        data-testid="filter-by-drink-btn"
+        onClick={ filterByDrink }
+      >
+        Drink
+      </button>
       { favRecipes.map((recipe,
         index) => <FavRecipeCard key={ index } index={ index } recipe={ recipe } />) }
     </div>
