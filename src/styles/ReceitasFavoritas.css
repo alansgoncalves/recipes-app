@@ -1,0 +1,17 @@
+.fav-recipe-card {
+  border-top: 1px solid #969696;
+  display: flex;
+  gap: 10px;
+  margin: 10px;
+  max-width: 350px;
+  padding: 10px;
+}
+
+.recipe-img {
+  width: 100%;
+}
+
+.fav-recipe-card input {
+  height: 40px;
+  width: 120px;
+}
