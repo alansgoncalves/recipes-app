@@ -6,7 +6,6 @@ import Comidas from '../pages/Comidas';
 import Explorar from '../pages/Explorar';
 import DetalhesComidas from '../pages/DetalhesComidas';
 import DetalhesBebidas from '../pages/DetalhesBebidas';
-import ExplorarComidas from '../pages/ExplorarComidas';
 import ExplorarBebidas from '../pages/ExplorarBebidas';
 import ExplorarIngredientesComidas from '../pages/ExplorarIngredientesComidas';
 import ExplorarIngredientesBebidas from '../pages/ExplorarIngredientesBebidas';
@@ -45,15 +44,11 @@ export default function Routes() {
       <Route exact path="/perfil" component={ Profile } />
       <Route exact path="/comidas/:id/in-progress" component={ ProcessoComida } />
       <Route exact path="/bebidas/:id/in-progress" component={ ProcessoBebida } />
-<<<<<<< HEAD
       <Route
         exact
         path="/explorar/bebidas/area"
         component={ NotFound }
       />
-=======
-      <Route exact path="/receitas-feitas" component={ ProcessoBebida } />
->>>>>>> main-group-16
     </Switch>
   );
 }
