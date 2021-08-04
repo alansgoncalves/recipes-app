@@ -107,11 +107,8 @@ export default function ProcessoBebida(props) {
       <p data-testid="instructions">{drinkDetails.strInstructions}</p>
       <Link to="/receitas-feitas">
         <button
-          id="btnChecked"
           type="button"
           data-testid="finish-recipe-btn"
-          disabled
-          onClick={ () => handleCkick({ three }) }
         >
           Finalizar Receita
         </button>
