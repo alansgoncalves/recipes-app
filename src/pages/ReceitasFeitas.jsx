@@ -22,15 +22,8 @@ export default function ReceitasFeitas() {
     setDoneRecipes(doneDrink);
   }
 
-  function removeFavorite(id) {
-    const recipes = JSON.parse(localStorage.getItem('favoriteRecipes'));
-    const newFavRecipes = recipes.filter((recipe) => recipe.id !== id);
-    localStorage.setItem('favoriteRecipes', JSON.stringify(newFavRecipes));
-    setFavRecipes(newFavRecipes);
-  }
-
   useEffect(() => {
-    getFavRecipes();
+    getDoneRecipes();
   }, []);
 
   return (
@@ -39,7 +32,7 @@ export default function ReceitasFeitas() {
       <button
         type="button"
         data-testid="filter-by-all-btn"
-        onClick={ getFavRecipes }
+        onClick={ getDoneRecipes }
       >
         All
       </button>
@@ -57,12 +50,11 @@ export default function ReceitasFeitas() {
       >
         Drink
       </button>
-      { favRecipes.map((recipe, index) => (
+      { doneRecipes.map((recipe, index) => (
         <FavRecipeCard
           key={ index }
           index={ index }
           recipe={ recipe }
-          removeFavorite={ removeFavorite }
         />
       )) }
     </div>
