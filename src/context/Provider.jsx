@@ -7,6 +7,7 @@ export default function Provider({ children }) {
   const [drink, setDrink] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showSearchBar, setShowSearchBar] = useState(false);
+  const [toggleOn, setToggleOn] = useState(false);
 
   return (
     <Context.Provider
@@ -18,7 +19,9 @@ export default function Provider({ children }) {
         showSearchBar,
         loading,
         setLoading,
-        setShowSearchBar } }
+        setShowSearchBar,
+        toggleOn,
+        setToggleOn } }
     >
       { children }
     </Context.Provider>
