@@ -7,6 +7,7 @@ import Explorar from '../pages/Explorar';
 import DetalhesComidas from '../pages/DetalhesComidas';
 import DetalhesBebidas from '../pages/DetalhesBebidas';
 import ExplorarBebidas from '../pages/ExplorarBebidas';
+import ExplorarComidas from '../pages/ExplorarComidas';
 import ExplorarIngredientesComidas from '../pages/ExplorarIngredientesComidas';
 import ExplorarIngredientesBebidas from '../pages/ExplorarIngredientesBebidas';
 import ExplorarComidasPorArea from '../pages/ExplorarComidasPorArea';

@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-import React from 'react';
-import Footer from '../components/Footer';
-=======
 import React, { useState, useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
@@ -77,14 +73,9 @@ export default function ProcessoBebida(props) {
   //   }
   //   inputCheckbox();
   // };
->>>>>>> main-group-16
 
   return (
     <div>
-<<<<<<< HEAD
-      <Footer />
-      Processo Bebida.
-=======
       <h1>Detalhes da Bebida</h1>
       <h2 data-testid="recipe-title">{drinkDetails.strDrink}</h2>
       <img data-testid="recipe-photo" src={ drinkDetails.strDrinkThumb } alt="meal" />
@@ -122,7 +113,6 @@ export default function ProcessoBebida(props) {
           Finalizar Receita
         </button>
       </Link>
->>>>>>> main-group-16
     </div>
   );
 }

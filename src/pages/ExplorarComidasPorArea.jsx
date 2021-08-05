@@ -82,7 +82,7 @@ function ExplorarComidasPorArea() {
   const showSearchButton = true;
   return (
     <div>
-      <h1>Explorar comidas por local/origem</h1>
+      <h1 data-testid="page-title">Explorar Origem</h1>
       <Header title="Explorar Origem" showSearchButton={ showSearchButton } />
 
       <span>{ isLoading ? <div /> : renderDropDownAreas() }</span>
