@@ -21,6 +21,7 @@ export default function Profile() {
 
   return (
     <main>
+      <Footer />
       <h1 data-testid="page-title">Perfil</h1>
       <h3 data-testid="profile-email">{email}</h3>
       <Link to="/receitas-feitas">
