@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Header from '../components/Header';
-import DoneRecipeCard from '../components/DoneRecipeCard';
 import Footer from '../components/Footer';
+import DoneRecipeCard from '../components/DoneRecipeCard';
 
 export default function ReceitasFeitas() {
   const [doneRecipes, setDoneRecipes] = useState([]);
