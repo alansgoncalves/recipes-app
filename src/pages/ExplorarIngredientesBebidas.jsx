@@ -1,48 +1,67 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useContext, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
+import Context from '../context/Context';
 
 export default function ExplorarIngredientesBebidas() {
   const [ingredientDrinkList, setIngredientDrinkList] = useState([]);
+  const { setDrink } = useContext(Context);
+  const magicNumber = 12;
+  const history = useHistory();
+  const { push } = history;
+
+  const getIndredientsDrinks = async () => {
+    const endpoint = 'https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list';
+    const data = await fetch(endpoint);
+    const { drinks } = await data.json();
+    setIngredientDrinkList(drinks);
+  };
+
+  const getStrIngredients = async (strIngredient1) => {
+    const endpoint = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${strIngredient1}`;
+    const data = await fetch(endpoint);
+    const { drinks } = await data.json();
+    setDrink(drinks);
+    push('/bebidas');
+  };
 
   useEffect(() => {
-    const getIndredientsDrinks = async () => {
-      const endpoint = 'https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list';
-      const data = await fetch(endpoint);
-      const { drinks } = await data.json();
-      setIngredientDrinkList(drinks);
-    };
     getIndredientsDrinks();
   }, []);
-
-  /* const magicNumber = 12; */
 
   return (
     <>
       <Header title="Explorar Ingredientes" />
       <div>
-        {ingredientDrinkList && ingredientDrinkList.map((ingDrink, index) => (
-          <div
-            key={ index }
-            data-testid={ `${index}-recipe-card` }
-          >
-            <Link to={ `/bebidas/${ingDrink.idDrink}` }>
-              <img
-                src={ ingDrink.strDrinkThumb }
-                alt={ ingDrink.strDrink }
-                data-testid={ `${index}-card-img` }
-              />
-              <span
-                data-testid={ `${index}-card-name` }
+        {ingredientDrinkList.length > 0 && ingredientDrinkList
+          .map(({ strIngredient1 }, index) => (
+            index < magicNumber
+            && (
+              <div
+                key={ index }
+                data-testid={ `${index}-ingredient-card` }
               >
-                {ingDrink.strDrink}
-              </span>
-            </Link>
-          </div>
-        ))}
+                <button
+                  type="button"
+                  onClick={ () => getStrIngredients(strIngredient1) }
+                >
+                  <img
+                    data-testid={ `${index}-card-img` }
+                    src={ `https://www.thecocktaildb.com/images/ingredients/${strIngredient1}-Small.png` }
+                    alt={ strIngredient1 }
+                  />
+                  <p
+                    data-testid={ `${index}-card-name` }
+                  >
+                    {strIngredient1}
+                  </p>
+                </button>
+              </div>
+            )
+          ))}
       </div>
       <Footer />
-    </ >
+    </>
   );
 }

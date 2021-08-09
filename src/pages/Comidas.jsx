@@ -10,15 +10,18 @@ export default function Comidas() {
   const { food, setFood } = useContext(Context);
   const magicNumber = 12;
 
+  function fetchAPI() {
+    fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=')
+      .then((response) => response.json())
+      .then((result) => {
+        setFood(result.meals);
+      });
+  }
+
   useEffect(() => {
-    function fetchAPI() {
-      fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=')
-        .then((response) => response.json())
-        .then((result) => {
-          setFood(result.meals);
-        });
+    if (food.length === 0) {
+      fetchAPI();
     }
-    fetchAPI();
   }, []);
 
   return (
