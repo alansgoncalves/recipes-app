@@ -50,7 +50,7 @@ export default function ReceitasFeitas() {
       >
         Drink
       </button>
-      { doneRecipes.map((recipe, index) => (
+      { doneRecipes.length > 0 && doneRecipes.map((recipe, index) => (
         <DoneRecipeCard
           key={ index }
           index={ index }

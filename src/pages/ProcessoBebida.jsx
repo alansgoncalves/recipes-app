@@ -3,15 +3,17 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import Loading from '../components/Loading';
 import Context from '../context/Context';
-import shareIcon from '../images/shareIcon.svg';
-import whiteHeartIcon from '../images/whiteHeartIcon.svg';
+import FavoriteBtn from '../components/FavoriteBtn';
+import UnfavoriteBtn from '../components/UnfavoriteBtn';
 import '../styles/Global.css';
+import ShareBtn from '../components/ShareBtn';
 
 export default function ProcessoBebida(props) {
   const [drinkDetails, setDrinkDetails] = useState([]);
   const [ingredients, setIngredients] = useState([]);
   const [measures, setMeasures] = useState([]);
   const [finished, setFinished] = useState(false);
+  const [favorite, setFavorite] = useState(false);
   const { loading, setLoading } = useContext(Context);
   const { match: { params: { id } } } = props;
 
@@ -39,6 +41,31 @@ export default function ProcessoBebida(props) {
     setFinished(allChecked);
   }
 
+  function deleteFavorite() {
+    const favoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes'));
+    const { idDrink } = drinkDetails;
+    const newRecipes = favoriteRecipes.filter(({ id: drinkId }) => drinkId !== idDrink);
+    localStorage.setItem('favoriteRecipes', JSON.stringify(newRecipes));
+    setFavorite(false);
+  }
+
+  function saveFavorite() {
+    const favoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes'));
+    const { idDrink, strCategory, strDrink, strAlcoholic, strDrinkThumb } = drinkDetails;
+    const newRecipe = {
+      id: idDrink,
+      type: 'bebida',
+      area: '',
+      category: strCategory,
+      alcoholicOrNot: strAlcoholic,
+      name: strDrink,
+      image: strDrinkThumb,
+    };
+    const allFavRecipes = [...favoriteRecipes, newRecipe];
+    localStorage.setItem('favoriteRecipes', JSON.stringify(allFavRecipes));
+    setFavorite(true);
+  }
+
   if (loading) {
     return <Loading />;
   }
@@ -50,12 +77,10 @@ export default function ProcessoBebida(props) {
       <h1>Detalhes da Bebida</h1>
       <h2 data-testid="recipe-title">{drinkDetails.strDrink}</h2>
       <img data-testid="recipe-photo" src={ drinkDetails.strDrinkThumb } alt="meal" />
-      <button data-testid="share-btn" type="button">
-        <img src={ shareIcon } alt="share icon" />
-      </button>
-      <button data-testid="favorite-btn" type="button">
-        <img src={ whiteHeartIcon } alt="favorite icon" />
-      </button>
+      <ShareBtn />
+      { favorite
+        ? <UnfavoriteBtn deleteFavorite={ deleteFavorite } />
+        : <FavoriteBtn saveFavorite={ saveFavorite } />}
       <p data-testid="recipe-category">{drinkDetails.strAlcoholic}</p>
       <h3>Ingredients</h3>
       <div>

@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import Loading from '../components/Loading';
 import Context from '../context/Context';
-import shareIcon from '../images/shareIcon.svg';
-import whiteHeartIcon from '../images/whiteHeartIcon.svg';
+import ShareBtn from '../components/ShareBtn';
+import FavoriteBtn from '../components/FavoriteBtn';
+import UnfavoriteBtn from '../components/UnfavoriteBtn';
 import '../styles/Global.css';
 
 export default function ProcessoComida(props) {
@@ -12,6 +13,7 @@ export default function ProcessoComida(props) {
   const [ingredients, setIngredients] = useState([]);
   const [measures, setMeasures] = useState([]);
   const [finished, setFinished] = useState(false);
+  const [favorite, setFavorite] = useState(false);
   const { loading, setLoading } = useContext(Context);
   const { match: { params: { id } } } = props;
 
@@ -39,6 +41,31 @@ export default function ProcessoComida(props) {
     setFinished(allChecked);
   }
 
+  function deleteFavorite() {
+    const favoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes'));
+    const { idMeal } = foodDetails;
+    const newFavRecipes = favoriteRecipes.filter(({ id: mealId }) => mealId !== idMeal);
+    localStorage.setItem('favoriteRecipes', JSON.stringify(newFavRecipes));
+    setFavorite(false);
+  }
+
+  function saveFavorite() {
+    const favoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes'));
+    const { idMeal, strArea, strCategory, strMeal, strMealThumb } = foodDetails;
+    const newRecipe = {
+      id: idMeal,
+      type: 'comida',
+      area: strArea,
+      category: strCategory,
+      alcoholicOrNot: '',
+      name: strMeal,
+      image: strMealThumb,
+    };
+    const allFavRecipes = [...favoriteRecipes, newRecipe];
+    localStorage.setItem('favoriteRecipes', JSON.stringify(allFavRecipes));
+    setFavorite(true);
+  }
+
   if (loading) {
     return <Loading />;
   }
@@ -50,12 +77,10 @@ export default function ProcessoComida(props) {
       <h1>Detalhes de Comida</h1>
       <h2 data-testid="recipe-title">{foodDetails.strMeal}</h2>
       <img src={ foodDetails.strMealThumb } data-testid="recipe-photo" alt="meal" />
-      <button data-testid="share-btn" type="button">
-        <img src={ shareIcon } alt="share icon" />
-      </button>
-      <button data-testid="favorite-btn" type="button">
-        <img src={ whiteHeartIcon } alt="favorite icon" />
-      </button>
+      <ShareBtn />
+      { favorite
+        ? <UnfavoriteBtn deleteFavorite={ deleteFavorite } />
+        : <FavoriteBtn saveFavorite={ saveFavorite } />}
       <p data-testid="recipe-category">{foodDetails.strCategory}</p>
       <h3>Ingredients</h3>
       <label htmlFor="checkbox">
