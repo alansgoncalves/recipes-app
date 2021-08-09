@@ -1,18 +1,34 @@
 import React, { useState, useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router';
 import Loading from '../components/Loading';
 import Context from '../context/Context';
-import shareIcon from '../images/shareIcon.svg';
-import whiteHeartIcon from '../images/whiteHeartIcon.svg';
+import FavoriteBtn from '../components/FavoriteBtn';
+import UnfavoriteBtn from '../components/UnfavoriteBtn';
 import '../styles/Global.css';
+import ShareBtn from '../components/ShareBtn';
 
 export default function ProcessoBebida(props) {
   const [drinkDetails, setDrinkDetails] = useState([]);
   const [ingredients, setIngredients] = useState([]);
   const [measures, setMeasures] = useState([]);
+  const [finished, setFinished] = useState(false);
+  const [favorite, setFavorite] = useState(false);
   const { loading, setLoading } = useContext(Context);
+  const history = useHistory();
+  const { push } = history;
   const { match: { params: { id } } } = props;
+
+  function verifyFavorites() {
+    if (localStorage.getItem('favoriteRecipes')) {
+      const favoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes'));
+      if (favoriteRecipes.length > 0) {
+        const favRecipe = favoriteRecipes.some((el) => el.id === id);
+        setFavorite(favRecipe);
+      }
+    }
+  }
 
   useEffect(() => {
     setLoading(true);
@@ -29,62 +45,81 @@ export default function ProcessoBebida(props) {
       setLoading(false);
     };
 
+    verifyFavorites();
     getDrinkDetails();
   }, []);
+
+  function finishRecipe() {
+    const checkbox = Array.from(document.getElementsByTagName('input'));
+    const allChecked = checkbox.map((el) => el.checked).reduce((a, b) => a && b);
+    setFinished(allChecked);
+  }
+
+  function deleteFavorite() {
+    const favoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes'));
+    const { idDrink } = drinkDetails;
+    const newRecipes = favoriteRecipes.filter(({ id: drinkId }) => drinkId !== idDrink);
+    localStorage.setItem('favoriteRecipes', JSON.stringify(newRecipes));
+    setFavorite(false);
+  }
+
+  function saveFavorite() {
+    let favoriteRecipes = [];
+    if (localStorage.getItem('favoriteRecipes')) {
+      favoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes'));
+    }
+    const { idDrink, strCategory, strDrink, strAlcoholic, strDrinkThumb } = drinkDetails;
+    const newRecipe = {
+      id: idDrink,
+      type: 'bebida',
+      area: '',
+      category: strCategory,
+      alcoholicOrNot: strAlcoholic,
+      name: strDrink,
+      image: strDrinkThumb,
+    };
+    const allFavRecipes = [...favoriteRecipes, newRecipe];
+    localStorage.setItem('favoriteRecipes', JSON.stringify(allFavRecipes));
+    setFavorite(true);
+  }
+
+  function saveDoneRecipe() {
+    let doneRecipes = [];
+    if (localStorage.getItem('doneRecipes')) {
+      doneRecipes = JSON.parse(localStorage.getItem('doneRecipes'));
+    }
+    const { idDrink, strCategory, strDrink, strAlcoholic, strDrinkThumb } = drinkDetails;
+    const newRecipe = {
+      id: idDrink,
+      type: 'bebida',
+      area: '',
+      category: strCategory,
+      alcoholicOrNot: strAlcoholic,
+      name: strDrink,
+      image: strDrinkThumb,
+      doneDate: new Date().toLocaleDateString(),
+      tags: '',
+    };
+    const allDoneRecipes = [...doneRecipes, newRecipe];
+    localStorage.setItem('doneRecipes', JSON.stringify(allDoneRecipes));
+    push('/receitas-feitas');
+  }
 
   if (loading) {
     return <Loading />;
   }
 
   const three = 3;
-  function inputCheckbox() {
-    const checa = document.getElementById('checkedInput');
-    const numElementos = checa.length;
-    const bt = document.getElementById('btnChecked');
-    for (let x = 0; x < numElementos; x += 1) {
-      checa[x].onclick = () => {
-      // "input[name='toggle']:checked" conta os checkbox checados
-        const cont = document
-          .querySelectorAll('input[name=\'checkedInput\']:checked').length;
-        // ternário que verifica se há algum checado.
-        // se não há, retorna 0 (false), logo desabilita o botão
-        bt.disabled = !cont;
-        if (!cont) {
-          return localStorage
-            .setItem('inProgressRecipes', JSON.stringify({ id: [ingredients] }));
-        }
-      };
-    }
-  }
-
-  // function inputCheckbox() {
-  //   const checkbox = document.getElementById('checkedInput');
-  //   if (checkbox.checked) {
-  //     return localStorage
-  //       .setItem('inProgressRecipes', JSON.stringify({ id: [ingredients[2]] }));
-  //   }
-  // }
-
-  // const handleCkick = (index) => {
-  //   if (index < three) {
-  //     document.getElementById('checked').removeAttribute('disabled');
-  //   } else {
-  //     document.getElementById('checked').setAttribute('disabled');
-  //   }
-  //   inputCheckbox();
-  // };
 
   return (
     <div>
       <h1>Detalhes da Bebida</h1>
       <h2 data-testid="recipe-title">{drinkDetails.strDrink}</h2>
       <img data-testid="recipe-photo" src={ drinkDetails.strDrinkThumb } alt="meal" />
-      <button data-testid="share-btn" type="button">
-        <img src={ shareIcon } alt="share icon" />
-      </button>
-      <button data-testid="favorite-btn" type="button">
-        <img src={ whiteHeartIcon } alt="favorite icon" />
-      </button>
+      <ShareBtn />
+      { favorite
+        ? <UnfavoriteBtn deleteFavorite={ deleteFavorite } />
+        : <FavoriteBtn saveFavorite={ saveFavorite } />}
       <p data-testid="recipe-category">{drinkDetails.strAlcoholic}</p>
       <h3>Ingredients</h3>
       <div>
@@ -98,7 +133,7 @@ export default function ProcessoBebida(props) {
               <input
                 id="checkedInput"
                 type="checkbox"
-                onClick={ inputCheckbox }
+                onChange={ finishRecipe }
               />
               { `${ing[1]} - ${measures[index][1]}` }
             </label>
@@ -109,6 +144,8 @@ export default function ProcessoBebida(props) {
         <button
           type="button"
           data-testid="finish-recipe-btn"
+          disabled={ !finished }
+          onClick={ saveDoneRecipe }
         >
           Finalizar Receita
         </button>

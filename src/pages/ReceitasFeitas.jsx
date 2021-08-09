@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import DoneRecipeCard from '../components/DoneRecipeCard';
+import Footer from '../components/Footer';
 
 export default function ReceitasFeitas() {
   const [doneRecipes, setDoneRecipes] = useState([]);
@@ -52,7 +53,7 @@ export default function ReceitasFeitas() {
       >
         Drink
       </button>
-      { doneRecipes.map((recipe, index) => (
+      { doneRecipes.length > 0 && doneRecipes.map((recipe, index) => (
         <DoneRecipeCard
           key={ index }
           index={ index }

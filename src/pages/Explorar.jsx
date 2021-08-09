@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Footer from '../components/Footer';
-import Header from '../components/Header';
+import HeaderWithoutSearch from '../components/HeaderWithoutSearch';
 
 class Explorar extends Component {
   render() {
     return (
       <div>
-        <Header title="Explorar" />
+        <HeaderWithoutSearch title="Explorar" />
         <Footer />
         <section>
           <Link to="/explorar/comidas">
