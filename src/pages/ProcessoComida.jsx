@@ -8,6 +8,7 @@ import ShareBtn from '../components/ShareBtn';
 import FavoriteBtn from '../components/FavoriteBtn';
 import UnfavoriteBtn from '../components/UnfavoriteBtn';
 import '../styles/Global.css';
+import Ingredients from '../components/Ingredients';
 
 export default function ProcessoComida(props) {
   const [foodDetails, setFoodDetails] = useState([]);
@@ -109,8 +110,6 @@ export default function ProcessoComida(props) {
     return <Loading />;
   }
 
-  const eigth = 8;
-
   return (
     <div>
       <h1>Detalhes de Comida</h1>
@@ -121,7 +120,7 @@ export default function ProcessoComida(props) {
         ? <UnfavoriteBtn deleteFavorite={ deleteFavorite } />
         : <FavoriteBtn saveFavorite={ saveFavorite } />}
       <p data-testid="recipe-category">{foodDetails.strCategory}</p>
-      <h3>Ingredients</h3>
+      {/* <h3>Ingredients</h3>
       <label htmlFor="checkbox">
         { ingredients.length > 0 && ingredients.map((ing, index) => (
           index < eigth && (
@@ -133,7 +132,12 @@ export default function ProcessoComida(props) {
               <span>{ `${ing[1]} - ${measures[index][1]}` }</span>
             </div>
           ))) }
-      </label>
+      </label> */}
+      <Ingredients
+        ingredients={ ingredients }
+        finishRecipe={ finishRecipe }
+        measures={ measures }
+      />
       <p data-testid="instructions">{foodDetails.strInstructions}</p>
       <Link to="/receitas-feitas">
         <button
