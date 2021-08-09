@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import Context from '../context/Context';
+import HeaderWithoutSearch from '../components/HeaderWithoutSearch';
 
 export default function ExplorarIngredientesBebidas() {
   const [ingredientDrinkList, setIngredientDrinkList] = useState([]);
@@ -60,6 +61,8 @@ export default function ExplorarIngredientesBebidas() {
               </div>
             )
           ))}
+        <HeaderWithoutSearch title="Explorar Ingredientes" />
+        <Footer />
       </div>
       <Footer />
     </>
