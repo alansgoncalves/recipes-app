@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router';
 import Loading from '../components/Loading';
 import Context from '../context/Context';
 import FavoriteBtn from '../components/FavoriteBtn';
@@ -15,7 +16,19 @@ export default function ProcessoBebida(props) {
   const [finished, setFinished] = useState(false);
   const [favorite, setFavorite] = useState(false);
   const { loading, setLoading } = useContext(Context);
+  const history = useHistory();
+  const { push } = history;
   const { match: { params: { id } } } = props;
+
+  function verifyFavorites() {
+    if (localStorage.getItem('favoriteRecipes')) {
+      const favoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes'));
+      if (favoriteRecipes.length > 0) {
+        const favRecipe = favoriteRecipes.some((el) => el.id === id);
+        setFavorite(favRecipe);
+      }
+    }
+  }
 
   useEffect(() => {
     setLoading(true);
@@ -32,6 +45,7 @@ export default function ProcessoBebida(props) {
       setLoading(false);
     };
 
+    verifyFavorites();
     getDrinkDetails();
   }, []);
 
@@ -50,7 +64,10 @@ export default function ProcessoBebida(props) {
   }
 
   function saveFavorite() {
-    const favoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes'));
+    let favoriteRecipes = [];
+    if (localStorage.getItem('favoriteRecipes')) {
+      favoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes'));
+    }
     const { idDrink, strCategory, strDrink, strAlcoholic, strDrinkThumb } = drinkDetails;
     const newRecipe = {
       id: idDrink,
@@ -64,6 +81,28 @@ export default function ProcessoBebida(props) {
     const allFavRecipes = [...favoriteRecipes, newRecipe];
     localStorage.setItem('favoriteRecipes', JSON.stringify(allFavRecipes));
     setFavorite(true);
+  }
+
+  function saveDoneRecipe() {
+    let doneRecipes = [];
+    if (localStorage.getItem('doneRecipes')) {
+      doneRecipes = JSON.parse(localStorage.getItem('doneRecipes'));
+    }
+    const { idDrink, strCategory, strDrink, strAlcoholic, strDrinkThumb } = drinkDetails;
+    const newRecipe = {
+      id: idDrink,
+      type: 'bebida',
+      area: '',
+      category: strCategory,
+      alcoholicOrNot: strAlcoholic,
+      name: strDrink,
+      image: strDrinkThumb,
+      doneDate: new Date().toLocaleDateString(),
+      tags: '',
+    };
+    const allDoneRecipes = [...doneRecipes, newRecipe];
+    localStorage.setItem('doneRecipes', JSON.stringify(allDoneRecipes));
+    push('/receitas-feitas');
   }
 
   if (loading) {
@@ -106,6 +145,7 @@ export default function ProcessoBebida(props) {
           type="button"
           data-testid="finish-recipe-btn"
           disabled={ !finished }
+          onClick={ saveDoneRecipe }
         >
           Finalizar Receita
         </button>

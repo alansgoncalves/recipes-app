@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router';
 import Loading from '../components/Loading';
 import Context from '../context/Context';
 import ShareBtn from '../components/ShareBtn';
@@ -15,7 +16,19 @@ export default function ProcessoComida(props) {
   const [finished, setFinished] = useState(false);
   const [favorite, setFavorite] = useState(false);
   const { loading, setLoading } = useContext(Context);
+  const history = useHistory();
+  const { push } = history;
   const { match: { params: { id } } } = props;
+
+  function verifyFavorites() {
+    if (localStorage.getItem('favoriteRecipes')) {
+      const favoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes'));
+      if (favoriteRecipes.length > 0) {
+        const favRecipe = favoriteRecipes.some((el) => el.id === id);
+        setFavorite(favRecipe);
+      }
+    }
+  }
 
   useEffect(() => {
     setLoading(true);
@@ -32,6 +45,7 @@ export default function ProcessoComida(props) {
       setLoading(false);
     };
 
+    verifyFavorites();
     getFoodDetails();
   }, []);
 
@@ -50,7 +64,10 @@ export default function ProcessoComida(props) {
   }
 
   function saveFavorite() {
-    const favoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes'));
+    let favoriteRecipes = [];
+    if (localStorage.getItem('favoriteRecipes')) {
+      favoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes'));
+    }
     const { idMeal, strArea, strCategory, strMeal, strMealThumb } = foodDetails;
     const newRecipe = {
       id: idMeal,
@@ -64,6 +81,28 @@ export default function ProcessoComida(props) {
     const allFavRecipes = [...favoriteRecipes, newRecipe];
     localStorage.setItem('favoriteRecipes', JSON.stringify(allFavRecipes));
     setFavorite(true);
+  }
+
+  function saveDoneRecipe() {
+    let doneRecipes = [];
+    if (localStorage.getItem('doneRecipes')) {
+      doneRecipes = JSON.parse(localStorage.getItem('doneRecipes'));
+    }
+    const { idMeal, strArea, strCategory, strMeal, strMealThumb, strTags } = foodDetails;
+    const newRecipe = {
+      id: idMeal,
+      type: 'comida',
+      area: strArea,
+      category: strCategory,
+      alcoholicOrNot: '',
+      name: strMeal,
+      image: strMealThumb,
+      doneDate: new Date().toLocaleDateString(),
+      tags: strTags.split(','),
+    };
+    const allDoneRecipes = [...doneRecipes, newRecipe];
+    localStorage.setItem('doneRecipes', JSON.stringify(allDoneRecipes));
+    push('/receitas-feitas');
   }
 
   if (loading) {
@@ -101,6 +140,7 @@ export default function ProcessoComida(props) {
           type="button"
           data-testid="finish-recipe-btn"
           disabled={ !finished }
+          onClick={ saveDoneRecipe }
         >
           Finalizar Receita
         </button>

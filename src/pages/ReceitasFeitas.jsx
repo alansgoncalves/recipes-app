@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Header from '../components/Header';
 import DoneRecipeCard from '../components/DoneRecipeCard';
+import Footer from '../components/Footer';
 
 export default function ReceitasFeitas() {
   const [doneRecipes, setDoneRecipes] = useState([]);
@@ -29,6 +30,7 @@ export default function ReceitasFeitas() {
   return (
     <div>
       <Header title="Receitas Favoritas" />
+      <Footer />
       <button
         type="button"
         data-testid="filter-by-all-btn"
