@@ -34,6 +34,7 @@ export default function CategoryBtn() {
   const categoryFilterered = async ({ strCategory }) => {
     if (pathname === '/bebidas') {
       const url = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${strCategory}`;
+      console.log(url);
       const response = await fetch(url);
       const categories = await response.json();
       setDrink(categories.drinks);

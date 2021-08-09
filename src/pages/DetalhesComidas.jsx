@@ -69,7 +69,6 @@ export default function DetalhesComidas(props) {
   }
 
   function saveFavorite() {
-    console.log('favorite');
     const favoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes'));
     const { idMeal, strArea, strCategory, strMeal, strMealThumb } = foodDetails;
     const newRecipe = {
