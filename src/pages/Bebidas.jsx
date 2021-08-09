@@ -15,19 +15,8 @@ export default function Drinks() {
     setData(json);
   }
 
-  function fetchAPI() {
-    fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=')
-      .then((response) => response.json())
-      .then((result) => {
-        console.log(result);
-        setDrink(result.drinks);
-      });
-  }
-
   useEffect(() => {
-    if (drink.length === 0) {
-      fetchAPI();
-    }
+    fetchDrinks();
   }, []);
 
   async function categoriesDrinks() {
