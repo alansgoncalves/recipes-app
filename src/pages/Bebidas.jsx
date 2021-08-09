@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
+import Context from '../context/Context';
 
 export default function Drinks() {
   const [data, setData] = useState([]);
   const [categories, setCategories] = useState([]);
+  const { drink, setDrink } = useContext(Context);
   const [toggle, setToggle] = useState('');
 
   async function fetchDrinks() {
@@ -93,7 +95,7 @@ export default function Drinks() {
           </div>
         ))}
       {data.length === 0 ? <p>Loading</p>
-        : data.drinks.slice(0, maxArrayDrinks).map((drink, index) => (
+        : data.drinks.slice(0, maxArrayDrinks).map((drinks, index) => (
           <Link to={ `/bebidas/${drink.idDrink}` } key={ index }>
             <div data-testid={ `${index}-recipe-card` }>
               <img

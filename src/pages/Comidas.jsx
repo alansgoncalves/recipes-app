@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
+import Context from '../context/Context';
 
 function Foods() {
   const [data, setData] = useState([]);
   const [categories, setCategories] = useState([]);
+  const { food, setFood } = useContext(Context);
   const [toggle, setToggle] = useState('');
 
   async function fetchFoods() {
@@ -92,7 +94,7 @@ function Foods() {
           </div>
         ))}
       {data.length === 0 ? <p>Loading</p>
-        : data.meals.slice(0, maxArrayFoods).map((food, index) => (
+        : data.meals.slice(0, maxArrayFoods).map((foods, index) => (
           <Link to={ `/comidas/${food.idMeal}` } key={ index }>
             <div data-testid={ `${index}-recipe-card` }>
               <img

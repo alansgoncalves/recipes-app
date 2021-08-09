@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import Context from '../context/Context';
@@ -42,22 +42,20 @@ export default function ExplorarIngredientesBebidas() {
               <div
                 key={ index }
                 data-testid={ `${index}-ingredient-card` }
+                onClick={ () => getStrIngredients(strIngredient1) }
+                onKeyDown={ () => getStrIngredients(strIngredient1) }
+                aria-hidden="true"
               >
-                <button
-                  type="button"
-                  onClick={ () => getStrIngredients(strIngredient1) }
+                <img
+                  data-testid={ `${index}-card-img` }
+                  src={ `https://www.thecocktaildb.com/images/ingredients/${strIngredient1}-Small.png` }
+                  alt={ strIngredient1 }
+                />
+                <p
+                  data-testid={ `${index}-card-name` }
                 >
-                  <img
-                    data-testid={ `${index}-card-img` }
-                    src={ `https://www.thecocktaildb.com/images/ingredients/${strIngredient1}-Small.png` }
-                    alt={ strIngredient1 }
-                  />
-                  <p
-                    data-testid={ `${index}-card-name` }
-                  >
-                    {strIngredient1}
-                  </p>
-                </button>
+                  {strIngredient1}
+                </p>
               </div>
             )
           ))}
