@@ -15,8 +15,18 @@ function Foods() {
     setData(json);
   }
 
+  function fetchAPI() {
+    fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=')
+      .then((response) => response.json())
+      .then((result) => {
+        setFood(result.meals);
+      });
+  }
+
   useEffect(() => {
-    fetchFoods();
+    if (food.length === 0) {
+      fetchAPI();
+    }
   }, []);
 
   async function categoriesFood() {
