@@ -13,6 +13,7 @@ export default function DetalhesComidas(props) {
   const [foodDetails, setFoodDetails] = useState([]);
   const [ingredients, setIngredients] = useState([]);
   const [favorite, setFavorite] = useState(false);
+  const [inProgress, setInProgress] = useState(false);
   const [measures, setMeasures] = useState([]);
   const [recommendations, setRecommendations] = useState([]);
   const { loading, setLoading } = useContext(Context);
@@ -23,6 +24,16 @@ export default function DetalhesComidas(props) {
     if (favoriteRecipes.length > 0) {
       const favRecipe = favoriteRecipes.some((el) => el.id === id);
       setFavorite(favRecipe);
+    }
+  }
+
+  function verifyInProgress() {
+    if (localStorage.getItem('inProgressRecipes')) {
+      const inProgressRecipes = JSON.parse(localStorage.getItem('inProgressRecipes'));
+      const idMeals = Object.keys(inProgressRecipes.meals);
+      const isInProgress = idMeals.some((el) => el === id);
+      console.log(isInProgress);
+      setInProgress(isInProgress);
     }
   }
 
@@ -54,6 +65,7 @@ export default function DetalhesComidas(props) {
     getFoodDetails();
     getRecommended();
     verifyFavorites();
+    verifyInProgress();
   }, []);
 
   if (loading) {
@@ -110,13 +122,23 @@ export default function DetalhesComidas(props) {
       <a data-testid="video" href={ foodDetails.strYoutube }>Video</a>
       <RecCarousel recommendations={ recommendations } />
       <Link to={ `/comidas/${id}/in-progress` }>
-        <button
-          type="button"
-          data-testid="start-recipe-btn"
-          className="start-recipe-btn"
-        >
-          Iniciar receita
-        </button>
+        { inProgress ? (
+          <button
+            type="button"
+            data-testid="start-recipe-btn"
+            className="start-recipe-btn"
+          >
+            Continuar Receita
+          </button>
+        ) : (
+          <button
+            type="button"
+            data-testid="start-recipe-btn"
+            className="start-recipe-btn"
+          >
+            Iniciar Receita
+          </button>
+        ) }
       </Link>
     </div>
   );
