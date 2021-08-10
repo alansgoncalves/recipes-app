@@ -7,6 +7,10 @@
   padding: 10px;
 }
 
+.fav-recipe-card p {
+  margin: 0;
+}
+
 .recipe-img {
   width: 100%;
 }

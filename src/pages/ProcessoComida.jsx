@@ -99,7 +99,7 @@ export default function ProcessoComida(props) {
       name: strMeal,
       image: strMealThumb,
       doneDate: new Date().toLocaleDateString(),
-      tags: strTags.split(','),
+      tags: strTags !== null && strTags.split(','),
     };
     const allDoneRecipes = [...doneRecipes, newRecipe];
     localStorage.setItem('doneRecipes', JSON.stringify(allDoneRecipes));

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import Header from '../components/Header';
-import Footer from '../components/Footer';
 import FavRecipeCard from '../components/FavRecipeCard';
 
 export default function ReceitasFavoritas() {
@@ -35,9 +34,8 @@ export default function ReceitasFavoritas() {
   }, []);
 
   return (
-    <div>
+    <div className="favorite-recipes">
       <Header title="Receitas Favoritas" />
-      <Footer />
       <button
         type="button"
         data-testid="filter-by-all-btn"
@@ -59,7 +57,7 @@ export default function ReceitasFavoritas() {
       >
         Drink
       </button>
-      { favRecipes.map((recipe, index) => (
+      { favRecipes && favRecipes.map((recipe, index) => (
         <FavRecipeCard
           key={ index }
           index={ index }
