@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Header from '../components/Header';
-import FavRecipeCard from '../components/FavRecipeCard';
 import Footer from '../components/Footer';
+import FavRecipeCard from '../components/FavRecipeCard';
 
 export default function ReceitasFavoritas() {
   const [favRecipes, setFavRecipes] = useState([]);

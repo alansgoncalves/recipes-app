@@ -31,7 +31,7 @@ export default function ExplorarIngredientesBebidas() {
   }, []);
 
   return (
-    <>
+    <div>
       <HeaderWithoutSearch title="Explorar Ingredientes" />
       <div>
         {ingredientDrinkList.length > 0 && ingredientDrinkList
@@ -60,6 +60,6 @@ export default function ExplorarIngredientesBebidas() {
           ))}
       </div>
       <Footer />
-    </>
+    </div>
   );
 }

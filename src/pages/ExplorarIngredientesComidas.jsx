@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { useHistory } from 'react-router';
 import Footer from '../components/Footer';
 import Context from '../context/Context';
@@ -31,7 +31,7 @@ export default function ExplorarIngredientesComidas() {
   }, []);
 
   return (
-    <>
+    <div>
       <HeaderWithoutSearch title="Explorar Ingredientes" />
       <div>
         {ingredientMealList.length > 0 && ingredientMealList
@@ -61,6 +61,6 @@ export default function ExplorarIngredientesComidas() {
           ))}
       </div>
       <Footer />
-    </>
+    </div>
   );
 }
