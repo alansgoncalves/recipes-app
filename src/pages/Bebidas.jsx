@@ -64,7 +64,6 @@ export default function Drinks() {
     <main>
       <Header title="Bebidas" />
       <CategoryBtn />
-      <Footer />
       {/* {categories.length === 0 ? <p>Loading</p>
         : categories.drinks.slice(0, maxArrayCategories).map((categorie, index) => (
           <div key={ index }>

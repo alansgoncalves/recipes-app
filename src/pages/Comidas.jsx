@@ -64,7 +64,6 @@ function Foods() {
     <div className="comidas">
       <Header title="Comidas" />
       <CategoryBtn />
-      <Footer />
       <div>
         {food.length > 0 && food.map((item, index) => (
           index < magicNumber
