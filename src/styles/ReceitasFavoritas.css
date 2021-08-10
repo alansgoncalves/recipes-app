@@ -1,3 +1,7 @@
+.favorite-recipes {
+  margin-bottom: 60px;
+}
+
 .fav-recipe-card {
   border-top: 1px solid #969696;
   display: flex;
@@ -5,6 +9,10 @@
   margin: 10px;
   max-width: 350px;
   padding: 10px;
+}
+
+.fav-recipe-card p {
+  margin: 0;
 }
 
 .recipe-img {

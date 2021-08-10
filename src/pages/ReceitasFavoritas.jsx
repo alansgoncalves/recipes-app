@@ -35,7 +35,7 @@ export default function ReceitasFavoritas() {
   }, []);
 
   return (
-    <div>
+    <div className="favorite-recipes">
       <Header title="Receitas Favoritas" />
       <Footer />
       <button

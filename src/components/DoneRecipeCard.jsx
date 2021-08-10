@@ -59,7 +59,7 @@ export default function FavRecipeCard(props) {
         />
         { clipboard && <p>Link copiado!</p> }
         <p data-testid={ `${index}-horizontal-done-date` }>{recipe.doneDate}</p>
-        { isTypeFood && recipe.tags.map((tag) => (
+        { isTypeFood && recipe.tags !== null && recipe.tags.map((tag) => (
           <p key={ tag } data-testid={ `${index}-${tag}-horizontal-tag` }>{tag}</p>)) }
       </div>
     </div>
