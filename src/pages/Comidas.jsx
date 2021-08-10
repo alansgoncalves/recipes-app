@@ -1,13 +1,11 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
-import Context from '../context/Context';
 
 function Foods() {
   const [data, setData] = useState([]);
   const [categories, setCategories] = useState([]);
-  const { food, setFood } = useContext(Context);
   const [toggle, setToggle] = useState('');
 
   async function fetchFoods() {
@@ -18,7 +16,9 @@ function Foods() {
   }
 
   useEffect(() => {
-    fetchFoods();
+    if (data.length === 0) {
+      fetchFoods();
+    }
   }, []);
 
   async function categoriesFood() {
