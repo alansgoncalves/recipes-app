@@ -21,7 +21,7 @@ export default function Drinks() {
   }
 
   useEffect(() => {
-    if (data.length === 0) {
+    if (drink.length === 0) {
       fetchDrinks();
     }
   }, []);

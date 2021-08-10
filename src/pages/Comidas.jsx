@@ -20,7 +20,7 @@ function Foods() {
   }
 
   useEffect(() => {
-    if (data.length === 0) {
+    if (food.length === 0) {
       fetchFoods();
     }
   }, []);
