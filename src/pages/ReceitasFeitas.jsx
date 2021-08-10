@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import Header from '../components/Header';
-import Footer from '../components/Footer';
 import DoneRecipeCard from '../components/DoneRecipeCard';
 
 export default function ReceitasFeitas() {
@@ -30,7 +29,6 @@ export default function ReceitasFeitas() {
   return (
     <div>
       <Header title="Receitas Favoritas" />
-      <Footer />
       <button
         type="button"
         data-testid="filter-by-all-btn"
@@ -52,7 +50,7 @@ export default function ReceitasFeitas() {
       >
         Drink
       </button>
-      { doneRecipes.length > 0 && doneRecipes.map((recipe, index) => (
+      { doneRecipes && doneRecipes.length > 0 && doneRecipes.map((recipe, index) => (
         <DoneRecipeCard
           key={ index }
           index={ index }
