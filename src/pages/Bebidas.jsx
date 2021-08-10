@@ -62,7 +62,7 @@ export default function Drinks() {
 
   return (
     <main>
-      <Header />
+      <Header title="Bebidas" />
       <CategoryBtn />
       <Footer />
       {/* {categories.length === 0 ? <p>Loading</p>

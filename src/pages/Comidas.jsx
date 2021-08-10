@@ -62,7 +62,7 @@ function Foods() {
 
   return (
     <div className="comidas">
-      <Header />
+      <Header title="Comidas" />
       <CategoryBtn />
       <Footer />
       <div>

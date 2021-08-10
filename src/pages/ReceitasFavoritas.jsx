@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Header from '../components/Header';
+import HeaderWithoutSearch from '../components/HeaderWithoutSearch';
 import FavRecipeCard from '../components/FavRecipeCard';
 
 export default function ReceitasFavoritas() {
@@ -35,7 +35,7 @@ export default function ReceitasFavoritas() {
 
   return (
     <div className="favorite-recipes">
-      <Header title="Receitas Favoritas" />
+      <HeaderWithoutSearch title="Receitas Favoritas" />
       <button
         type="button"
         data-testid="filter-by-all-btn"
