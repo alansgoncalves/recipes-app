@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useHistory } from 'react-router';
 import Footer from '../components/Footer';
-import Header from '../components/Header';
 import Context from '../context/Context';
 import HeaderWithoutSearch from '../components/HeaderWithoutSearch';
 
@@ -32,8 +31,8 @@ export default function ExplorarIngredientesComidas() {
   }, []);
 
   return (
-    <div>
-      <Header title="Explorar Ingredientes" />
+    <>
+      <HeaderWithoutSearch title="Explorar Ingredientes" />
       <div>
         {ingredientMealList.length > 0 && ingredientMealList
           .map(({ strIngredient }, index) => (
@@ -60,10 +59,8 @@ export default function ExplorarIngredientesComidas() {
               </div>
             )
           ))}
-        <HeaderWithoutSearch title="Explorar Ingredientes" />
-        <Footer />
       </div>
       <Footer />
-    </div>
+    </>
   );
 }

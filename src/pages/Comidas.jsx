@@ -95,15 +95,15 @@ function Foods() {
         ))}
       {data.length === 0 ? <p>Loading</p>
         : data.meals.slice(0, maxArrayFoods).map((foods, index) => (
-          <Link to={ `/comidas/${food.idMeal}` } key={ index }>
+          <Link to={ `/comidas/${foods.idMeal}` } key={ index }>
             <div data-testid={ `${index}-recipe-card` }>
               <img
-                src={ food.strMealThumb }
+                src={ foods.strMealThumb }
                 alt="comida_principal"
                 data-testid={ `${index}-card-img` }
                 width="100px"
               />
-              <p data-testid={ `${index}-card-name` }>{food.strMeal}</p>
+              <p data-testid={ `${index}-card-name` }>{foods.strMeal}</p>
             </div>
           </Link>
         ))}

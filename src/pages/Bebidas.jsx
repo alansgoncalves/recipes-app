@@ -96,15 +96,15 @@ export default function Drinks() {
         ))}
       {data.length === 0 ? <p>Loading</p>
         : data.drinks.slice(0, maxArrayDrinks).map((drinks, index) => (
-          <Link to={ `/bebidas/${drink.idDrink}` } key={ index }>
+          <Link to={ `/bebidas/${drinks.idDrink}` } key={ index }>
             <div data-testid={ `${index}-recipe-card` }>
               <img
-                src={ drink.strDrinkThumb }
+                src={ drinks.strDrinkThumb }
                 alt="comida_principal"
                 data-testid={ `${index}-card-img` }
                 width="100px"
               />
-              <p data-testid={ `${index}-card-name` }>{drink.strDrink}</p>
+              <p data-testid={ `${index}-card-name` }>{drinks.strDrink}</p>
             </div>
           </Link>
         ))}
