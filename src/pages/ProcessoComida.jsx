@@ -120,19 +120,6 @@ export default function ProcessoComida(props) {
         ? <UnfavoriteBtn deleteFavorite={ deleteFavorite } />
         : <FavoriteBtn saveFavorite={ saveFavorite } />}
       <p data-testid="recipe-category">{foodDetails.strCategory}</p>
-      {/* <h3>Ingredients</h3>
-      <label htmlFor="checkbox">
-        { ingredients.length > 0 && ingredients.map((ing, index) => (
-          index < eigth && (
-            <div key={ index } data-testid={ `${index}-ingredient-step` }>
-              <input
-                type="checkbox"
-                onChange={ finishRecipe }
-              />
-              <span>{ `${ing[1]} - ${measures[index][1]}` }</span>
-            </div>
-          ))) }
-      </label> */}
       <Ingredients
         ingredients={ ingredients }
         finishRecipe={ finishRecipe }
