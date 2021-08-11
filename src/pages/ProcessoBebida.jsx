@@ -8,7 +8,7 @@ import FavoriteBtn from '../components/FavoriteBtn';
 import UnfavoriteBtn from '../components/UnfavoriteBtn';
 import '../styles/Global.css';
 import ShareBtn from '../components/ShareBtn';
-import Ingredients from '../components/Ingredients';
+import IngredientsDrinks from '../components/IngredientsDrinks';
 
 export default function ProcessoBebida(props) {
   const [drinkDetails, setDrinkDetails] = useState([]);
@@ -110,8 +110,6 @@ export default function ProcessoBebida(props) {
     return <Loading />;
   }
 
-  const three = 3;
-
   return (
     <div>
       <h1>Detalhes da Bebida</h1>
@@ -122,10 +120,11 @@ export default function ProcessoBebida(props) {
         ? <UnfavoriteBtn deleteFavorite={ deleteFavorite } />
         : <FavoriteBtn saveFavorite={ saveFavorite } />}
       <p data-testid="recipe-category">{drinkDetails.strAlcoholic}</p>
-      <Ingredients
+      <IngredientsDrinks
         ingredients={ ingredients }
         finishRecipe={ finishRecipe }
         measures={ measures }
+        id={ id }
       />
       <p data-testid="instructions">{drinkDetails.strInstructions}</p>
       <Link to="/receitas-feitas">

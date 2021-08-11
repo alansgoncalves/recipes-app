@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 export default function Ingredients(props) {
-  const { ingredients, finishRecipe, measures, id, food } = props;
-  const [numberOfIngredients, setNumberOfIngredients] = useState(0);
+  const { ingredients, finishRecipe, measures, id } = props;
 
   function verifyInProgress() {
     let progress = {
@@ -13,33 +12,20 @@ export default function Ingredients(props) {
     if (localStorage.getItem('inProgressRecipes')) {
       progress = JSON.parse(localStorage.getItem('inProgressRecipes'));
     }
-    let ingredientsArr = [];
-    if (food) {
-      ingredientsArr = progress.meals[id];
-    } else {
-      ingredientsArr = progress.cocktails[id];
-    }
+    let ingredientsArr = progress.cocktails[id];
     if (!ingredientsArr) {
       ingredientsArr = [];
     }
     const inputArr = Array.from(document.getElementsByTagName('input'));
-    console.log(inputArr);
     inputArr.forEach((input) => {
       if (ingredientsArr.includes(input.name)) {
-        console.log(input.name);
         input.checked = true;
       }
     });
   }
+  const three = 3;
 
   useEffect(() => {
-    const eigth = 8;
-    const three = 3;
-    if (food) {
-      setNumberOfIngredients(eigth);
-    } else {
-      setNumberOfIngredients(three);
-    }
     verifyInProgress();
   }, []);
 
@@ -58,11 +44,7 @@ export default function Ingredients(props) {
         checkedIngredients.push(input.name);
       }
     });
-    if (!food) {
-      progress.cocktails[id] = checkedIngredients;
-    } else {
-      progress.meals[id] = checkedIngredients;
-    }
+    progress.cocktails[id] = checkedIngredients;
     localStorage.setItem('inProgressRecipes', JSON.stringify(progress));
   }
 
@@ -82,7 +64,7 @@ export default function Ingredients(props) {
     <div>
       <h3>Ingredients</h3>
       { ingredients.length > 0 && ingredients.map((ing, index) => (
-        index < numberOfIngredients && (
+        index < three && (
           <div key={ index } data-testid={ `${index}-ingredient-step` }>
             <input
               type="checkbox"

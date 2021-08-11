@@ -8,7 +8,7 @@ import ShareBtn from '../components/ShareBtn';
 import FavoriteBtn from '../components/FavoriteBtn';
 import UnfavoriteBtn from '../components/UnfavoriteBtn';
 import '../styles/Global.css';
-import Ingredients from '../components/Ingredients';
+import IngredientsFood from '../components/IngredientsFood';
 
 export default function ProcessoComida(props) {
   const [foodDetails, setFoodDetails] = useState([]);
@@ -120,10 +120,11 @@ export default function ProcessoComida(props) {
         ? <UnfavoriteBtn deleteFavorite={ deleteFavorite } />
         : <FavoriteBtn saveFavorite={ saveFavorite } />}
       <p data-testid="recipe-category">{foodDetails.strCategory}</p>
-      <Ingredients
+      <IngredientsFood
         ingredients={ ingredients }
         finishRecipe={ finishRecipe }
         measures={ measures }
+        id={ id }
       />
       <p data-testid="instructions">{foodDetails.strInstructions}</p>
       <Link to="/receitas-feitas">

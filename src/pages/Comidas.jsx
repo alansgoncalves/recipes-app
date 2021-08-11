@@ -6,11 +6,8 @@ import Header from '../components/Header';
 import CategoryBtn from '../components/CategoryBtn';
 
 function Foods() {
-  // const [data, setData] = useState([]);
-  const magicNumber = 12;
   const { food, setFood } = useContext(Context);
-  // const [categories, setCategories] = useState([]);
-  // const [toggle, setToggle] = useState('');
+  const magicNumber = 12;
 
   async function fetchFoods() {
     const endpoint = 'https://www.themealdb.com/api/json/v1/1/search.php?s=';
@@ -22,43 +19,6 @@ function Foods() {
   useEffect(() => {
     fetchFoods();
   }, []);
-
-  // async function categoriesFood() {
-  //   const endpoint = 'https://www.themealdb.com/api/json/v1/1/list.php?c=list';
-  //   const response = await fetch(endpoint);
-  //   const json = await response.json();
-  //   setCategories(json);
-  // }
-
-  // useEffect(() => {
-  //   categoriesFood();
-  // }, []);
-
-  // function searchByCategory({ target }) {
-  //   if (toggle === target.name) {
-  //     setToggle('');
-  //   } else if (toggle === '') {
-  //     setToggle(target.name);
-  //   } else {
-  //     setToggle(target.name);
-  //   }
-  // }
-
-  // useEffect(() => {
-  //   if (toggle) {
-  //     const changeCategorieFood = async () => {
-  //       const endpoint = `https://www.themealdb.com/api/json/v1/1/filter.php?c=${toggle}`;
-  //       const response = await fetch(endpoint);
-  //       const json = await response.json();
-  //       setFood(json);
-  //     };
-  //     changeCategorieFood();
-  //   } else {
-  //     fetchFoods();
-  //   }
-  // }, [toggle]);
-
-  // const maxArrayCategories = 5;
 
   return (
     <div className="comidas">
