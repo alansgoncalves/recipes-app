@@ -14,6 +14,7 @@ export default function DetalhesBebidas(props) {
   const { loading, setLoading } = useContext(Context);
   const [recommendations, setRecommendations] = useState([]);
   const [favorite, setFavorite] = useState(false);
+  const [inProgress, setInProgress] = useState(false);
   const [ingredients, setIngredients] = useState([]);
   const [measures, setMeasures] = useState([]);
   const { match: { params: { id } } } = props;
@@ -23,6 +24,16 @@ export default function DetalhesBebidas(props) {
     if (favoriteRecipes.length > 0) {
       const favRecipe = favoriteRecipes.some((el) => el.id === id);
       setFavorite(favRecipe);
+    }
+  }
+
+  function verifyInProgress() {
+    if (localStorage.getItem('inProgressRecipes')) {
+      const inProgressRecipes = JSON.parse(localStorage.getItem('inProgressRecipes'));
+      const idDrinks = Object.keys(inProgressRecipes.cocktails);
+      const isInProgress = idDrinks.some((el) => el === id);
+      console.log(isInProgress);
+      setInProgress(isInProgress);
     }
   }
 
@@ -54,6 +65,7 @@ export default function DetalhesBebidas(props) {
     getDrinkDetails();
     verifyFavorites();
     getRecommended();
+    verifyInProgress();
   }, []);
 
   function deleteFavorite() {
@@ -108,13 +120,23 @@ export default function DetalhesBebidas(props) {
       <p data-testid="instructions">{drinkDetails.strInstructions}</p>
       <RecCarousel recommendations={ recommendations } />
       <Link to={ `/bebidas/${id}/in-progress` }>
-        <button
-          type="button"
-          data-testid="start-recipe-btn"
-          className="start-recipe-btn"
-        >
-          Iniciar receita
-        </button>
+        { inProgress ? (
+          <button
+            type="button"
+            data-testid="start-recipe-btn"
+            className="start-recipe-btn"
+          >
+            Continuar Receita
+          </button>
+        ) : (
+          <button
+            type="button"
+            data-testid="start-recipe-btn"
+            className="start-recipe-btn"
+          >
+            Iniciar Receita
+          </button>
+        ) }
       </Link>
     </div>
   );
