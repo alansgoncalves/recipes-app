@@ -16,7 +16,7 @@ export default function Header() {
   };
 
   return (
-    <header className="container">
+    <header>
       <div className="row align-items-center" style={ { height: '80px' } }>
         <div className="col-2">
           <Link to="/perfil">
@@ -28,7 +28,12 @@ export default function Header() {
           </Link>
         </div>
         <div className="col-2">
-          <button type="button" onClick={ displaySearchBar }>
+          <button
+            className="btn-search"
+            type="button"
+            onClick={ displaySearchBar }
+            style={ { border: 'none', borderRadius: '5px' } }
+          >
             <img data-testid="search-top-btn" src={ SearchIcon } alt="buscar receita" />
           </button>
         </div>

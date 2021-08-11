@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
+import '../styles/Comidas.css';
+import Logo2 from '../images/logo2.png';
 
 function Foods() {
   const [data, setData] = useState([]);
@@ -59,42 +61,61 @@ function Foods() {
 
   return (
     <main>
-      <h1 data-testid="page-title">Comidas</h1>
+      <div className="header">
+        <img className="logo2" src={ Logo2 } alt="" width="130px" />
+        <h1 data-testid="page-title">Comidas</h1>
+      </div>
       <Header title="Comidas" />
-      <button
-        type="button"
-        onClick={ () => fetchFoods() }
-        data-testid="All-category-filter"
-      >
-        All
-      </button>
-      {categories.length === 0 ? <p>Loading</p>
-        : categories.meals.slice(0, maxArrayCategories).map((categorie, index) => (
-          <div key={ index }>
-            <button
-              type="button"
-              data-testid={ `${categorie.strCategory}-category-filter` }
-              onClick={ (e) => searchByCategory(e) }
-              name={ categorie.strCategory }
-            >
-              {categorie.strCategory}
-            </button>
-          </div>
-        ))}
-      {data.length === 0 ? <p>Loading</p>
-        : data.meals.slice(0, maxArrayFoods).map((food, index) => (
-          <Link to={ `/comidas/${food.idMeal}` } key={ index }>
-            <div data-testid={ `${index}-recipe-card` }>
-              <img
-                src={ food.strMealThumb }
-                alt="comida_principal"
-                data-testid={ `${index}-card-img` }
-                width="100px"
-              />
-              <p data-testid={ `${index}-card-name` }>{food.strMeal}</p>
+      <div className="comidas-categories">
+        <button
+          className="btn-comidas"
+          type="button"
+          onClick={ () => fetchFoods() }
+          data-testid="All-category-filter"
+        >
+          All
+        </button>
+        {categories.length === 0 ? <p>Loading</p>
+          : categories.meals.slice(0, maxArrayCategories).map((categorie, index) => (
+            <div className="btn-categories" key={ index }>
+              <button
+                className="btn-comidas"
+                type="button"
+                data-testid={ `${categorie.strCategory}-category-filter` }
+                onClick={ (e) => searchByCategory(e) }
+                name={ categorie.strCategory }
+              >
+                {categorie.strCategory}
+              </button>
             </div>
-          </Link>
-        ))}
+          ))}
+      </div>
+      <div className="food-list">
+        {data.length === 0 ? <p>Loading</p>
+          : data.meals.slice(0, maxArrayFoods).map((food, index) => (
+            <Link to={ `/comidas/${food.idMeal}` } key={ index }>
+              <div
+                className="container-food"
+                data-testid={ `${index}-recipe-card` }
+              >
+                <img
+                  className="img-foods"
+                  src={ food.strMealThumb }
+                  alt="comida_principal"
+                  data-testid={ `${index}-card-img` }
+                />
+                <p
+                  className="name-food"
+                  data-testid={ `${index}-card-name` }
+                >
+                  {
+                    food.strMeal
+                  }
+                </p>
+              </div>
+            </Link>
+          ))}
+      </div>
       <Footer />
     </main>
   );
