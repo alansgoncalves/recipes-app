@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import Context from '../context/Context';
 
 export default function CategoryBtn() {
-  const { setFood, setDrink } = useContext(Context);
+  const { setFood, setDrink, explore, setExplore } = useContext(Context);
   const [category, setCategory] = useState([]);
   const history = useHistory();
   const { location: { pathname } } = history;
@@ -64,8 +64,10 @@ export default function CategoryBtn() {
   function toggleCategory({ target }) {
     if (toggle === target.name) {
       setToggle('');
+      setExplore(false);
     } else {
       setToggle(target.name);
+      setExplore(false);
     }
   }
 
@@ -76,10 +78,12 @@ export default function CategoryBtn() {
   }, []);
 
   useEffect(() => {
-    if (toggle !== '') {
-      categoryFilterered(toggle);
-    } else {
-      categoryAll();
+    if (!explore) {
+      if (toggle !== '') {
+        categoryFilterered(toggle);
+      } else {
+        categoryAll();
+      }
     }
   }, [toggle]);
 
