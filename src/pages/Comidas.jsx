@@ -13,12 +13,10 @@ function Foods() {
     const endpoint = 'https://www.themealdb.com/api/json/v1/1/search.php?s=';
     const response = await fetch(endpoint);
     const json = await response.json();
-    console.log('ola');
     setFood(json.meals);
   }
 
   useEffect(() => {
-    console.log(food.length);
     if (food.length === 0) {
       fetchFoods();
     }

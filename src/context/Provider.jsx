@@ -6,8 +6,8 @@ export default function Provider({ children }) {
   const [food, setFood] = useState([]);
   const [drink, setDrink] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [explore, setExplore] = useState(false);
   const [showSearchBar, setShowSearchBar] = useState(false);
-  const [toggleOn, setToggleOn] = useState(false);
 
   return (
     <Context.Provider
@@ -18,10 +18,11 @@ export default function Provider({ children }) {
         setDrink,
         showSearchBar,
         loading,
+        explore,
+        setExplore,
         setLoading,
         setShowSearchBar,
-        toggleOn,
-        setToggleOn } }
+      } }
     >
       { children }
     </Context.Provider>
