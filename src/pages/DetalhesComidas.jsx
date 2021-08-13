@@ -7,7 +7,7 @@ import FavoriteBtn from '../components/FavoriteBtn';
 import UnfavoriteBtn from '../components/UnfavoriteBtn';
 import ShareBtn from '../components/ShareBtn';
 import RecCarousel from '../components/RecCarousel';
-import '../styles/Global.css';
+import '../styles/Comidas.css';
 
 export default function DetalhesComidas(props) {
   const [foodDetails, setFoodDetails] = useState([]);
@@ -87,37 +87,52 @@ export default function DetalhesComidas(props) {
 
   return (
     <div>
-      <h1>Detalhes de Comida</h1>
-      <h2 data-testid="recipe-title">{foodDetails.strMeal}</h2>
-      <img src={ foodDetails.strMealThumb } data-testid="recipe-photo" alt="meal" />
-      <ShareBtn />
-      { favorite
-        ? <UnfavoriteBtn deleteFavorite={ deleteFavorite } />
-        : <FavoriteBtn saveFavorite={ saveFavorite } />}
-      <p data-testid="recipe-category">{foodDetails.strCategory}</p>
-      <h3>Ingredients</h3>
-      <ul>
-        { ingredients.length > 0 && ingredients.map((ing, index) => (
-          <li
-            data-testid={ `${index}-ingredient-name-and-measure` }
-            key={ index }
+      <h2 className="food-ingredients">Detalhes de Comida</h2>
+      <div className="food-meals-details">
+        <h4 data-testid="recipe-title">{foodDetails.strMeal}</h4>
+        <img
+          src={ foodDetails.strMealThumb }
+          className="card-img-meals"
+          data-testid="recipe-photo"
+          alt="meal"
+          // style={ { width: '200%' } }
+        />
+        <p data-testid="recipe-category">{foodDetails.strCategory}</p>
+      </div>
+      <div className="details-btn">
+        <ShareBtn />
+        { favorite
+          ? <UnfavoriteBtn deleteFavorite={ deleteFavorite } />
+          : <FavoriteBtn saveFavorite={ saveFavorite } />}
+      </div>
+      <div className="ingredients-details">
+        <h3>Ingredients</h3>
+        <ul>
+          { ingredients.length > 0 && ingredients.map((ing, index) => (
+            <li
+              data-testid={ `${index}-ingredient-name-and-measure` }
+              key={ index }
+            >
+              {`${ing[1]} - ${measures[index][1]}`}
+            </li>
+          )) }
+        </ul>
+        <h4>Steps:</h4>
+        <p data-testid="instructions">{foodDetails.strInstructions}</p>
+      </div>
+      <div className="recipe-btn">
+        <Link to={ `/comidas/${id}/in-progress` }>
+          <button
+            type="button"
+            data-testid="start-recipe-btn"
+            className="start-recipe-btn"
           >
-            {`${ing[1]} - ${measures[index][1]}`}
-          </li>
-        )) }
-      </ul>
-      <p data-testid="instructions">{foodDetails.strInstructions}</p>
-      <a data-testid="video" href={ foodDetails.strYoutube }>Video</a>
+            Iniciar receita
+          </button>
+        </Link>
+        <a data-testid="video" href={ foodDetails.strYoutube }>Video</a>
+      </div>
       <RecCarousel recommendations={ recommendations } />
-      <Link to={ `/comidas/${id}/in-progress` }>
-        <button
-          type="button"
-          data-testid="start-recipe-btn"
-          className="start-recipe-btn"
-        >
-          Iniciar receita
-        </button>
-      </Link>
     </div>
   );
 }

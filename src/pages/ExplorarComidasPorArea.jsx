@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
+import '../styles/Comidas.css';
 
 function ExplorarComidasPorArea() {
   const [isLoading, setIsLoading] = useState(true);
@@ -31,25 +32,33 @@ function ExplorarComidasPorArea() {
 
     const maxLength = 12;
 
-    const recipes = recipesCountryArea.map((recipe, index) => {
-      if (index < maxLength) {
-        return (
-          <Link to={ `/comidas/${recipe.idMeal}` } key={ recipe.strMealThumb }>
-            <div className="card-ingredients" data-testid={ `${index}-recipe-card` }>
-              <img
-                width="200"
-                alt="recipe"
-                src={ recipe.strMealThumb }
-                data-testid={ `${index}-card-img` }
-              />
-              <p data-testid={ `${index}-card-name` }>{ recipe.strMeal }</p>
-            </div>
-          </Link>
-        );
-      } return null;
-    });
-
-    return recipes;
+    return (
+      <div className="food-list-explore">
+        {recipesCountryArea.length > 0 && recipesCountryArea.map((item, index) => (
+          index < maxLength && (
+            <Link to={ `/comidas/${item.idMeal}` } key={ item.idMeal }>
+              <div
+                className="card-meals-explore"
+                data-testid={ `${index}-recipe-card` }
+              >
+                <img
+                  data-testid={ `${index}-card-img` }
+                  className="card-explore-img"
+                  src={ item.strMealThumb }
+                  alt={ item.strMeal }
+                  style={ { width: '60%' } }
+                />
+                <h1
+                  data-testid={ `${index}-card-name` }
+                  className="card-title-meals"
+                >
+                  { item.strMeal }
+                </h1>
+              </div>
+            </Link>
+          )))}
+      </div>
+    );
   }
 
   function renderDropDownAreas() {
@@ -73,6 +82,7 @@ function ExplorarComidasPorArea() {
       <select
         onChange={ (event) => setChosenArea(event.target.value) }
         data-testid="explore-by-area-dropdown"
+        className="select-country"
       >
         { options }
         { allOptions }
@@ -82,8 +92,8 @@ function ExplorarComidasPorArea() {
   const showSearchButton = true;
   return (
     <div>
-      <h1 data-testid="page-title">Explorar Origem</h1>
-      <Header title="Explorar Origem" showSearchButton={ showSearchButton } />
+      <Header title="" showSearchButton={ showSearchButton } />
+      <h2 className="title-h2" data-testid="page-title">Explorar Origem</h2>
 
       <span>{ isLoading ? <div /> : renderDropDownAreas() }</span>
 

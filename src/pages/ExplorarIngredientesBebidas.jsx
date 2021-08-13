@@ -3,6 +3,7 @@ import { useHistory } from 'react-router';
 import Footer from '../components/Footer';
 import Context from '../context/Context';
 import HeaderWithoutSearch from '../components/HeaderWithoutSearch';
+import '../styles/Bebidas.css';
 
 export default function ExplorarIngredientesBebidas() {
   const [ingredientDrinkList, setIngredientDrinkList] = useState([]);
@@ -32,13 +33,15 @@ export default function ExplorarIngredientesBebidas() {
 
   return (
     <div>
-      <HeaderWithoutSearch title="Explorar Ingredientes" />
-      <div>
+      <HeaderWithoutSearch title="" />
+      <h2 className="food-ingredients">Explorar Ingredientes</h2>
+      <div className="drink-list-ingredients">
         {ingredientDrinkList.length > 0 && ingredientDrinkList
           .map(({ strIngredient1 }, index) => (
             index < magicNumber
             && (
               <div
+                className="card-drink-ingredients"
                 key={ index }
                 data-testid={ `${index}-ingredient-card` }
                 onClick={ () => getStrIngredients(strIngredient1) }
@@ -47,14 +50,16 @@ export default function ExplorarIngredientesBebidas() {
               >
                 <img
                   data-testid={ `${index}-card-img` }
+                  className="card-ingredients-img"
                   src={ `https://www.thecocktaildb.com/images/ingredients/${strIngredient1}-Small.png` }
                   alt={ strIngredient1 }
                 />
-                <p
+                <h1
                   data-testid={ `${index}-card-name` }
+                  className="card-title-ingredients"
                 >
                   {strIngredient1}
-                </p>
+                </h1>
               </div>
             )
           ))}

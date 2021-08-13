@@ -3,6 +3,7 @@ import { useHistory } from 'react-router';
 import Footer from '../components/Footer';
 import Context from '../context/Context';
 import HeaderWithoutSearch from '../components/HeaderWithoutSearch';
+import '../styles/Comidas.css';
 
 export default function ExplorarIngredientesComidas() {
   const [ingredientMealList, setIngredientMealList] = useState([]);
@@ -32,13 +33,15 @@ export default function ExplorarIngredientesComidas() {
 
   return (
     <div>
-      <HeaderWithoutSearch title="Explorar Ingredientes" />
-      <div>
+      <HeaderWithoutSearch title="" />
+      <h2 className="food-ingredients">Explorar Ingredientes</h2>
+      <div className="food-list">
         {ingredientMealList.length > 0 && ingredientMealList
           .map(({ strIngredient }, index) => (
             index < magicNumber
             && (
               <div
+                className="card-meals"
                 key={ index }
                 data-testid={ `${index}-ingredient-card` }
                 onClick={ () => getStrIngredients(strIngredient) }
@@ -48,14 +51,16 @@ export default function ExplorarIngredientesComidas() {
 
                 <img
                   data-testid={ `${index}-card-img` }
+                  className="card-img-meals"
                   src={ `https://www.themealdb.com/images/ingredients/${strIngredient}-Small.png` }
                   alt={ strIngredient }
                 />
-                <p
+                <h1
                   data-testid={ `${index}-card-name` }
+                  className="card-title-meals"
                 >
                   {strIngredient}
-                </p>
+                </h1>
               </div>
             )
           ))}

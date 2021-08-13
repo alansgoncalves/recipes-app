@@ -9,8 +9,14 @@ export default function UnfavoriteBtn(props) {
     <button
       type="button"
       onClick={ deleteFavorite }
+      style={ { border: 'none', background: 'white' } }
     >
-      <img src={ blackHeartIcon } data-testid="favorite-btn" alt="favorite icon" />
+      <img
+        src={ blackHeartIcon }
+        data-testid="favorite-btn"
+        alt="favorite icon"
+        style={ { background: 'none', color: 'none' } }
+      />
     </button>
   );
 }

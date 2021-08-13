@@ -19,15 +19,20 @@ export default function ShareBtn() {
   }
 
   return (
-    <div>
+    <div className="share-btn">
       <button
         data-testid="share-btn"
         type="button"
         onClick={ copyToClipboard }
+        style={ { border: 'none', background: 'white' } }
       >
-        <img src={ shareIcon } alt="share icon" />
+        <img
+          src={ shareIcon }
+          alt="share icon"
+          style={ { color: 'red', border: 'none' } }
+        />
       </button>
-      { clipboard && <p>Link copiado!</p> }
+      { clipboard && <p style={ { color: 'red' } }>Link copiado!</p> }
     </div>
   );
 }

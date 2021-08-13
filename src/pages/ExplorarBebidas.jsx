@@ -19,22 +19,27 @@ export default function ExplorarBebidas() {
 
   return (
     <div>
-      <HeaderWithoutSearch title="Explorar Bebidas" />
-      <Link to="/explorar/bebidas/ingredientes">
+      <HeaderWithoutSearch title="" />
+      <h2 className="header-explorer-drink">Explorar Bebidas</h2>
+      <div className="explorer-buttons">
+        <Link to="/explorar/bebidas/ingredientes">
+          <button
+            className="btns-explorer-drink"
+            type="button"
+            data-testid="explore-by-ingredient"
+          >
+            Por Ingredientes
+          </button>
+        </Link>
         <button
+          className="btns-explorer-drink"
           type="button"
-          data-testid="explore-by-ingredient"
+          data-testid="explore-surprise"
+          onClick={ getExploreCocktails }
         >
-          Por Ingredientes
+          Me Surpreenda!
         </button>
-      </Link>
-      <button
-        type="button"
-        data-testid="explore-surprise"
-        onClick={ getExploreCocktails }
-      >
-        Me Surpreenda!
-      </button>
+      </div>
       <Footer />
     </div>
   );

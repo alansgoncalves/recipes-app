@@ -4,6 +4,7 @@ import Context from '../context/Context';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import CategoryBtn from '../components/CategoryBtn';
+import '../styles/Comidas.css';
 
 function Foods() {
   // const [data, setData] = useState([]);
@@ -65,9 +66,9 @@ function Foods() {
   return (
     <div className="comidas">
       <Header />
+      <h2>Comidas</h2>
       <CategoryBtn />
-      <Footer />
-      <div>
+      <div className="food-list">
         {food.length > 0 && food.map((item, index) => (
           index < magicNumber
             && (
@@ -76,18 +77,18 @@ function Foods() {
                   className="card-meals"
                   data-testid={ `${index}-recipe-card` }
                 >
-                  <h1
-                    data-testid={ `${index}-card-name` }
-                    className="card-title-meals"
-                  >
-                    { item.strMeal }
-                  </h1>
                   <img
                     data-testid={ `${index}-card-img` }
                     className="card-img-meals"
                     src={ item.strMealThumb }
                     alt={ item.strMeal }
                   />
+                  <h1
+                    data-testid={ `${index}-card-name` }
+                    className="card-title-meals"
+                  >
+                    { item.strMeal }
+                  </h1>
                 </div>
               </Link>
             )))}

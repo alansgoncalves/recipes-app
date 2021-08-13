@@ -39,8 +39,16 @@ export default function RecCarousel(props) {
               className="recomendation-card"
             >
               <Link to={ `/comidas/${rec.idMeal}` }>
-                <h4 data-testid={ `${index}-recomendation-title` }>{rec.strMeal}</h4>
-                <img src={ rec.strMealThumb } alt="meal" />
+                <div className="txt-carousel">
+                  <h4 data-testid={ `${index}-recomendation-title` }>{rec.strMeal}</h4>
+                </div>
+                <div className="carousel-img">
+                  <img
+                    className="img-fluid"
+                    src={ rec.strMealThumb }
+                    alt="meal"
+                  />
+                </div>
               </Link>
             </div>
           ))) }
@@ -48,6 +56,7 @@ export default function RecCarousel(props) {
           type="button"
           className="prev"
           onClick={ () => slide(2) }
+          style={ { border: 'none' } }
         >
           &#10094;
         </button>
@@ -55,6 +64,7 @@ export default function RecCarousel(props) {
           type="button"
           className="next"
           onClick={ () => slide(prevSlide) }
+          style={ { border: 'none' } }
         >
           &#10095;
         </button>
@@ -73,8 +83,16 @@ export default function RecCarousel(props) {
             className="recomendation-card"
           >
             <Link to={ `/bebidas/${rec.idDrink}` }>
-              <h4 data-testid={ `${index}-recomendation-title` }>{rec.strDrink}</h4>
-              <img src={ rec.strDrinkThumb } alt="drink" />
+              <div className="txt-carousel">
+                <h4 data-testid={ `${index}-recomendation-title` }>{rec.strDrink}</h4>
+              </div>
+              <div className="carousel-img">
+                <img
+                  className="img-fluid"
+                  src={ rec.strDrinkThumb }
+                  alt="drink"
+                />
+              </div>
             </Link>
           </div>
         ))) }
@@ -82,6 +100,7 @@ export default function RecCarousel(props) {
         type="button"
         className="prev"
         onClick={ () => slide(2) }
+        style={ { border: 'none' } }
       >
         &#10094;
       </button>
@@ -89,6 +108,7 @@ export default function RecCarousel(props) {
         type="button"
         className="next"
         onClick={ () => slide(prevSlide) }
+        style={ { border: 'none' } }
       >
         &#10095;
       </button>

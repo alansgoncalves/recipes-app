@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import Context from '../context/Context';
+import '../styles/Comidas.css';
 
 export default function CategoryBtn() {
   const { setFood, setDrink } = useContext(Context);
@@ -69,8 +70,9 @@ export default function CategoryBtn() {
 
   const magicNumber = 5;
   return (
-    <div>
+    <div className="comidas-categories">
       <button
+        className="btn-comidas"
         id="btn-all"
         type="button"
         data-testid="All-category-filter"
@@ -81,13 +83,16 @@ export default function CategoryBtn() {
       {category.length > 0 && category.map(({ strCategory }, index) => (
         index < magicNumber && (
           <label htmlFor={ `${strCategory}${index}` } key={ index }>
-            <button
-              type="button"
-              data-testid={ `${strCategory}-category-filter` }
-              onClick={ () => categoryFilterered({ strCategory }) }
-            >
-              { strCategory }
-            </button>
+            <div className="btn-categories">
+              <button
+                className="btn-comidas"
+                type="button"
+                data-testid={ `${strCategory}-category-filter` }
+                onClick={ () => categoryFilterered({ strCategory }) }
+              >
+                { strCategory }
+              </button>
+            </div>
           </label>
         )))}
     </div>

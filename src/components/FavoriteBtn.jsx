@@ -9,8 +9,14 @@ export default function FavoriteBtn(props) {
     <button
       type="button"
       onClick={ saveFavorite }
+      style={ { border: 'none', background: 'white' } }
     >
-      <img src={ whiteHeartIcon } data-testid="favorite-btn" alt="favorite icon" />
+      <img
+        src={ whiteHeartIcon }
+        data-testid="favorite-btn"
+        alt="favorite icon"
+        style={ { color: 'red', border: 'none' } }
+      />
     </button>
   );
 }

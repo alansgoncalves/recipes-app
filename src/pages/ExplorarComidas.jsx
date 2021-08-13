@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import Footer from '../components/Footer';
 import HeaderWithoutSearch from '../components/HeaderWithoutSearch';
+import '../styles/Global.css';
 
 export default function ExplorarComidas() {
   const history = useHistory();
@@ -19,30 +20,36 @@ export default function ExplorarComidas() {
 
   return (
     <div>
-      <HeaderWithoutSearch title="Explorar Comidas" />
-      <Link to="/explorar/comidas/ingredientes">
+      <HeaderWithoutSearch title="" />
+      <h2 className="header-explorer-food">Explorar Comidas</h2>
+      <div className="explorer-buttons">
+        <Link to="/explorar/comidas/ingredientes">
+          <button
+            className="btns-explorer-food"
+            type="button"
+            data-testid="explore-by-ingredient"
+          >
+            Por Ingredientes
+          </button>
+        </Link>
+        <Link to="/explorar/comidas/area">
+          <button
+            className="btns-explorer-food"
+            type="button"
+            data-testid="explore-by-area"
+          >
+            Por Local de Origem
+          </button>
+        </Link>
         <button
+          className="btns-explorer-food"
           type="button"
-          data-testid="explore-by-ingredient"
+          data-testid="explore-surprise"
+          onClick={ getExploreMeal }
         >
-          Por Ingredientes
+          Me Surpreenda!
         </button>
-      </Link>
-      <Link to="/explorar/comidas/area">
-        <button
-          type="button"
-          data-testid="explore-by-area"
-        >
-          Por Local de Origem
-        </button>
-      </Link>
-      <button
-        type="button"
-        data-testid="explore-surprise"
-        onClick={ getExploreMeal }
-      >
-        Me Surpreenda!
-      </button>
+      </div>
       <Footer />
     </div>
   );

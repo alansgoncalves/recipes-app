@@ -2,9 +2,9 @@ import React, { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
-import '../styles/Comidas.css';
 import Context from '../context/Context';
 import CategoryBtn from '../components/CategoryBtn';
+import '../styles/Bebidas.css';
 
 export default function Drinks() {
   const { drink, setDrink } = useContext(Context);
@@ -63,24 +63,11 @@ export default function Drinks() {
   // const maxArrayCategories = 5;
 
   return (
-    <main>
+    <div className="bebidas">
       <Header />
+      <h2>Bebidas</h2>
       <CategoryBtn />
-      <Footer />
-      {/* {categories.length === 0 ? <p>Loading</p>
-        : categories.drinks.slice(0, maxArrayCategories).map((categorie, index) => (
-          <div key={ index }>
-            <button
-              type="button"
-              data-testid={ `${categorie.strCategory}-category-filter` }
-              onClick={ (e) => searchByCategory(e) }
-              name={ categorie.strCategory }
-            >
-              {categorie.strCategory}
-            </button>
-          </div>
-        ))} */}
-      <div>
+      <div className="drink-list">
         { drink.length > 0 && drink.map((item, index) => (
           index < magicNumber
           && (
@@ -89,23 +76,23 @@ export default function Drinks() {
                 className="card-drinks"
                 data-testid={ `${index}-recipe-card` }
               >
-                <h1
-                  className="card-title-drinks"
-                  data-testid={ `${index}-card-name` }
-                >
-                  { item.strDrink }
-                </h1>
                 <img
                   data-testid={ `${index}-card-img` }
                   className="card-img-drinks"
                   src={ item.strDrinkThumb }
                   alt={ item.strDrink }
                 />
+                <h1
+                  className="card-title-drinks"
+                  data-testid={ `${index}-card-name` }
+                >
+                  { item.strDrink }
+                </h1>
               </div>
             </Link>
           )))}
       </div>
       <Footer />
-    </main>
+    </div>
   );
 }
