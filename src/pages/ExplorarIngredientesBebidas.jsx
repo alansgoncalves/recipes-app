@@ -6,7 +6,7 @@ import HeaderWithoutSearch from '../components/HeaderWithoutSearch';
 
 export default function ExplorarIngredientesBebidas() {
   const [ingredientDrinkList, setIngredientDrinkList] = useState([]);
-  const { setDrink } = useContext(Context);
+  const { setDrink, setExplore } = useContext(Context);
   const magicNumber = 12;
   const history = useHistory();
   const { push } = history;
@@ -23,6 +23,7 @@ export default function ExplorarIngredientesBebidas() {
     const data = await fetch(endpoint);
     const { drinks } = await data.json();
     setDrink(drinks);
+    setExplore(true);
     push('/bebidas');
   };
 
