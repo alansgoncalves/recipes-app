@@ -86,36 +86,50 @@ export default function DetalhesBebidas(props) {
   }
   return (
     <div>
-      <h1>Detalhes da Bebida</h1>
-      <h2 data-testid="recipe-title">{drinkDetails.strDrink}</h2>
-      <img src={ drinkDetails.strDrinkThumb } data-testid="recipe-photo" alt="meal" />
-      <ShareBtn />
-      { favorite
-        ? <UnfavoriteBtn deleteFavorite={ deleteFavorite } />
-        : <FavoriteBtn saveFavorite={ saveFavorite } /> }
-      <p data-testid="recipe-category">{drinkDetails.strAlcoholic}</p>
-      <h3>Ingredients</h3>
-      <ul>
-        { ingredients.length > 0 && ingredients.map((ing, index) => (
-          <li
-            data-testid={ `${index}-ingredient-name-and-measure` }
-            key={ index }
+      <h2 className="food-ingredients">Detalhes da Bebida</h2>
+      <div className="food-meals-details">
+        <h4 data-testid="recipe-title">{drinkDetails.strDrink}</h4>
+        <img
+          src={ drinkDetails.strDrinkThumb }
+          className="card-img-meals"
+          data-testid="recipe-photo"
+          alt="meal"
+        />
+        <p data-testid="recipe-category">{drinkDetails.strAlcoholic}</p>
+      </div>
+      <div className="details-btn">
+        <ShareBtn />
+        { favorite
+          ? <UnfavoriteBtn deleteFavorite={ deleteFavorite } />
+          : <FavoriteBtn saveFavorite={ saveFavorite } /> }
+      </div>
+      <div className="ingredients-details">
+        <h3>Ingredients</h3>
+        <ul>
+          { ingredients.length > 0 && ingredients.map((ing, index) => (
+            <li
+              data-testid={ `${index}-ingredient-name-and-measure` }
+              key={ index }
+            >
+              {`${ing[1]} - ${measures[index][1]}`}
+            </li>
+          )) }
+        </ul>
+        <h4>Steps:</h4>
+        <p data-testid="instructions">{drinkDetails.strInstructions}</p>
+      </div>
+      <div className="recipe-btn">
+        <Link to={ `/bebidas/${id}/in-progress` }>
+          <button
+            type="button"
+            data-testid="start-recipe-btn"
+            className="start-recipe-btn"
           >
-            {`${ing[1]} - ${measures[index][1]}`}
-          </li>
-        )) }
-      </ul>
-      <p data-testid="instructions">{drinkDetails.strInstructions}</p>
+            Iniciar receita
+          </button>
+        </Link>
+      </div>
       <RecCarousel recommendations={ recommendations } />
-      <Link to={ `/bebidas/${id}/in-progress` }>
-        <button
-          type="button"
-          data-testid="start-recipe-btn"
-          className="start-recipe-btn"
-        >
-          Iniciar receita
-        </button>
-      </Link>
     </div>
   );
 }

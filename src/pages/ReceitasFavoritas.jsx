@@ -37,6 +37,7 @@ export default function ReceitasFavoritas() {
     <div className="favorite-recipes">
       <Header title="Receitas Favoritas" />
       <button
+        className="btn-comidas"
         type="button"
         data-testid="filter-by-all-btn"
         onClick={ getFavRecipes }
@@ -44,6 +45,7 @@ export default function ReceitasFavoritas() {
         All
       </button>
       <button
+        className="btn-comidas"
         type="button"
         data-testid="filter-by-food-btn"
         onClick={ filterByFood }
@@ -51,6 +53,7 @@ export default function ReceitasFavoritas() {
         Food
       </button>
       <button
+        className="btns-explorer-drink"
         type="button"
         data-testid="filter-by-drink-btn"
         onClick={ filterByDrink }

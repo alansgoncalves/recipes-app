@@ -8,6 +8,7 @@ import FavoriteBtn from '../components/FavoriteBtn';
 import UnfavoriteBtn from '../components/UnfavoriteBtn';
 import '../styles/Global.css';
 import ShareBtn from '../components/ShareBtn';
+import Ingredients from '../components/Ingredients';
 
 export default function ProcessoBebida(props) {
   const [drinkDetails, setDrinkDetails] = useState([]);
@@ -109,19 +110,28 @@ export default function ProcessoBebida(props) {
     return <Loading />;
   }
 
-  const three = 3;
+  // const three = 3;
 
   return (
     <div>
-      <h1>Detalhes da Bebida</h1>
-      <h2 data-testid="recipe-title">{drinkDetails.strDrink}</h2>
-      <img data-testid="recipe-photo" src={ drinkDetails.strDrinkThumb } alt="meal" />
-      <ShareBtn />
-      { favorite
-        ? <UnfavoriteBtn deleteFavorite={ deleteFavorite } />
-        : <FavoriteBtn saveFavorite={ saveFavorite } />}
-      <p data-testid="recipe-category">{drinkDetails.strAlcoholic}</p>
-      <h3>Ingredients</h3>
+      <h2 className="food-ingredients">Detalhes da Bebida </h2>
+      <div className="food-meals-details">
+        <h4 data-testid="recipe-title">{drinkDetails.strDrink}</h4>
+        <img
+          className="card-img-meals"
+          data-testid="recipe-photo"
+          src={ drinkDetails.strDrinkThumb }
+          alt="meal"
+        />
+        <p data-testid="recipe-category">{drinkDetails.strAlcoholic}</p>
+      </div>
+      <div className="details-btn">
+        <ShareBtn />
+        { favorite
+          ? <UnfavoriteBtn deleteFavorite={ deleteFavorite } />
+          : <FavoriteBtn saveFavorite={ saveFavorite } />}
+      </div>
+      {/* <h3>Ingredients</h3>
       <div>
         { ingredients.length > 0 && ingredients.map((ing, index) => (
           index < three && (
@@ -138,18 +148,29 @@ export default function ProcessoBebida(props) {
               { `${ing[1]} - ${measures[index][1]}` }
             </label>
           ))) }
+      </div> */}
+      <div className="ingredients-details">
+        <Ingredients
+          ingredients={ ingredients }
+          finishRecipe={ finishRecipe }
+          measures={ measures }
+        />
+        <h4>Steps:</h4>
+        <p data-testid="instructions">{drinkDetails.strInstructions}</p>
       </div>
-      <p data-testid="instructions">{drinkDetails.strInstructions}</p>
-      <Link to="/receitas-feitas">
-        <button
-          type="button"
-          data-testid="finish-recipe-btn"
-          disabled={ !finished }
-          onClick={ saveDoneRecipe }
-        >
-          Finalizar Receita
-        </button>
-      </Link>
+      <div className="recipe-btn">
+        <Link to="/receitas-feitas">
+          <button
+            type="button"
+            className="finish-recipe-btn"
+            data-testid="finish-recipe-btn"
+            disabled={ !finished }
+            onClick={ saveDoneRecipe }
+          >
+            Finalizar Receita
+          </button>
+        </Link>
+      </div>
     </div>
   );
 }

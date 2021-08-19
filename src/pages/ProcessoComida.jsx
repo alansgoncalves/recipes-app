@@ -112,14 +112,23 @@ export default function ProcessoComida(props) {
 
   return (
     <div>
-      <h1>Detalhes de Comida</h1>
-      <h2 data-testid="recipe-title">{foodDetails.strMeal}</h2>
-      <img src={ foodDetails.strMealThumb } data-testid="recipe-photo" alt="meal" />
-      <ShareBtn />
-      { favorite
-        ? <UnfavoriteBtn deleteFavorite={ deleteFavorite } />
-        : <FavoriteBtn saveFavorite={ saveFavorite } />}
-      <p data-testid="recipe-category">{foodDetails.strCategory}</p>
+      <h2 className="food-ingredients">Detalhes da Comida</h2>
+      <div className="food-meals-details">
+        <h4 data-testid="recipe-title">{foodDetails.strMeal}</h4>
+        <img
+          className="card-img-meals"
+          src={ foodDetails.strMealThumb }
+          data-testid="recipe-photo"
+          alt="meal"
+        />
+        <p data-testid="recipe-category">{foodDetails.strCategory}</p>
+      </div>
+      <div className="details-btn">
+        <ShareBtn />
+        { favorite
+          ? <UnfavoriteBtn deleteFavorite={ deleteFavorite } />
+          : <FavoriteBtn saveFavorite={ saveFavorite } />}
+      </div>
       {/* <h3>Ingredients</h3>
       <label htmlFor="checkbox">
         { ingredients.length > 0 && ingredients.map((ing, index) => (
@@ -133,22 +142,28 @@ export default function ProcessoComida(props) {
             </div>
           ))) }
       </label> */}
-      <Ingredients
-        ingredients={ ingredients }
-        finishRecipe={ finishRecipe }
-        measures={ measures }
-      />
-      <p data-testid="instructions">{foodDetails.strInstructions}</p>
-      <Link to="/receitas-feitas">
-        <button
-          type="button"
-          data-testid="finish-recipe-btn"
-          disabled={ !finished }
-          onClick={ saveDoneRecipe }
-        >
-          Finalizar Receita
-        </button>
-      </Link>
+      <div className="ingredients-details">
+        <Ingredients
+          ingredients={ ingredients }
+          finishRecipe={ finishRecipe }
+          measures={ measures }
+        />
+        <h4>Steps:</h4>
+        <p data-testid="instructions">{foodDetails.strInstructions}</p>
+      </div>
+      <div className="recipe-btn">
+        <Link to="/receitas-feitas">
+          <button
+            className="finish-recipe-btn"
+            type="button"
+            data-testid="finish-recipe-btn"
+            disabled={ !finished }
+            onClick={ saveDoneRecipe }
+          >
+            Finalizar Receita
+          </button>
+        </Link>
+      </div>
     </div>
   );
 }

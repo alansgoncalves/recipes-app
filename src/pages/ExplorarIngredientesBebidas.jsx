@@ -50,7 +50,7 @@ export default function ExplorarIngredientesBebidas() {
               >
                 <img
                   data-testid={ `${index}-card-img` }
-                  className="card-ingredients-img"
+                  className="card-exp-meals"
                   src={ `https://www.thecocktaildb.com/images/ingredients/${strIngredient1}-Small.png` }
                   alt={ strIngredient1 }
                 />

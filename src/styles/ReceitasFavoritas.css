@@ -9,6 +9,7 @@
 
 .fav-recipe-card p {
   margin: 0;
+  margin-left: 10px;
 }
 
 .recipe-img {
@@ -18,4 +19,20 @@
 .fav-recipe-card input {
   height: 40px;
   width: 120px;
+}
+
+.test-fav h2{
+  color: black;
+}
+
+.btn-favs {
+  align-items: center;
+}
+
+.favorite-recipes {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  
 }

@@ -51,7 +51,7 @@ export default function ExplorarIngredientesComidas() {
 
                 <img
                   data-testid={ `${index}-card-img` }
-                  className="card-img-meals"
+                  className="card-exp-meals"
                   src={ `https://www.themealdb.com/images/ingredients/${strIngredient}-Small.png` }
                   alt={ strIngredient }
                 />

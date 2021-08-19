@@ -62,6 +62,15 @@
   margin: 1em;
 }
 
+.card-exp-meals {
+  /* height: 100px;
+  width: 100px; */
+  box-sizing: border-box;
+  border-radius: 5px;
+  align-items: center;
+  margin: 1em;
+}
+
 .card-title-meals {
   /* word-break: break-all; */
   font-size:12px;
@@ -190,6 +199,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  align-items: center;
 }
 
 .food-meals-details {
@@ -214,5 +224,9 @@
 }
 
 .share-btn {
+  align-items: center;
+}
+
+.btn-favs {
   align-items: center;
 }

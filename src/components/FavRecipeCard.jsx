@@ -35,7 +35,7 @@ export default function FavRecipeCard(props) {
           data-testid={ `${index}-horizontal-image` }
           src={ recipe.image }
           alt="recipe"
-          className="recipe-img"
+          className="img-fluid"
         />
       </Link>
       <div>
@@ -49,27 +49,35 @@ export default function FavRecipeCard(props) {
           <p data-testid={ `${index}-horizontal-top-text` }>{ recipe.alcoholicOrNot }</p>
         ) }
         <Link to={ isTypeFood ? `/comidas/${recipe.id}` : `/bebidas/${recipe.id}` }>
-          <h2 data-testid={ `${index}-horizontal-name` }>{ recipe.name }</h2>
+          <h2
+            data-testid={ `${index}-horizontal-name` }
+            style={ { color: 'black' } }
+          >
+            { recipe.name }
+          </h2>
         </Link>
         <p data-testid={ `${index}-horizontal-top-text` }>{ recipe.category }</p>
-        <input
-          type="image"
-          data-testid={ `${index}-horizontal-share-btn` }
-          src={ shareIcon }
-          alt="share icon"
-          onClick={ copyToClipboard }
-        />
-        { clipboard && <p>Link copiado!</p> }
-        <button
-          type="button"
-          onClick={ () => removeFavorite(recipe.id) }
-        >
-          <img
-            src={ blackHeartIcon }
-            data-testid={ `${index}-horizontal-favorite-btn` }
-            alt="favorite icon"
+        <div className="fav-recipes">
+          <button
+            type="button"
+            onClick={ () => removeFavorite(recipe.id) }
+            style={ { border: 'none', background: 'transparent' } }
+          >
+            <img
+              src={ blackHeartIcon }
+              data-testid={ `${index}-horizontal-favorite-btn` }
+              alt="favorite icon"
+            />
+          </button>
+          <input
+            type="image"
+            data-testid={ `${index}-horizontal-share-btn` }
+            src={ shareIcon }
+            alt="share icon"
+            onClick={ copyToClipboard }
           />
-        </button>
+          { clipboard && <p>Link copiado!</p> }
+        </div>
       </div>
     </div>
   );

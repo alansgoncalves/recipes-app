@@ -19,13 +19,47 @@
   bottom: 0;
   left: 50%;
   border-radius: 5px;
-  
+  margin-top: 40px;
+  background: black;
+  height: 30px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size:14px;
+  box-shadow: 6px 6px 6px #cbced1, -6px -6px 6px white;
+  transition: 0.5s;
+  border: none;
+  outline:none;
+  width:130px;
+  color: white;
+  margin: 0.5em 0.5em 0.5em;
+}
+
+.finish-recipe-btn {
+  bottom: 0;
+  left: 50%;
+  border-radius: 5px;
+  margin-top: 40px;
+  background: green;
+  height: 30px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size:14px;
+  box-shadow: 6px 6px 6px #cbced1, -6px -6px 6px white;
+  transition: 0.5s;
+  border: none;
+  outline:none;
+  width:130px;
+  color: white;
+  margin: 0.5em 0.5em 0.5em;
 }
 
 .recipe-btn {
   display: flex;
   margin-bottom: 10px;
-  margin-left: 10px;
+  margin-left: 1px;
+  align-items: center;
 }
 
 .recipe-btn a {
@@ -34,11 +68,18 @@
 
 .img-fluid {
   display: flex;
+  box-sizing: border-box;
+  border-radius: 5px;
+  box-shadow: 8px 7px 10px #a7a9ac, -7px -7px 10px white;
+  align-items: center;
+  margin-top: 25px;
 }
 
 .carousel-container {
   display: flex;
   position: relative;
+  margin-bottom: 20px;
+  margin-top: 20px;
 }
 
 .recomendation-card {
@@ -101,11 +142,12 @@
 
 .align-items-center {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   flex: 1;
   background-color: orange;
   padding-bottom: 10px;
   padding-top: 10px;
+  width: 110vw;
 }
 
 .input-search {
@@ -236,3 +278,6 @@ padding-bottom: 10px;
   margin: 0.5em 0.5em 0.5em;
 }
 
+.fav-recipes {
+  display: flex;
+}

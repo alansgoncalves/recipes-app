@@ -1,6 +1,8 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import PlayCircleFilledWhiteOutlinedIcon
+  from '@material-ui/icons/PlayCircleFilledWhiteOutlined';
 import Loading from '../components/Loading';
 import Context from '../context/Context';
 import FavoriteBtn from '../components/FavoriteBtn';
@@ -130,7 +132,13 @@ export default function DetalhesComidas(props) {
             Iniciar receita
           </button>
         </Link>
-        <a data-testid="video" href={ foodDetails.strYoutube }>Video</a>
+        <a
+          data-testid="video"
+          href={ foodDetails.strYoutube }
+          style={ { color: 'red', width: '80%' } }
+        >
+          <PlayCircleFilledWhiteOutlinedIcon style={ { fontSize: 40 } } />
+        </a>
       </div>
       <RecCarousel recommendations={ recommendations } />
     </div>

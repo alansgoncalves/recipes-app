@@ -33,7 +33,7 @@ export default function FavRecipeCard(props) {
           data-testid={ `${index}-horizontal-image` }
           src={ recipe.image }
           alt="recipe"
-          className="recipe-img"
+          className="img-fluid"
         />
       </Link>
       <div>
@@ -47,7 +47,12 @@ export default function FavRecipeCard(props) {
           <p data-testid={ `${index}-horizontal-top-text` }>{ recipe.alcoholicOrNot }</p>
         ) }
         <Link to={ isTypeFood ? `/comidas/${recipe.id}` : `/bebidas/${recipe.id}` }>
-          <h2 data-testid={ `${index}-horizontal-name` }>{ recipe.name }</h2>
+          <h2
+            data-testid={ `${index}-horizontal-name` }
+            style={ { color: 'black' } }
+          >
+            { recipe.name }
+          </h2>
         </Link>
         <p data-testid={ `${index}-horizontal-top-text` }>{ recipe.category }</p>
         <input
