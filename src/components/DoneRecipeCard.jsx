@@ -36,16 +36,7 @@ export default function FavRecipeCard(props) {
           className="img-fluid"
         />
       </Link>
-      <div>
-        { isTypeFood ? (
-          <p
-            data-testid={ `${index}-horizontal-top-text` }
-          >
-            { `${recipe.area} - ${recipe.category}` }
-          </p>
-        ) : (
-          <p data-testid={ `${index}-horizontal-top-text` }>{ recipe.alcoholicOrNot }</p>
-        ) }
+      <div className="done-recipes">
         <Link to={ isTypeFood ? `/comidas/${recipe.id}` : `/bebidas/${recipe.id}` }>
           <h2
             data-testid={ `${index}-horizontal-name` }
@@ -53,6 +44,21 @@ export default function FavRecipeCard(props) {
           >
             { recipe.name }
           </h2>
+          { isTypeFood ? (
+            <p
+              data-testid={ `${index}-horizontal-top-text` }
+              style={ { color: 'black' } }
+            >
+              { `${recipe.area}` }
+            </p>
+          ) : (
+            <p
+              data-testid={ `${index}-horizontal-top-text` }
+              style={ { color: 'black' } }
+            >
+              { recipe.alcoholicOrNot }
+            </p>
+          ) }
         </Link>
         <p data-testid={ `${index}-horizontal-top-text` }>{ recipe.category }</p>
         <input
@@ -62,10 +68,16 @@ export default function FavRecipeCard(props) {
           alt="share icon"
           onClick={ copyToClipboard }
         />
-        { clipboard && <p>Link copiado!</p> }
         <p data-testid={ `${index}-horizontal-done-date` }>{recipe.doneDate}</p>
-        { isTypeFood && recipe.tags !== null && recipe.tags.map((tag) => (
-          <p key={ tag } data-testid={ `${index}-${tag}-horizontal-tag` }>{tag}</p>)) }
+        { clipboard && <p>Link copiado!</p> }
+        {/* { isTypeFood && recipe.tags !== null && recipe.tags.map((tag) => (
+          <p
+            key={ tag }
+            data-testid={ `${index}-${tag}-horizontal-tag` }
+          >
+            {tag}
+          </p>
+        )) } */}
       </div>
     </div>
   );

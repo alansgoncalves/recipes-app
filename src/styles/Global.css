@@ -13,10 +13,14 @@
   position: fixed;
   text-align: center;
   width: 100vw;
+  border-radius:10px 10px 0 0;
+  -moz-border-radius: 10px 10px 0 0;
+  -webkit-border-radius: 10px 10px 0 0;
 }
 
 .start-recipe-btn {
   bottom: 0;
+  font-size: 10px;
   left: 50%;
   border-radius: 5px;
   margin-top: 40px;
@@ -73,13 +77,13 @@
   box-shadow: 8px 7px 10px #a7a9ac, -7px -7px 10px white;
   align-items: center;
   margin-top: 25px;
+  width: 190px;
 }
 
 .carousel-container {
   display: flex;
   position: relative;
-  margin-bottom: 20px;
-  margin-top: 20px;
+  margin-bottom: 80px;
 }
 
 .recomendation-card {
@@ -141,13 +145,24 @@
 }
 
 .align-items-center {
+  background-color: orange;
   display: flex;
   justify-content: space-evenly;
-  flex: 1;
-  background-color: orange;
-  padding-bottom: 10px;
-  padding-top: 10px;
-  width: 110vw;
+  padding: 10px;
+  width: 100vw;
+  border-radius:0 0 10px 10px;
+  -moz-border-radius: 0 0 10px 10px;
+  -webkit-border-radius: 0 0 10px 10px;
+}
+
+.head-without {
+background-color: orange;
+margin: auto;
+align-items: center;
+padding: 0.1px;
+border-radius:0 0 10px 10px;
+-moz-border-radius: 0 0 10px 10px;
+-webkit-border-radius: 0 0 10px 10px;
 }
 
 .input-search {
@@ -167,7 +182,6 @@
  flex-direction: row;
  flex-wrap: wrap;
  margin-left:20px;
- /* vertical-align: sub; */
 }
 
 .inputs-btns {
@@ -281,3 +295,16 @@ padding-bottom: 10px;
 .fav-recipes {
   display: flex;
 }
+
+.done-recipes {
+  align-items: center;
+  text-align: center;
+}
+
+.load-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 150px;
+}
+

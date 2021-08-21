@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Header from '../components/Header';
+import HeaderWithoutSearch from '../components/HeaderWithoutSearch';
 import DoneRecipeCard from '../components/DoneRecipeCard';
 
 export default function ReceitasFeitas() {
@@ -28,38 +28,41 @@ export default function ReceitasFeitas() {
 
   return (
     <div>
-      <Header title="Receitas Favoritas" />
-      <button
-        className="btn-comidas"
-        type="button"
-        data-testid="filter-by-all-btn"
-        onClick={ getDoneRecipes }
-      >
-        All
-      </button>
-      <button
-        className="btn-comidas"
-        type="button"
-        data-testid="filter-by-food-btn"
-        onClick={ filterByFood }
-      >
-        Food
-      </button>
-      <button
-        className="explore-bebidas"
-        type="button"
-        data-testid="filter-by-drink-btn"
-        onClick={ filterByDrink }
-      >
-        Drink
-      </button>
-      { doneRecipes && doneRecipes.length > 0 && doneRecipes.map((recipe, index) => (
-        <DoneRecipeCard
-          key={ index }
-          index={ index }
-          recipe={ recipe }
-        />
-      )) }
+      <HeaderWithoutSearch title="" />
+      <div className="done-recipes">
+        <h2>Receitas feitas</h2>
+        <button
+          className="btn-comidas"
+          type="button"
+          data-testid="filter-by-all-btn"
+          onClick={ getDoneRecipes }
+        >
+          All
+        </button>
+        <button
+          className="btn-comidas"
+          type="button"
+          data-testid="filter-by-food-btn"
+          onClick={ filterByFood }
+        >
+          Food
+        </button>
+        <button
+          className="explore-bebidas"
+          type="button"
+          data-testid="filter-by-drink-btn"
+          onClick={ filterByDrink }
+        >
+          Drink
+        </button>
+        { doneRecipes && doneRecipes.length > 0 && doneRecipes.map((recipe, index) => (
+          <DoneRecipeCard
+            key={ index }
+            index={ index }
+            recipe={ recipe }
+          />
+        )) }
+      </div>
     </div>
   );
 }

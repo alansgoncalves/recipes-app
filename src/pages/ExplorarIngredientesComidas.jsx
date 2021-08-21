@@ -3,11 +3,10 @@ import { useHistory } from 'react-router';
 import Footer from '../components/Footer';
 import Context from '../context/Context';
 import HeaderWithoutSearch from '../components/HeaderWithoutSearch';
-import '../styles/Comidas.css';
 
 export default function ExplorarIngredientesComidas() {
   const [ingredientMealList, setIngredientMealList] = useState([]);
-  const { setFood } = useContext(Context);
+  const { setFood, setExplore } = useContext(Context);
   const magicNumber = 12;
   const history = useHistory();
   const { push } = history;
@@ -24,6 +23,7 @@ export default function ExplorarIngredientesComidas() {
     const data = await fetch(endpoint);
     const { meals } = await data.json();
     setFood(meals);
+    setExplore(true);
     push('/comidas');
   };
 

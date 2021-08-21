@@ -154,6 +154,8 @@ export default function ProcessoBebida(props) {
           ingredients={ ingredients }
           finishRecipe={ finishRecipe }
           measures={ measures }
+          food={ false }
+          id={ id }
         />
         <h4>Steps:</h4>
         <p data-testid="instructions">{drinkDetails.strInstructions}</p>

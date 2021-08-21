@@ -4,10 +4,11 @@ import Context from '../context/Context';
 import '../styles/Comidas.css';
 
 export default function CategoryBtn() {
-  const { setFood, setDrink } = useContext(Context);
+  const { setFood, setDrink, explore, setExplore } = useContext(Context);
   const [category, setCategory] = useState([]);
   const history = useHistory();
   const { location: { pathname } } = history;
+  const [toggle, setToggle] = useState('');
 
   const listOfCategoriesFood = async () => {
     const endpoint = 'https://www.themealdb.com/api/json/v1/1/list.php?c=list';
@@ -32,14 +33,13 @@ export default function CategoryBtn() {
     return listOfCategoriesFood();
   }
 
-  const categoryFilterered = async ({ strCategory }) => {
+  const categoryFilterered = async (strCategory) => {
     if (pathname === '/bebidas') {
       const url = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${strCategory}`;
       console.log(url);
       const response = await fetch(url);
       const categories = await response.json();
       setDrink(categories.drinks);
-      console.log(categories);
     } else {
       const url = `https://www.themealdb.com/api/json/v1/1/filter.php?c=${strCategory}`;
       const response = await fetch(url);
@@ -62,11 +62,31 @@ export default function CategoryBtn() {
     }
   };
 
+  function toggleCategory({ target }) {
+    if (toggle === target.name) {
+      setToggle('');
+      setExplore(false);
+    } else {
+      setToggle(target.name);
+      setExplore(false);
+    }
+  }
+
   useEffect(() => {
     listOfCategoriesFood();
     listOfCategoriesDrink();
     conditionEndpoint();
   }, []);
+
+  useEffect(() => {
+    if (!explore) {
+      if (toggle !== '') {
+        categoryFilterered(toggle);
+      } else {
+        categoryAll();
+      }
+    }
+  }, [toggle]);
 
   const magicNumber = 5;
   return (
@@ -88,7 +108,8 @@ export default function CategoryBtn() {
                 className="btn-comidas"
                 type="button"
                 data-testid={ `${strCategory}-category-filter` }
-                onClick={ () => categoryFilterered({ strCategory }) }
+                name={ strCategory }
+                onClick={ (e) => toggleCategory(e) }
               >
                 { strCategory }
               </button>

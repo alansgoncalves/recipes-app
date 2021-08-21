@@ -1,11 +1,13 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import ProfileIcon from '../images/profileIcon.svg';
 import SearchIcon from '../images/searchIcon.svg';
 import Context from '../context/Context';
 import SearchBar from './SearchBar';
 
-export default function Header() {
+export default function Header(props) {
+  const { title } = props;
   const { showSearchBar, setShowSearchBar } = useContext(Context);
   const displaySearchBar = () => {
     if (!showSearchBar) {
@@ -17,7 +19,7 @@ export default function Header() {
 
   return (
     <header>
-      <div className="row align-items-center">
+      <div className="align-items-center">
         <div className="col-1">
           <Link to="/perfil">
             <img
@@ -44,8 +46,13 @@ export default function Header() {
             />
           </button>
         </div>
+        <h1 data-testid="page-title">{ title }</h1>
       </div>
       { showSearchBar ? <SearchBar /> : null }
     </header>
   );
 }
+
+Header.propTypes = {
+  title: PropTypes.string.isRequired,
+};

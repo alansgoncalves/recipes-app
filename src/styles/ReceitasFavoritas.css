@@ -34,5 +34,9 @@
   flex-wrap: wrap;
   flex-direction: column;
   align-items: center;
-  
+}
+
+.done-recipes {
+  display: flex;
+  flex-direction: column;
 }

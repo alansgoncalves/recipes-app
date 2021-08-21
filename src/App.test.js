@@ -1,11 +1,11 @@
 import React from 'react';
-import { fireEvent,render } from '@testing-library/react';
+import { fireEvent, waitFor } from '@testing-library/react';
 import renderWithRouter from './renderWithRouter';
 import Login from './pages/Login';
 import userEvent from '@testing-library/user-event';
 import App from './App';
-import Header from './components/Header'
-import Comidas from './pages/Comidas';
+const fetchMock = require('../cypress/mocks/fetch');
+const oneMeal = require('../cypress/mocks/oneMeal');
 
 describe('Testando o footer', () => {
   it('Verifica se o footer está na página de comidas', () => {
@@ -218,4 +218,31 @@ describe('Testando o CategoryBtn', () => {
     // const btnCocoa = getByText(/Cocoa/i);
     // expect(btnCocoa).toBeInTheDocument();
   })
+})
+
+describe.only('Testando a página de detalhes', () => {
+  // it('Verifica se a página renderiza os detalhes corretamente', () => {
+  //   const { history, getByText } = renderWithRouter(<App />);
+  //   history.push('/comidas/52977');
+  //   const title = getByText('Corba');
+  //   expect(title).toBeInTheDocument();
+  // })
+  afterEach(() => jest.clearAllMocks());
+  it('Verifica se a página renderiza os detalhes corretamente', async () => {
+    const { history, findByText } = renderWithRouter(<App />);
+    history.push('/comidas/52771');
+    // global.fetch = jest.fn(async () => ({
+    //   json: async () => oneMeal
+    // }));
+    // expect(global.fetch).toBeCalledTimes(1);
+    const title = oneMeal.meals[0].strMeal;
+    const titleElement = await findByText(title);
+    const category = oneMeal.meals[0].strCategory;
+    const categoryElement = await findByText(category);
+    const ingredient = oneMeal.meals[0].strIngredient1;
+    const ingredientElement = await findByText(ingredient);
+    expect(titleElement).toBeInTheDocument();
+    expect(categoryElement).toBeInTheDocument();
+    expect(ingredientElement).toBeInTheDocument();
+  });
 })

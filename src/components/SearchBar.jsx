@@ -70,6 +70,7 @@ function SearchBar() {
           name="value"
           onChange={ ({ target: { value } }) => setSearch(value) }
           style={ { border: 'none' } }
+          autoComplete="off"
         />
       </label>
       <div className="radio-btns">

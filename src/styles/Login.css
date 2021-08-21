@@ -100,8 +100,7 @@ input {
 } */
 
 button:hover {
-  background-color: rgba(255, 188, 88, 0.85);
-  color: maroon;
+ border-radius: 1px;
 }
 
 button:disabled {

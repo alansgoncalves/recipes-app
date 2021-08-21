@@ -93,7 +93,7 @@ function ExplorarComidasPorArea() {
   return (
     <div>
       <Header title="" showSearchButton={ showSearchButton } />
-      <h2 className="title-h2" data-testid="page-title">Explorar Origem</h2>
+      <h4 className="title-h2" data-testid="page-title">Explorar comida por Origem</h4>
 
       <span>{ isLoading ? <div /> : renderDropDownAreas() }</span>
 

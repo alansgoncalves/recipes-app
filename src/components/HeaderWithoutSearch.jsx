@@ -8,7 +8,7 @@ export default class HeaderWithoutSearch extends Component {
   render() {
     const { title } = this.props;
     return (
-      <div style={ { background: 'orange', margin: 'auto', alignitems: 'center' } }>
+      <div className="head-without">
         <Link to="/perfil" className="profilePicture">
           <img
             className="profile-img"

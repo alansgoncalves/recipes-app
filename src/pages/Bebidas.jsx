@@ -9,9 +9,6 @@ import '../styles/Bebidas.css';
 export default function Drinks() {
   const { drink, setDrink } = useContext(Context);
   const magicNumber = 12;
-  // const [data, setData] = useState([]);
-  // const [categories, setCategories] = useState([]);
-  // const [toggle, setToggle] = useState('');
 
   async function fetchDrinks() {
     const endpoint = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=';
@@ -26,45 +23,9 @@ export default function Drinks() {
     }
   }, []);
 
-  // async function categoriesDrinks() {
-  //   const endpoint = 'https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list';
-  //   const response = await fetch(endpoint);
-  //   const json = await response.json();
-  //   setCategories(json);
-  // }
-
-  // useEffect(() => {
-  //   categoriesDrinks();
-  // }, []);
-
-  // function searchByCategory({ target }) {
-  //   if (toggle === target.name) {
-  //     setToggle('');
-  //   } else if (toggle === '') {
-  //     setToggle(target.name);
-  //   } else {
-  //     setToggle(target.name);
-  //   }
-  // }
-
-  // useEffect(() => {
-  //   if (toggle) {
-  //     const changeCategorieDrink = async () => {
-  //       const endpoint = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${toggle}`;
-  //       const response = await fetch(endpoint);
-  //       const json = await response.json();
-  //       setData(json);
-  //     };
-  //     changeCategorieDrink();
-  //   } else {
-  //     fetchDrinks();
-  //   }
-  // }, [toggle]);
-  // const maxArrayCategories = 5;
-
   return (
     <div className="bebidas">
-      <Header />
+      <Header title="" />
       <h2>Bebidas</h2>
       <CategoryBtn />
       <div className="drink-list">

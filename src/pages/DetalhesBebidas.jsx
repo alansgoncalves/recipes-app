@@ -8,12 +8,15 @@ import RecCarousel from '../components/RecCarousel';
 import FavoriteBtn from '../components/FavoriteBtn';
 import UnfavoriteBtn from '../components/UnfavoriteBtn';
 import '../styles/Global.css';
+import HeaderWithoutSearch from '../components/HeaderWithoutSearch';
+import Footer from '../components/Footer';
 
 export default function DetalhesBebidas(props) {
   const [drinkDetails, setDrinkDetails] = useState([]);
   const { loading, setLoading } = useContext(Context);
   const [recommendations, setRecommendations] = useState([]);
   const [favorite, setFavorite] = useState(false);
+  const [inProgress, setInProgress] = useState(false);
   const [ingredients, setIngredients] = useState([]);
   const [measures, setMeasures] = useState([]);
   const { match: { params: { id } } } = props;
@@ -23,6 +26,16 @@ export default function DetalhesBebidas(props) {
     if (favoriteRecipes.length > 0) {
       const favRecipe = favoriteRecipes.some((el) => el.id === id);
       setFavorite(favRecipe);
+    }
+  }
+
+  function verifyInProgress() {
+    if (localStorage.getItem('inProgressRecipes')) {
+      const inProgressRecipes = JSON.parse(localStorage.getItem('inProgressRecipes'));
+      const idDrinks = Object.keys(inProgressRecipes.cocktails);
+      const isInProgress = idDrinks.some((el) => el === id);
+      console.log(isInProgress);
+      setInProgress(isInProgress);
     }
   }
 
@@ -54,6 +67,7 @@ export default function DetalhesBebidas(props) {
     getDrinkDetails();
     verifyFavorites();
     getRecommended();
+    verifyInProgress();
   }, []);
 
   function deleteFavorite() {
@@ -86,7 +100,8 @@ export default function DetalhesBebidas(props) {
   }
   return (
     <div>
-      <h2 className="food-ingredients">Detalhes da Bebida</h2>
+      <HeaderWithoutSearch />
+      <h2 className="food-ingredients">Detalhes de Bebida</h2>
       <div className="food-meals-details">
         <h4 data-testid="recipe-title">{drinkDetails.strDrink}</h4>
         <img
@@ -120,16 +135,27 @@ export default function DetalhesBebidas(props) {
       </div>
       <div className="recipe-btn">
         <Link to={ `/bebidas/${id}/in-progress` }>
-          <button
-            type="button"
-            data-testid="start-recipe-btn"
-            className="start-recipe-btn"
-          >
-            Iniciar receita
-          </button>
+          { inProgress ? (
+            <button
+              type="button"
+              data-testid="start-recipe-btn"
+              className="start-recipe-btn"
+            >
+              Continuar Receita
+            </button>
+          ) : (
+            <button
+              type="button"
+              data-testid="start-recipe-btn"
+              className="start-recipe-btn"
+            >
+              Iniciar Receita
+            </button>
+          ) }
         </Link>
       </div>
       <RecCarousel recommendations={ recommendations } />
+      <Footer />
     </div>
   );
 }

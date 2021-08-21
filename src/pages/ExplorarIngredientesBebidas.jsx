@@ -3,11 +3,10 @@ import { useHistory } from 'react-router';
 import Footer from '../components/Footer';
 import Context from '../context/Context';
 import HeaderWithoutSearch from '../components/HeaderWithoutSearch';
-import '../styles/Bebidas.css';
 
 export default function ExplorarIngredientesBebidas() {
   const [ingredientDrinkList, setIngredientDrinkList] = useState([]);
-  const { setDrink } = useContext(Context);
+  const { setDrink, setExplore } = useContext(Context);
   const magicNumber = 12;
   const history = useHistory();
   const { push } = history;
@@ -24,6 +23,7 @@ export default function ExplorarIngredientesBebidas() {
     const data = await fetch(endpoint);
     const { drinks } = await data.json();
     setDrink(drinks);
+    setExplore(true);
     push('/bebidas');
   };
 
@@ -35,33 +35,33 @@ export default function ExplorarIngredientesBebidas() {
     <div>
       <HeaderWithoutSearch title="" />
       <h2 className="food-ingredients">Explorar Ingredientes</h2>
-      <div className="drink-list-ingredients">
+      <div className="drink-list">
         {ingredientDrinkList.length > 0 && ingredientDrinkList
           .map(({ strIngredient1 }, index) => (
             index < magicNumber
-            && (
-              <div
-                className="card-drink-ingredients"
-                key={ index }
-                data-testid={ `${index}-ingredient-card` }
-                onClick={ () => getStrIngredients(strIngredient1) }
-                onKeyDown={ () => getStrIngredients(strIngredient1) }
-                aria-hidden="true"
+          && (
+            <div
+              className="card-drink-ingredients"
+              key={ index }
+              data-testid={ `${index}-ingredient-card` }
+              onClick={ () => getStrIngredients(strIngredient1) }
+              onKeyDown={ () => getStrIngredients(strIngredient1) }
+              aria-hidden="true"
+            >
+              <img
+                data-testid={ `${index}-card-img` }
+                className="card-exp-meals"
+                src={ `https://www.thecocktaildb.com/images/ingredients/${strIngredient1}-Small.png` }
+                alt={ strIngredient1 }
+              />
+              <h1
+                data-testid={ `${index}-card-name` }
+                className="card-title-ingredients"
               >
-                <img
-                  data-testid={ `${index}-card-img` }
-                  className="card-exp-meals"
-                  src={ `https://www.thecocktaildb.com/images/ingredients/${strIngredient1}-Small.png` }
-                  alt={ strIngredient1 }
-                />
-                <h1
-                  data-testid={ `${index}-card-name` }
-                  className="card-title-ingredients"
-                >
-                  {strIngredient1}
-                </h1>
-              </div>
-            )
+                {strIngredient1}
+              </h1>
+            </div>
+          )
           ))}
       </div>
       <Footer />

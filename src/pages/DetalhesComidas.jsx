@@ -9,12 +9,15 @@ import FavoriteBtn from '../components/FavoriteBtn';
 import UnfavoriteBtn from '../components/UnfavoriteBtn';
 import ShareBtn from '../components/ShareBtn';
 import RecCarousel from '../components/RecCarousel';
-import '../styles/Comidas.css';
+import '../styles/Global.css';
+import HeaderWithoutSearch from '../components/HeaderWithoutSearch';
+import Footer from '../components/Footer';
 
 export default function DetalhesComidas(props) {
   const [foodDetails, setFoodDetails] = useState([]);
   const [ingredients, setIngredients] = useState([]);
   const [favorite, setFavorite] = useState(false);
+  const [inProgress, setInProgress] = useState(false);
   const [measures, setMeasures] = useState([]);
   const [recommendations, setRecommendations] = useState([]);
   const { loading, setLoading } = useContext(Context);
@@ -25,6 +28,16 @@ export default function DetalhesComidas(props) {
     if (favoriteRecipes.length > 0) {
       const favRecipe = favoriteRecipes.some((el) => el.id === id);
       setFavorite(favRecipe);
+    }
+  }
+
+  function verifyInProgress() {
+    if (localStorage.getItem('inProgressRecipes')) {
+      const inProgressRecipes = JSON.parse(localStorage.getItem('inProgressRecipes'));
+      const idMeals = Object.keys(inProgressRecipes.meals);
+      const isInProgress = idMeals.some((el) => el === id);
+      console.log(isInProgress);
+      setInProgress(isInProgress);
     }
   }
 
@@ -56,6 +69,7 @@ export default function DetalhesComidas(props) {
     getFoodDetails();
     getRecommended();
     verifyFavorites();
+    verifyInProgress();
   }, []);
 
   if (loading) {
@@ -89,6 +103,7 @@ export default function DetalhesComidas(props) {
 
   return (
     <div>
+      <HeaderWithoutSearch />
       <h2 className="food-ingredients">Detalhes de Comida</h2>
       <div className="food-meals-details">
         <h4 data-testid="recipe-title">{foodDetails.strMeal}</h4>
@@ -97,7 +112,6 @@ export default function DetalhesComidas(props) {
           className="card-img-meals"
           data-testid="recipe-photo"
           alt="meal"
-          // style={ { width: '200%' } }
         />
         <p data-testid="recipe-category">{foodDetails.strCategory}</p>
       </div>
@@ -124,13 +138,18 @@ export default function DetalhesComidas(props) {
       </div>
       <div className="recipe-btn">
         <Link to={ `/comidas/${id}/in-progress` }>
-          <button
-            type="button"
-            data-testid="start-recipe-btn"
-            className="start-recipe-btn"
-          >
-            Iniciar receita
-          </button>
+          { inProgress ? (
+            <>
+            </>
+          ) : (
+            <button
+              type="button"
+              data-testid="start-recipe-btn"
+              className="start-recipe-btn"
+            >
+              Iniciar Receita
+            </button>
+          ) }
         </Link>
         <a
           data-testid="video"
@@ -141,6 +160,7 @@ export default function DetalhesComidas(props) {
         </a>
       </div>
       <RecCarousel recommendations={ recommendations } />
+      <Footer />
     </div>
   );
 }
