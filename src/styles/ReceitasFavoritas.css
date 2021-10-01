@@ -1,0 +1,49 @@
+.fav-recipe-card {
+  border-top: 1px solid #969696;
+  display: flex;
+  gap: 10px;
+  margin: 10px;
+  max-width: 350px;
+  padding: 10px;
+}
+
+.fav-recipe-card p {
+  margin: 0;
+  margin-left: 10px;
+}
+
+.recipe-img {
+  width: 100%;
+}
+
+.fav-recipe-card input {
+  height: 40px;
+  width: 120px;
+}
+
+.test-fav h2{
+  color: black;
+}
+
+.btn-favs {
+  align-items: center;
+}
+
+.favorite-recipes {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.done-recipes {
+  display: flex;
+  flex-direction: column;
+}
+
+.title-favorite {
+  margin-top: 20px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
