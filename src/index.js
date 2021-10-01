@@ -7,7 +7,7 @@ import * as serviceWorker from './serviceWorker';
 import './styles/Global.css';
 
 ReactDOM.render(
-  <BrowserRouter>
+  <BrowserRouter basername="/recipes-app">
     <App />
   </BrowserRouter>,
   document.getElementById('root'),
