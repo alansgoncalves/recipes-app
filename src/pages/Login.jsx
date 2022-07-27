@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/Login.css';
 import Logo from '../images/logo.gif';
@@ -8,6 +8,10 @@ export default function Login() {
     email: '',
     password: '',
   });
+
+  useEffect(() => {
+    alert('Visualize em 360x640 ou no celular para uma melhor experiência! Email: test@gmail.com senha: 1234567');
+  }, []);
 
   function validateLogin() {
     const { email, password } = user;
@@ -43,6 +47,7 @@ export default function Login() {
           data-testid="email-input"
           onChange={ (e) => handleChangeInputs(e) }
           style={ { border: 'none' } }
+          // autoComplete="off"
         />
         <input
           className="input-login2"

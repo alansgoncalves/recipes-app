@@ -36,7 +36,6 @@ export default function DetalhesComidas(props) {
       const inProgressRecipes = JSON.parse(localStorage.getItem('inProgressRecipes'));
       const idMeals = Object.keys(inProgressRecipes.meals);
       const isInProgress = idMeals.some((el) => el === id);
-      console.log(isInProgress);
       setInProgress(isInProgress);
     }
   }

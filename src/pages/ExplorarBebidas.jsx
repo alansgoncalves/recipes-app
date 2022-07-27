@@ -21,7 +21,7 @@ export default function ExplorarBebidas() {
     <div>
       <HeaderWithoutSearch title="" />
       <h2 className="header-explorer-drink">Explorar Bebidas</h2>
-      <div className="explorer-buttons">
+      <div className="explorer-buttons2">
         <Link to="/explorar/bebidas/ingredientes">
           <button
             className="btns-explorer-drink"

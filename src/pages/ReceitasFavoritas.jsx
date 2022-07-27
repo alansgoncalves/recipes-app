@@ -36,31 +36,33 @@ export default function ReceitasFavoritas() {
   return (
     <div className="favorite-recipes">
       <Header title="" />
-      <h2>Receitas favoritas</h2>
-      <button
-        className="btn-comidas"
-        type="button"
-        data-testid="filter-by-all-btn"
-        onClick={ getFavRecipes }
-      >
-        All
-      </button>
-      <button
-        className="btn-comidas"
-        type="button"
-        data-testid="filter-by-food-btn"
-        onClick={ filterByFood }
-      >
-        Food
-      </button>
-      <button
-        className="btns-explorer-drink"
-        type="button"
-        data-testid="filter-by-drink-btn"
-        onClick={ filterByDrink }
-      >
-        Drink
-      </button>
+      <h2 className="title-favorite">Receitas favoritas</h2>
+      <div className="comidas-categories">
+        <button
+          className="btn-comidas"
+          type="button"
+          data-testid="filter-by-all-btn"
+          onClick={ getFavRecipes }
+        >
+          All
+        </button>
+        <button
+          className="btn-comidas"
+          type="button"
+          data-testid="filter-by-food-btn"
+          onClick={ filterByFood }
+        >
+          Food
+        </button>
+        <button
+          className="btns-explorer-drink"
+          type="button"
+          data-testid="filter-by-drink-btn"
+          onClick={ filterByDrink }
+        >
+          Drink
+        </button>
+      </div>
       { favRecipes && favRecipes.map((recipe, index) => (
         <FavRecipeCard
           key={ index }

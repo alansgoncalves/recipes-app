@@ -17,7 +17,7 @@ export default class HeaderWithoutSearch extends Component {
             alt="profileIcon"
           />
         </Link>
-        <h1 data-testid="page-title">{ title }</h1>
+        <h2 data-testid="page-title">{ title }</h2>
       </div>
     );
   }

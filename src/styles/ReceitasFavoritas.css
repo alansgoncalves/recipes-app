@@ -30,13 +30,20 @@
 }
 
 .favorite-recipes {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
   align-items: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
 .done-recipes {
   display: flex;
   flex-direction: column;
+}
+
+.title-favorite {
+  margin-top: 20px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
 }

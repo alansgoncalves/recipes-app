@@ -32,7 +32,7 @@ export default function ShareBtn() {
           style={ { color: 'red', border: 'none' } }
         />
       </button>
-      { clipboard && <p style={ { color: 'red' } }>Link copiado!</p> }
+      { clipboard && <p style={ { fontStyle: 'italic' } }>Link copiado!</p> }
     </div>
   );
 }

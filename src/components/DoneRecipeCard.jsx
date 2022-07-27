@@ -38,12 +38,12 @@ export default function FavRecipeCard(props) {
       </Link>
       <div className="done-recipes">
         <Link to={ isTypeFood ? `/comidas/${recipe.id}` : `/bebidas/${recipe.id}` }>
-          <h2
+          <h5
             data-testid={ `${index}-horizontal-name` }
             style={ { color: 'black' } }
           >
             { recipe.name }
-          </h2>
+          </h5>
           { isTypeFood ? (
             <p
               data-testid={ `${index}-horizontal-top-text` }
@@ -68,8 +68,8 @@ export default function FavRecipeCard(props) {
           alt="share icon"
           onClick={ copyToClipboard }
         />
+        { clipboard && <p style={ { fontStyle: 'italic' } }>Link copiado!</p> }
         <p data-testid={ `${index}-horizontal-done-date` }>{recipe.doneDate}</p>
-        { clipboard && <p>Link copiado!</p> }
         {/* { isTypeFood && recipe.tags !== null && recipe.tags.map((tag) => (
           <p
             key={ tag }

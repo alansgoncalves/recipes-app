@@ -38,23 +38,23 @@ export default function FavRecipeCard(props) {
           className="img-fluid"
         />
       </Link>
-      <div>
+      <div className="done-recipes">
         { isTypeFood ? (
-          <p
+          <h5
             data-testid={ `${index}-horizontal-top-text` }
           >
             { `${recipe.area} - ${recipe.category}` }
-          </p>
+          </h5>
         ) : (
           <p data-testid={ `${index}-horizontal-top-text` }>{ recipe.alcoholicOrNot }</p>
         ) }
         <Link to={ isTypeFood ? `/comidas/${recipe.id}` : `/bebidas/${recipe.id}` }>
-          <h2
+          <h5
             data-testid={ `${index}-horizontal-name` }
             style={ { color: 'black' } }
           >
             { recipe.name }
-          </h2>
+          </h5>
         </Link>
         <p data-testid={ `${index}-horizontal-top-text` }>{ recipe.category }</p>
         <div className="fav-recipes">
@@ -76,7 +76,7 @@ export default function FavRecipeCard(props) {
             alt="share icon"
             onClick={ copyToClipboard }
           />
-          { clipboard && <p>Link copiado!</p> }
+          { clipboard && <h6>Link copiado!</h6> }
         </div>
       </div>
     </div>

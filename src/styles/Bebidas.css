@@ -13,6 +13,7 @@
   margin-right: 30px;
   margin-bottom: 20px; */
   margin-bottom: 70px;
+  margin-left: 4px;
 }
 
 .card-img-drinks {
@@ -90,4 +91,9 @@
   font-size:12px;
   text-align: center;
   color: black;
+}
+
+.bebida-title {
+  margin-top: 20px;
+  text-align: center;
 }

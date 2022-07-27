@@ -29,8 +29,8 @@ export default function ReceitasFeitas() {
   return (
     <div>
       <HeaderWithoutSearch title="" />
-      <div className="done-recipes">
-        <h2>Receitas feitas</h2>
+      <h2 className="bebida-title">Receitas feitas</h2>
+      <div className="done-recipes2">
         <button
           className="btn-comidas"
           type="button"
@@ -55,14 +55,14 @@ export default function ReceitasFeitas() {
         >
           Drink
         </button>
-        { doneRecipes && doneRecipes.length > 0 && doneRecipes.map((recipe, index) => (
-          <DoneRecipeCard
-            key={ index }
-            index={ index }
-            recipe={ recipe }
-          />
-        )) }
       </div>
+      { doneRecipes && doneRecipes.length > 0 && doneRecipes.map((recipe, index) => (
+        <DoneRecipeCard
+          key={ index }
+          index={ index }
+          recipe={ recipe }
+        />
+      )) }
     </div>
   );
 }

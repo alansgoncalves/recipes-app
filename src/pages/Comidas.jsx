@@ -26,7 +26,7 @@ function Foods() {
   return (
     <div className="comidas">
       <Header title="" />
-      <h2>Comidas</h2>
+      <h2 className="comida-title">Comidas</h2>
       <CategoryBtn />
       <div className="food-list">
         {food.length > 0 && food.map((item, index) => (

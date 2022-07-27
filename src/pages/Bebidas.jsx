@@ -26,7 +26,7 @@ export default function Drinks() {
   return (
     <div className="bebidas">
       <Header title="" />
-      <h2>Bebidas</h2>
+      <h2 className="bebida-title">Bebidas</h2>
       <CategoryBtn />
       <div className="drink-list">
         { drink.length > 0 && drink.map((item, index) => (
