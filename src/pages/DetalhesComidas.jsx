@@ -1,17 +1,17 @@
-import React, { useEffect, useState, useContext } from 'react';
-import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import PlayCircleFilledWhiteOutlinedIcon
-  from '@material-ui/icons/PlayCircleFilledWhiteOutlined';
-import Loading from '../components/Loading';
-import Context from '../context/Context';
-import FavoriteBtn from '../components/FavoriteBtn';
-import UnfavoriteBtn from '../components/UnfavoriteBtn';
-import ShareBtn from '../components/ShareBtn';
-import RecCarousel from '../components/RecCarousel';
-import '../styles/Global.css';
-import HeaderWithoutSearch from '../components/HeaderWithoutSearch';
-import Footer from '../components/Footer';
+/* eslint-disable */
+import React, { useEffect, useState, useContext } from "react";
+import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
+import PlayCircleFilledWhiteOutlinedIcon from "@material-ui/icons/PlayCircleFilledWhiteOutlined";
+import Loading from "../components/Loading";
+import Context from "../context/Context";
+import FavoriteBtn from "../components/FavoriteBtn";
+import UnfavoriteBtn from "../components/UnfavoriteBtn";
+import ShareBtn from "../components/ShareBtn";
+import RecCarousel from "../components/RecCarousel";
+import "../styles/Global.css";
+import HeaderWithoutSearch from "../components/HeaderWithoutSearch";
+import Footer from "../components/Footer";
 
 export default function DetalhesComidas(props) {
   const [foodDetails, setFoodDetails] = useState([]);
@@ -21,10 +21,14 @@ export default function DetalhesComidas(props) {
   const [measures, setMeasures] = useState([]);
   const [recommendations, setRecommendations] = useState([]);
   const { loading, setLoading } = useContext(Context);
-  const { match: { params: { id } } } = props;
+  const {
+    match: {
+      params: { id },
+    },
+  } = props;
 
   function verifyFavorites() {
-    const favoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes'));
+    const favoriteRecipes = JSON.parse(localStorage.getItem("favoriteRecipes"));
     if (favoriteRecipes.length > 0) {
       const favRecipe = favoriteRecipes.some((el) => el.id === id);
       setFavorite(favRecipe);
@@ -32,8 +36,10 @@ export default function DetalhesComidas(props) {
   }
 
   function verifyInProgress() {
-    if (localStorage.getItem('inProgressRecipes')) {
-      const inProgressRecipes = JSON.parse(localStorage.getItem('inProgressRecipes'));
+    if (localStorage.getItem("inProgressRecipes")) {
+      const inProgressRecipes = JSON.parse(
+        localStorage.getItem("inProgressRecipes")
+      );
       const idMeals = Object.keys(inProgressRecipes.meals);
       const isInProgress = idMeals.some((el) => el === id);
       setInProgress(isInProgress);
@@ -46,14 +52,19 @@ export default function DetalhesComidas(props) {
     const results = await data.json();
     setFoodDetails(results.meals[0]);
     const ingAndMe = Object.entries(results.meals[0]);
-    const ing = ingAndMe.filter((el) => el[0].includes('Ingredient') && el[1] !== '');
+    const ing = ingAndMe.filter(
+      (el) => el[0].includes("Ingredient") && el[1] !== ""
+    );
     setIngredients(ing);
-    const me = ingAndMe.filter((el) => el[0].includes('Measure') && el[1] !== ' ');
+    const me = ingAndMe.filter(
+      (el) => el[0].includes("Measure") && el[1] !== " "
+    );
     setMeasures(me);
   };
 
   const getRecommended = async () => {
-    const endpoint = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=';
+    const endpoint =
+      "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=";
     const data = await fetch(endpoint);
     const results = await data.json();
     setRecommendations(results.drinks);
@@ -62,8 +73,8 @@ export default function DetalhesComidas(props) {
 
   useEffect(() => {
     setLoading(true);
-    if (!JSON.parse(localStorage.getItem('favoriteRecipes'))) {
-      localStorage.setItem('favoriteRecipes', JSON.stringify([]));
+    if (!JSON.parse(localStorage.getItem("favoriteRecipes"))) {
+      localStorage.setItem("favoriteRecipes", JSON.stringify([]));
     }
     getFoodDetails();
     getRecommended();
@@ -76,27 +87,29 @@ export default function DetalhesComidas(props) {
   }
 
   function deleteFavorite() {
-    const favoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes'));
+    const favoriteRecipes = JSON.parse(localStorage.getItem("favoriteRecipes"));
     const { idMeal } = foodDetails;
-    const newFavRecipes = favoriteRecipes.filter(({ id: mealId }) => mealId !== idMeal);
-    localStorage.setItem('favoriteRecipes', JSON.stringify(newFavRecipes));
+    const newFavRecipes = favoriteRecipes.filter(
+      ({ id: mealId }) => mealId !== idMeal
+    );
+    localStorage.setItem("favoriteRecipes", JSON.stringify(newFavRecipes));
     setFavorite(false);
   }
 
   function saveFavorite() {
-    const favoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes'));
+    const favoriteRecipes = JSON.parse(localStorage.getItem("favoriteRecipes"));
     const { idMeal, strArea, strCategory, strMeal, strMealThumb } = foodDetails;
     const newRecipe = {
       id: idMeal,
-      type: 'comida',
+      type: "comida",
       area: strArea,
       category: strCategory,
-      alcoholicOrNot: '',
+      alcoholicOrNot: "",
       name: strMeal,
       image: strMealThumb,
     };
     const allFavRecipes = [...favoriteRecipes, newRecipe];
-    localStorage.setItem('favoriteRecipes', JSON.stringify(allFavRecipes));
+    localStorage.setItem("favoriteRecipes", JSON.stringify(allFavRecipes));
     setFavorite(true);
   }
 
@@ -107,7 +120,7 @@ export default function DetalhesComidas(props) {
       <div className="food-meals-details">
         <h4 data-testid="recipe-title">{foodDetails.strMeal}</h4>
         <img
-          src={ foodDetails.strMealThumb }
+          src={foodDetails.strMealThumb}
           className="card-img-meals"
           data-testid="recipe-photo"
           alt="meal"
@@ -116,30 +129,32 @@ export default function DetalhesComidas(props) {
       </div>
       <div className="details-btn">
         <ShareBtn />
-        { favorite
-          ? <UnfavoriteBtn deleteFavorite={ deleteFavorite } />
-          : <FavoriteBtn saveFavorite={ saveFavorite } />}
+        {favorite ? (
+          <UnfavoriteBtn deleteFavorite={deleteFavorite} />
+        ) : (
+          <FavoriteBtn saveFavorite={saveFavorite} />
+        )}
       </div>
       <div className="ingredients-details">
         <h3>Ingredients</h3>
         <ul>
-          { ingredients.length > 0 && ingredients.map((ing, index) => (
-            <li
-              data-testid={ `${index}-ingredient-name-and-measure` }
-              key={ index }
-            >
-              {`${ing[1]} - ${measures[index][1]}`}
-            </li>
-          )) }
+          {ingredients.length !== 0 &&
+            ingredients.map((ing, index) => (
+              <li
+                data-testid={`${index}-ingredient-name-and-measure`}
+                key={index}
+              >
+                {`${ing[1]} - ${measures[index][1]}`}
+              </li>
+            ))}
         </ul>
         <h4>Steps:</h4>
         <p data-testid="instructions">{foodDetails.strInstructions}</p>
       </div>
       <div className="recipe-btn">
-        <Link to={ `/comidas/${id}/in-progress` }>
-          { inProgress ? (
-            <>
-            </>
+        <Link to={`/comidas/${id}/in-progress`}>
+          {inProgress ? (
+            <></>
           ) : (
             <button
               type="button"
@@ -148,17 +163,17 @@ export default function DetalhesComidas(props) {
             >
               Iniciar Receita
             </button>
-          ) }
+          )}
         </Link>
         <a
           data-testid="video"
-          href={ foodDetails.strYoutube }
-          style={ { color: 'red', width: '80%' } }
+          href={foodDetails.strYoutube}
+          style={{ color: "red", width: "80%" }}
         >
-          <PlayCircleFilledWhiteOutlinedIcon style={ { fontSize: 40 } } />
+          <PlayCircleFilledWhiteOutlinedIcon style={{ fontSize: 40 }} />
         </a>
       </div>
-      <RecCarousel recommendations={ recommendations } />
+      <RecCarousel recommendations={recommendations} />
       <Footer />
     </div>
   );
