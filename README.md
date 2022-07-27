@@ -1,4 +1,4 @@
-# Boas vindas ao repositório do Projeto MyRecipe-app!
+# Boas vindas ao repositório do Projeto recipes-app!
 
 Esse projeto foi desenvolvido durante o módulo de FrontEnd na Trybe! #vqv 🚀
 
@@ -30,9 +30,6 @@ Para rodar a aplicação é necessário executar o comando abaixo.
 Instalação de Dependência.
 ```sh
 npm install
-```
-```sh
-npm i phosphor-react
 ```
 
 Para rodar a aplicação é necessário executar o comando abaixo.
