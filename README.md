@@ -37,5 +37,5 @@ Para rodar a aplicação é necessário executar o comando abaixo.
 npm start
 ```
 
----
-## Clique na imagem para rodar um video demonstrativo.
+
+
